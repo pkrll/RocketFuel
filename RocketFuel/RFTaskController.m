@@ -1,14 +1,14 @@
 /*!
- *  SFRocketFuel.m
+ *  RFTaskController.m
  *  RocketFuel
  *
  *  Created by Ardalan Samimi on 22/10/15.
  *  Copyright © 2015 Saturn Five. All rights reserved.
  */
 
-#import "SFRocketFuel.h"
+#import "RFTaskController.h"
 
-@interface SFRocketFuel ()
+@interface RFTaskController ()
 
 @property (nonatomic) NSTask *task;
 @property (nonatomic) NSString *path;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation SFRocketFuel
+@implementation RFTaskController
 
 + (instancetype)engage {
     return [[super alloc] init];

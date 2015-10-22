@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A80E57A1BD980E80092CC55 /* RFStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A80E5791BD980E80092CC55 /* RFStatusItemView.m */; settings = {ASSET_TAGS = (); }; };
+		6A80E57D1BD981FF0092CC55 /* RFStatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A80E57C1BD981FF0092CC55 /* RFStatusItemController.m */; settings = {ASSET_TAGS = (); }; };
 		6AC219351BD8E3090093E846 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC219341BD8E3090093E846 /* AppDelegate.m */; };
 		6AC219381BD8E3090093E846 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC219371BD8E3090093E846 /* main.m */; };
 		6AC2193A1BD8E3090093E846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AC219391BD8E3090093E846 /* Assets.xcassets */; };
 		6AC2193D1BD8E3090093E846 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC2193B1BD8E3090093E846 /* Main.xib */; };
-		6AC2194C1BD8EA1C0093E846 /* SFStatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC2194B1BD8EA1C0093E846 /* SFStatusItemController.m */; settings = {ASSET_TAGS = (); }; };
-		6AC2194F1BD8F07F0093E846 /* SFRocketFuel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC2194E1BD8F07F0093E846 /* SFRocketFuel.m */; settings = {ASSET_TAGS = (); }; };
+		6AC2194F1BD8F07F0093E846 /* RFTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC2194E1BD8F07F0093E846 /* RFTaskController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A80E5781BD980E80092CC55 /* RFStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFStatusItemView.h; sourceTree = "<group>"; };
+		6A80E5791BD980E80092CC55 /* RFStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFStatusItemView.m; sourceTree = "<group>"; };
+		6A80E57B1BD981FF0092CC55 /* RFStatusItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFStatusItemController.h; sourceTree = "<group>"; };
+		6A80E57C1BD981FF0092CC55 /* RFStatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFStatusItemController.m; sourceTree = "<group>"; };
 		6AC219301BD8E3090093E846 /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AC219331BD8E3090093E846 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6AC219341BD8E3090093E846 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -24,10 +29,8 @@
 		6AC2193C1BD8E3090093E846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Main.xib; sourceTree = "<group>"; };
 		6AC2193E1BD8E3090093E846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AC219491BD8E9130093E846 /* RocketFuel.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RocketFuel.pch; sourceTree = "<group>"; };
-		6AC2194A1BD8EA1C0093E846 /* SFStatusItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFStatusItemController.h; sourceTree = "<group>"; };
-		6AC2194B1BD8EA1C0093E846 /* SFStatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFStatusItemController.m; sourceTree = "<group>"; };
-		6AC2194D1BD8F07F0093E846 /* SFRocketFuel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFRocketFuel.h; sourceTree = "<group>"; };
-		6AC2194E1BD8F07F0093E846 /* SFRocketFuel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFRocketFuel.m; sourceTree = "<group>"; };
+		6AC2194D1BD8F07F0093E846 /* RFTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFTaskController.h; sourceTree = "<group>"; };
+		6AC2194E1BD8F07F0093E846 /* RFTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFTaskController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +65,12 @@
 			children = (
 				6AC219331BD8E3090093E846 /* AppDelegate.h */,
 				6AC219341BD8E3090093E846 /* AppDelegate.m */,
-				6AC2194A1BD8EA1C0093E846 /* SFStatusItemController.h */,
-				6AC2194B1BD8EA1C0093E846 /* SFStatusItemController.m */,
-				6AC2194D1BD8F07F0093E846 /* SFRocketFuel.h */,
-				6AC2194E1BD8F07F0093E846 /* SFRocketFuel.m */,
+				6A80E57B1BD981FF0092CC55 /* RFStatusItemController.h */,
+				6A80E57C1BD981FF0092CC55 /* RFStatusItemController.m */,
+				6A80E5781BD980E80092CC55 /* RFStatusItemView.h */,
+				6A80E5791BD980E80092CC55 /* RFStatusItemView.m */,
+				6AC2194D1BD8F07F0093E846 /* RFTaskController.h */,
+				6AC2194E1BD8F07F0093E846 /* RFTaskController.m */,
 				6AC219451BD8E7490093E846 /* UI */,
 				6AC219361BD8E3090093E846 /* Supporting Files */,
 			);
@@ -177,10 +182,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AC2194C1BD8EA1C0093E846 /* SFStatusItemController.m in Sources */,
 				6AC219381BD8E3090093E846 /* main.m in Sources */,
-				6AC2194F1BD8F07F0093E846 /* SFRocketFuel.m in Sources */,
+				6AC2194F1BD8F07F0093E846 /* RFTaskController.m in Sources */,
 				6AC219351BD8E3090093E846 /* AppDelegate.m in Sources */,
+				6A80E57D1BD981FF0092CC55 /* RFStatusItemController.m in Sources */,
+				6A80E57A1BD980E80092CC55 /* RFStatusItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +292,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RocketFuel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SaturnFive.RocketFuel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -298,6 +305,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RocketFuel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SaturnFive.RocketFuel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

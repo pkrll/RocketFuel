@@ -7,28 +7,28 @@
  */
 
 #import "AppDelegate.h"
-#import "SFStatusItemController.h"
+#import "RFStatusItemController.h"
 
 @interface AppDelegate ()
 
-@property (strong) SFStatusItemController *statusItem;
+@property (strong) RFStatusItemController *SIController;
 
 @end
 
 @implementation AppDelegate
 
-- (void)loadStatusItem {
-    self.statusItem = [SFStatusItemController init];
+- (void)loadStatusItemController {
+    self.SIController = [[RFStatusItemController alloc] init];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [self loadStatusItem];
+    [self loadStatusItemController];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    if (self.statusItem.isSleepModeOn) {
-        [self.statusItem requestTermination];
-    }
+//    if (self.statusItem.isSleepModeOn) {
+//        [self.statusItem requestTermination];
+//    }
 }
 
 @end

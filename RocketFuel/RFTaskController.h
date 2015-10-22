@@ -1,12 +1,11 @@
 /*!
- *  @class SFRocketFuel
- *  @brief The Rocket Fuel object.
- *  @discussion The Rocket Fuel class prevents sleep using command line tool caffeinate.
+ *  @class RFTaskController
+ *  @brief The Task Controller.
  *  @version 1.0.0
  *  @author Ardalan Samimi
  *  @copyright Saturn Five
  */
-@interface SFRocketFuel : NSObject
+@interface RFTaskController : NSObject
 /*!
  *  @brief Returns whether Rocket Fuel is preventing sleep.
  *  @return YES if caffeinate is running, otherwise NO.
