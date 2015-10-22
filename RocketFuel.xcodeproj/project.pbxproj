@@ -1,0 +1,330 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6AC219351BD8E3090093E846 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC219341BD8E3090093E846 /* AppDelegate.m */; };
+		6AC219381BD8E3090093E846 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC219371BD8E3090093E846 /* main.m */; };
+		6AC2193A1BD8E3090093E846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AC219391BD8E3090093E846 /* Assets.xcassets */; };
+		6AC2193D1BD8E3090093E846 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC2193B1BD8E3090093E846 /* Main.xib */; };
+		6AC2194C1BD8EA1C0093E846 /* SFStatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC2194B1BD8EA1C0093E846 /* SFStatusItemController.m */; settings = {ASSET_TAGS = (); }; };
+		6AC2194F1BD8F07F0093E846 /* SFRocketFuel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC2194E1BD8F07F0093E846 /* SFRocketFuel.m */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6AC219301BD8E3090093E846 /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AC219331BD8E3090093E846 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6AC219341BD8E3090093E846 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6AC219371BD8E3090093E846 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6AC219391BD8E3090093E846 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6AC2193C1BD8E3090093E846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Main.xib; sourceTree = "<group>"; };
+		6AC2193E1BD8E3090093E846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6AC219491BD8E9130093E846 /* RocketFuel.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RocketFuel.pch; sourceTree = "<group>"; };
+		6AC2194A1BD8EA1C0093E846 /* SFStatusItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFStatusItemController.h; sourceTree = "<group>"; };
+		6AC2194B1BD8EA1C0093E846 /* SFStatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFStatusItemController.m; sourceTree = "<group>"; };
+		6AC2194D1BD8F07F0093E846 /* SFRocketFuel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFRocketFuel.h; sourceTree = "<group>"; };
+		6AC2194E1BD8F07F0093E846 /* SFRocketFuel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFRocketFuel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6AC2192D1BD8E3090093E846 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6AC219271BD8E3090093E846 = {
+			isa = PBXGroup;
+			children = (
+				6AC219321BD8E3090093E846 /* RocketFuel */,
+				6AC219311BD8E3090093E846 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6AC219311BD8E3090093E846 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6AC219301BD8E3090093E846 /* RocketFuel.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6AC219321BD8E3090093E846 /* RocketFuel */ = {
+			isa = PBXGroup;
+			children = (
+				6AC219331BD8E3090093E846 /* AppDelegate.h */,
+				6AC219341BD8E3090093E846 /* AppDelegate.m */,
+				6AC2194A1BD8EA1C0093E846 /* SFStatusItemController.h */,
+				6AC2194B1BD8EA1C0093E846 /* SFStatusItemController.m */,
+				6AC2194D1BD8F07F0093E846 /* SFRocketFuel.h */,
+				6AC2194E1BD8F07F0093E846 /* SFRocketFuel.m */,
+				6AC219451BD8E7490093E846 /* UI */,
+				6AC219361BD8E3090093E846 /* Supporting Files */,
+			);
+			path = RocketFuel;
+			sourceTree = "<group>";
+		};
+		6AC219361BD8E3090093E846 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6AC219391BD8E3090093E846 /* Assets.xcassets */,
+				6AC2193E1BD8E3090093E846 /* Info.plist */,
+				6AC219371BD8E3090093E846 /* main.m */,
+				6AC219491BD8E9130093E846 /* RocketFuel.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6AC219451BD8E7490093E846 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6AC2193B1BD8E3090093E846 /* Main.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6AC2192F1BD8E3090093E846 /* RocketFuel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AC219411BD8E3090093E846 /* Build configuration list for PBXNativeTarget "RocketFuel" */;
+			buildPhases = (
+				6AC2192C1BD8E3090093E846 /* Sources */,
+				6AC2192D1BD8E3090093E846 /* Frameworks */,
+				6AC2192E1BD8E3090093E846 /* Resources */,
+				6AC219441BD8E3B80093E846 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RocketFuel;
+			productName = RocketFuel;
+			productReference = 6AC219301BD8E3090093E846 /* RocketFuel.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6AC219281BD8E3090093E846 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Saturn Five";
+				TargetAttributes = {
+					6AC2192F1BD8E3090093E846 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 6AC2192B1BD8E3090093E846 /* Build configuration list for PBXProject "RocketFuel" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6AC219271BD8E3090093E846;
+			productRefGroup = 6AC219311BD8E3090093E846 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6AC2192F1BD8E3090093E846 /* RocketFuel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6AC2192E1BD8E3090093E846 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AC2193A1BD8E3090093E846 /* Assets.xcassets in Resources */,
+				6AC2193D1BD8E3090093E846 /* Main.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6AC219441BD8E3B80093E846 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%04X\" $buildNumber)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\n# Set the build number to the count of Git commits\n#buildNumber=$(git rev-list --count HEAD)\n#buildNumber=$(printf \"%04X\" $buildNumber)\n#/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6AC2192C1BD8E3090093E846 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AC2194C1BD8EA1C0093E846 /* SFStatusItemController.m in Sources */,
+				6AC219381BD8E3090093E846 /* main.m in Sources */,
+				6AC2194F1BD8F07F0093E846 /* SFRocketFuel.m in Sources */,
+				6AC219351BD8E3090093E846 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6AC2193B1BD8E3090093E846 /* Main.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC2193C1BD8E3090093E846 /* Base */,
+			);
+			name = Main.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6AC2193F1BD8E3090093E846 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = RocketFuel/RocketFuel.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6AC219401BD8E3090093E846 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = RocketFuel/RocketFuel.pch;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6AC219421BD8E3090093E846 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = RocketFuel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SaturnFive.RocketFuel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6AC219431BD8E3090093E846 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = RocketFuel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SaturnFive.RocketFuel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6AC2192B1BD8E3090093E846 /* Build configuration list for PBXProject "RocketFuel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AC2193F1BD8E3090093E846 /* Debug */,
+				6AC219401BD8E3090093E846 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6AC219411BD8E3090093E846 /* Build configuration list for PBXNativeTarget "RocketFuel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AC219421BD8E3090093E846 /* Debug */,
+				6AC219431BD8E3090093E846 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6AC219281BD8E3090093E846 /* Project object */;
+}

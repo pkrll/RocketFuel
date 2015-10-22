@@ -1,0 +1,4 @@
+#ifndef RocketFuel_pch
+#define RocketFuel_pch
+#import <Cocoa/Cocoa.h>
+#endif
