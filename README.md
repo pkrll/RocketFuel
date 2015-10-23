@@ -1,5 +1,7 @@
 # RocketFuel 
-RocketFuel keeps your Mac awake
+This simple app has one job, and one job only – to keep your Mac and its display awake.
+
+RocketFuel ignores your energy saver settings and won't let your Mac go to sleep.
 
 ### Q&A
 Q: Isn't there already like a million similar apps out there?
