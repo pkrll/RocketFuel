@@ -2,7 +2,9 @@
 
 This simple app has one job, and one job only – to keep your Mac and its display awake.
 
-RocketFuel ignores your energy saver settings and won't let your Mac go to sleep.
+Rocket Fuel ignores your energy saver settings and won't let your Mac go to sleep.
+
+![icon](https://raw.githubusercontent.com/Saturn-Five/RocketFuel/master/RocketFuel/Assets.xcassets/AppIcon.appiconset/256.png)
 
 ### Q&A
 Q: Isn't there already like a million similar apps out there?
@@ -30,4 +32,4 @@ Q: I don't understand.
 A: Get the hell of my property. **[cocks gun]**
 
 ##### Credits
-Icon was created by [Freepik](http://www.freepik.com/).
+The rocket image was created by [Freepik](http://www.freepik.com/).
