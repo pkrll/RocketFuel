@@ -25,17 +25,6 @@
                         <rect key="frame" x="20" y="43" width="108" height="120"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RocketFuel" id="4JY-78-Wcy"/>
                     </imageView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xCn-yU-jL9">
-                        <rect key="frame" x="134" y="125" width="192" height="38"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Rocket Fuel" id="b8j-Ru-9rM">
-                            <font key="font" size="32" name="HelveticaNeue-Thin"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="-2" name="value" keyPath="self.applicationName" id="a7K-ZM-UTV"/>
-                        </connections>
-                    </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T1O-wt-uDw">
                         <rect key="frame" x="134" y="72" width="192" height="25"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Created by Ardalan Samimi" id="5n2-78-mcI">
@@ -69,6 +58,17 @@
                         </textFieldCell>
                         <connections>
                             <binding destination="-2" name="value" keyPath="self.applicationVersion" id="bCJ-71-0YG"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xCn-yU-jL9">
+                        <rect key="frame" x="134" y="124" width="192" height="39"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Rocket Fuel" id="b8j-Ru-9rM">
+                            <font key="font" size="32" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="self.applicationName" id="a7K-ZM-UTV"/>
                         </connections>
                     </textField>
                 </subviews>

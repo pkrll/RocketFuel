@@ -26,9 +26,24 @@
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    if (self.statusItemController.isSleepModeOn) {
+    if (self.statusItemController.isActive) {
         [self.statusItemController requestTermination];
     }
+}
+
+#pragma mark APPLESCRIPT METHODS
+
+- (void)toggleRocketFuel {
+    if (self.statusItemController.isActive) {
+        [self.statusItemController requestTermination];
+    } else {
+        [self.statusItemController requestActivation];
+    }
+}
+
+- (NSNumber *)isActive {
+    BOOL state = self.statusItemController.isActive;
+    return [NSNumber numberWithBool:state];
 }
 
 @end

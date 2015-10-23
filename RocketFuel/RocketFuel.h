@@ -18,7 +18,7 @@
  *  @brief Returns whether Rocket Fuel is preventing sleep.
  *  @return YES if caffeinate is running, otherwise NO.
  */
-@property (nonatomic, readonly) BOOL sleepMode;
+@property (nonatomic, readonly) BOOL active;
 /*!
  *  @brief The delegate adopting the Rocket Fuel protocol.
  */

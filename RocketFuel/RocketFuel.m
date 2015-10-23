@@ -51,15 +51,19 @@
     }
     
     _task = nil;
-    self.sleepMode = self.isSleepModeOn;
+    self.active = self.isActive;
 }
 
-- (void)setSleepMode:(BOOL)sleepMode {
+- (BOOL)active {
+    return self.isActive;
+}
+
+- (void)setActive:(BOOL)mode {
     [self.delegate rocketFuel:self
-              didChangeStatus:sleepMode];
+              didChangeStatus:mode];
 }
 
-- (BOOL)isSleepModeOn {
+- (BOOL)isActive {
     return [_task isRunning];
 }
 
@@ -67,7 +71,7 @@
     if (!_task) {
         _task = [NSTask launchedTaskWithLaunchPath:self.path
                                          arguments:self.arguments];
-        self.sleepMode = self.isSleepModeOn;
+        self.active = self.isActive;
     }
     
     return _task;

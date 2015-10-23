@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.0</string>
+	<string>1.2.1</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>RkFl</string>
 	<key>CFBundleVersion</key>
-	<string>00B7</string>
+	<string>0150</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
@@ -33,7 +33,7 @@
 	<key>NSMainNibFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>RFApplication</string>
 	<key>OSAScriptingDefinition</key>
 	<string>RocketFuel.sdef</string>
 </dict>

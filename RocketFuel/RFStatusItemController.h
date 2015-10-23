@@ -7,7 +7,8 @@
  */
 @interface RFStatusItemController : NSObject
 
-@property (nonatomic, readonly, getter = isSleepModeOn) BOOL sleepMode;
+@property (nonatomic, readonly, getter = isActive) BOOL active;
+- (void)requestActivation;
 - (void)requestTermination;
 
 @end

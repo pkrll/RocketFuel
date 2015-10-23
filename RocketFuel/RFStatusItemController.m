@@ -91,7 +91,7 @@ NSString *const imageStatePushed = @"rocketPushed";
 #pragma mark IMAGE METHODS
 
 - (NSImage *)imageForCurrentState {
-    return (self.isSleepModeOn) ? [self imageForActiveState] : [self imageForIdleState];
+    return (self.isActive) ? [self imageForActiveState] : [self imageForIdleState];
 }
 
 - (NSImage *)imageForIdleState {
@@ -106,6 +106,13 @@ NSString *const imageStatePushed = @"rocketPushed";
     return [NSImage imageNamed:imageStatePushed];
 }
 
+#pragma mark TASK CONTROLLER DELEGATE METHODS
+
+- (void)rocketFuel:(RocketFuel *)rocketFuel
+   didChangeStatus:(BOOL)sleepMode {
+    self.statusItemView.image = (sleepMode) ? [self imageForActiveState] : [self imageForIdleState];
+}
+
 #pragma mark TASK CONTROLLER METHODS
 
 - (RocketFuel *)rocketFuel {
@@ -117,17 +124,16 @@ NSString *const imageStatePushed = @"rocketPushed";
     return _rocketFuel;
 }
 
-- (BOOL)isSleepModeOn {
-    return self.rocketFuel.sleepMode;
+- (BOOL)isActive {
+    return self.rocketFuel.active;
 }
 
 - (void)requestTermination {
     [self.rocketFuel toggleSleepMode];
 }
 
-- (void)rocketFuel:(RocketFuel *)rocketFuel
-   didChangeStatus:(BOOL)sleepMode {
-    self.statusItemView.image = (sleepMode) ? [self imageForActiveState] : [self imageForIdleState];
+- (void)requestActivation {
+    [self.rocketFuel toggleSleepMode];
 }
 
 #pragma mark MISC METHODS

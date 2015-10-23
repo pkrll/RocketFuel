@@ -16,6 +16,9 @@
 		6AC2193A1BD8E3090093E846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AC219391BD8E3090093E846 /* Assets.xcassets */; };
 		6AC2193D1BD8E3090093E846 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC2193B1BD8E3090093E846 /* Main.xib */; };
 		6AC2194F1BD8F07F0093E846 /* RocketFuel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC2194E1BD8F07F0093E846 /* RocketFuel.m */; };
+		6ACD6F191BDAAA8C00B15623 /* RocketFuel.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 6ACD6F181BDAAA8C00B15623 /* RocketFuel.sdef */; settings = {ASSET_TAGS = (); }; };
+		6ACD6F1F1BDAB9CE00B15623 /* RFAppleScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACD6F1E1BDAB9CE00B15623 /* RFAppleScript.m */; settings = {ASSET_TAGS = (); }; };
+		6ACD6F221BDACE9400B15623 /* RFApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACD6F211BDACE9400B15623 /* RFApplication.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,11 @@
 		6AC219491BD8E9130093E846 /* RocketFuel.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RocketFuel.pch; sourceTree = "<group>"; };
 		6AC2194D1BD8F07F0093E846 /* RocketFuel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketFuel.h; sourceTree = "<group>"; };
 		6AC2194E1BD8F07F0093E846 /* RocketFuel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketFuel.m; sourceTree = "<group>"; };
+		6ACD6F181BDAAA8C00B15623 /* RocketFuel.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RocketFuel.sdef; sourceTree = "<group>"; };
+		6ACD6F1D1BDAB9CE00B15623 /* RFAppleScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFAppleScript.h; sourceTree = "<group>"; };
+		6ACD6F1E1BDAB9CE00B15623 /* RFAppleScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFAppleScript.m; sourceTree = "<group>"; };
+		6ACD6F201BDACE9400B15623 /* RFApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFApplication.h; sourceTree = "<group>"; };
+		6ACD6F211BDACE9400B15623 /* RFApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFApplication.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,8 @@
 		6AC219321BD8E3090093E846 /* RocketFuel */ = {
 			isa = PBXGroup;
 			children = (
+				6ACD6F201BDACE9400B15623 /* RFApplication.h */,
+				6ACD6F211BDACE9400B15623 /* RFApplication.m */,
 				6AC219331BD8E3090093E846 /* AppDelegate.h */,
 				6AC219341BD8E3090093E846 /* AppDelegate.m */,
 				6A80E57B1BD981FF0092CC55 /* RFStatusItemController.h */,
@@ -78,6 +88,8 @@
 				6AC2194E1BD8F07F0093E846 /* RocketFuel.m */,
 				6A72FC191BDA9B6400690D05 /* RFAboutWindow.h */,
 				6A72FC1A1BDA9B6400690D05 /* RFAboutWindow.m */,
+				6ACD6F1D1BDAB9CE00B15623 /* RFAppleScript.h */,
+				6ACD6F1E1BDAB9CE00B15623 /* RFAppleScript.m */,
 				6AC219451BD8E7490093E846 /* UI */,
 				6AC219361BD8E3090093E846 /* Supporting Files */,
 			);
@@ -91,6 +103,7 @@
 				6AC2193E1BD8E3090093E846 /* Info.plist */,
 				6AC219371BD8E3090093E846 /* main.m */,
 				6AC219491BD8E9130093E846 /* RocketFuel.pch */,
+				6ACD6F181BDAAA8C00B15623 /* RocketFuel.sdef */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -165,6 +178,7 @@
 				6A72FC1D1BDA9B6400690D05 /* About.xib in Resources */,
 				6AC2193A1BD8E3090093E846 /* Assets.xcassets in Resources */,
 				6AC2193D1BD8E3090093E846 /* Main.xib in Resources */,
+				6ACD6F191BDAAA8C00B15623 /* RocketFuel.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,8 +208,10 @@
 				6AC219381BD8E3090093E846 /* main.m in Sources */,
 				6AC2194F1BD8F07F0093E846 /* RocketFuel.m in Sources */,
 				6AC219351BD8E3090093E846 /* AppDelegate.m in Sources */,
+				6ACD6F1F1BDAB9CE00B15623 /* RFAppleScript.m in Sources */,
 				6A72FC1C1BDA9B6400690D05 /* RFAboutWindow.m in Sources */,
 				6A80E57D1BD981FF0092CC55 /* RFStatusItemController.m in Sources */,
+				6ACD6F221BDACE9400B15623 /* RFApplication.m in Sources */,
 				6A80E57A1BD980E80092CC55 /* RFStatusItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
