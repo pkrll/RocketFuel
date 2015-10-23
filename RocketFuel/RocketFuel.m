@@ -49,8 +49,14 @@
     if ([self.task isRunning]) {
         [_task terminate];
     }
-
+    
     _task = nil;
+    self.sleepMode = self.isSleepModeOn;
+}
+
+- (void)setSleepMode:(BOOL)sleepMode {
+    [self.delegate rocketFuel:self
+              didChangeStatus:sleepMode];
 }
 
 - (BOOL)isSleepModeOn {
@@ -61,6 +67,7 @@
     if (!_task) {
         _task = [NSTask launchedTaskWithLaunchPath:self.path
                                          arguments:self.arguments];
+        self.sleepMode = self.isSleepModeOn;
     }
     
     return _task;

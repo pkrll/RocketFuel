@@ -40,7 +40,7 @@
     NSRect bounds = self.bounds;
     CGFloat iconX = roundf((NSWidth(bounds) - width) / 2);
     CGFloat iconY = roundf((NSHeight(bounds) - height) / 2);
-    [self.image drawAtPoint: NSMakePoint(iconX, iconY)
+    [self.image drawAtPoint:NSMakePoint(iconX, iconY)
                    fromRect:NSZeroRect
                   operation:NSCompositeSourceOver
                    fraction:1.0];
@@ -51,14 +51,19 @@
     [self setNeedsDisplay:YES];
 }
 
+- (void)setImage:(NSImage *)image {
+    _image = image;
+    [self setNeedsDisplay:YES];
+}
+
 - (void)mouseDown:(NSEvent *)theEvent {
-    [self.delegate RFStatusItemView:self
-                didReceiveLeftClick:theEvent];
+    [self.delegate statusItemView:self
+              didReceiveLeftClick:theEvent];
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
-    [self.delegate RFStatusItemView:self
-               didReceiveRightClick:theEvent];
+    [self.delegate statusItemView:self
+             didReceiveRightClick:theEvent];
 }
 
 - (void)openMenu:(NSMenu *)menu {

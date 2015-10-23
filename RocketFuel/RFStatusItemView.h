@@ -3,16 +3,16 @@
 /*!
  *  @protocol RFStatusItemViewDelegate
  *  @brief The Status Item View delegate.
- *  @version 1.0.0
+ *  @version 1.0.1
  *  @author Ardalan Samimi
  *  @copyright Saturn Five
  */
 @protocol RFStatusItemViewDelegate <NSObject>
 
-- (void)RFStatusItemView:(RFStatusItemView *)view
-     didReceiveLeftClick:(NSEvent *)theEvent;
-- (void)RFStatusItemView:(RFStatusItemView *)view
-    didReceiveRightClick:(NSEvent *)theEvent;
+- (void)statusItemView:(RFStatusItemView *)view
+   didReceiveLeftClick:(NSEvent *)theEvent;
+- (void)statusItemView:(RFStatusItemView *)view
+  didReceiveRightClick:(NSEvent *)theEvent;
 
 @end
 /*!

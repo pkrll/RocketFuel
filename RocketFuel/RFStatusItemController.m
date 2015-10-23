@@ -9,13 +9,16 @@
 #import "RFStatusItemController.h"
 #import "RFStatusItemView.h"
 #import "RocketFuel.h"
+#import "RFAboutWindow.h"
 
-@interface RFStatusItemController () <RFStatusItemViewDelegate, NSMenuDelegate>
+@interface RFStatusItemController () <RFStatusItemViewDelegate, RocketFuelDelegate, NSMenuDelegate>
 
 @property (nonatomic, strong) NSMenu *menu;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) RFStatusItemView *statusItemView;
 @property (nonatomic, strong) RocketFuel *rocketFuel;
+@property (nonatomic, strong) RFAboutWindow *aboutWindow;
+@property (nonatomic, readonly, getter = isMenuDark) BOOL menuDark;
 
 @end
 
@@ -38,23 +41,21 @@ NSString *const imageStatePushed = @"rocketPushed";
 - (void)didLoad {
     self.statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:NSSquareStatusItemLength];
     self.statusItemView = [[RFStatusItemView alloc] initWithStatusItem:self.statusItem];
-    self.statusItemView.image = [NSImage imageNamed:imageStateIdle];
+    self.statusItemView.image = [self imageForCurrentState];
+    self.statusItemView.image.template = YES;
     self.statusItemView.delegate = self;
 }
 
 #pragma mark DELEGATE METHODS
 
-- (void)RFStatusItemView:(RFStatusItemView *)view
-     didReceiveLeftClick:(NSEvent *)theEvent {
+- (void)statusItemView:(RFStatusItemView *)view
+   didReceiveLeftClick:(NSEvent *)theEvent {
     [self.rocketFuel toggleSleepMode];
-    self.statusItemView.image = [self imageForCurrentState];
-    [self.statusItemView setNeedsDisplay:YES];
 }
 
-- (void)RFStatusItemView:(RFStatusItemView *)view
-    didReceiveRightClick:(NSEvent *)theEvent {
-    [self.statusItemView openMenu:self.menu];
-    self.statusItemView.image = [self imageForCurrentState];
+- (void)statusItemView:(RFStatusItemView *)view
+  didReceiveRightClick:(NSEvent *)theEvent {
+    [view openMenu:self.menu];
 }
 
 #pragma mark MENU METHODS
@@ -63,9 +64,15 @@ NSString *const imageStatePushed = @"rocketPushed";
     if (!_menu) {
         _menu = [[NSMenu alloc] initWithTitle:@"RocketFuel"];
         _menu.delegate = self;
+        NSMenuItem *aboutMenu = [[NSMenuItem alloc] initWithTitle:@"About"
+                                                           action:@selector(openAboutWindow:)
+                                                    keyEquivalent:@""];
+        aboutMenu.target = self;
+        [_menu addItem:aboutMenu];
+        [_menu addItem:[NSMenuItem separatorItem]];
         [_menu addItemWithTitle:@"Quit"
                          action:@selector(terminate:)
-                  keyEquivalent:@"q"];
+                  keyEquivalent:@""];
     }
     
     return _menu;
@@ -84,11 +91,11 @@ NSString *const imageStatePushed = @"rocketPushed";
 #pragma mark IMAGE METHODS
 
 - (NSImage *)imageForCurrentState {
-    return ([self isSleepModeOn]) ? [NSImage imageNamed:imageStateActive] : [NSImage imageNamed:imageStateIdle];
+    return (self.isSleepModeOn) ? [self imageForActiveState] : [self imageForIdleState];
 }
 
 - (NSImage *)imageForIdleState {
-    return [NSImage imageNamed:imageStateIdle];
+    return (self.isMenuDark) ? [self imageForPushedState] : [NSImage imageNamed:imageStateIdle];
 }
 
 - (NSImage *)imageForActiveState {
@@ -104,6 +111,7 @@ NSString *const imageStatePushed = @"rocketPushed";
 - (RocketFuel *)rocketFuel {
     if (!_rocketFuel) {
         _rocketFuel = [RocketFuel engage];
+        _rocketFuel.delegate = self;
     }
     
     return _rocketFuel;
@@ -115,6 +123,24 @@ NSString *const imageStatePushed = @"rocketPushed";
 
 - (void)requestTermination {
     [self.rocketFuel toggleSleepMode];
+}
+
+- (void)rocketFuel:(RocketFuel *)rocketFuel
+   didChangeStatus:(BOOL)sleepMode {
+    self.statusItemView.image = (sleepMode) ? [self imageForActiveState] : [self imageForIdleState];
+}
+
+#pragma mark MISC METHODS
+
+- (void)openAboutWindow:(id)sender {
+    self.aboutWindow = [[RFAboutWindow alloc] init];
+    [self.aboutWindow showWindow:nil];
+    [self.aboutWindow.window makeKeyAndOrderFront:nil];
+}
+
+
+- (BOOL)isMenuDark {
+    return [NSAppearance.currentAppearance.name hasPrefix:@"NSAppearanceNameVibrantDark"];
 }
 
 @end
