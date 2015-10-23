@@ -1,11 +1,11 @@
 /*!
- *  @class RFTaskController
- *  @brief The Task Controller.
+ *  @class RocketFuel
+ *  @brief The RocketFuel Object.
  *  @version 1.0.0
  *  @author Ardalan Samimi
  *  @copyright Saturn Five
  */
-@interface RFTaskController : NSObject
+@interface RocketFuel : NSObject
 /*!
  *  @brief Returns whether Rocket Fuel is preventing sleep.
  *  @return YES if caffeinate is running, otherwise NO.

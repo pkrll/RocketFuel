@@ -11,14 +11,14 @@
 
 @interface AppDelegate ()
 
-@property (strong) RFStatusItemController *SIController;
+@property (strong) RFStatusItemController *statusItemController;
 
 @end
 
 @implementation AppDelegate
 
 - (void)loadStatusItemController {
-    self.SIController = [[RFStatusItemController alloc] init];
+    self.statusItemController = [[RFStatusItemController alloc] init];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -26,9 +26,9 @@
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-//    if (self.statusItem.isSleepModeOn) {
-//        [self.statusItem requestTermination];
-//    }
+    if (self.statusItemController.isSleepModeOn) {
+        [self.statusItemController requestTermination];
+    }
 }
 
 @end

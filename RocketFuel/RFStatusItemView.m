@@ -1,10 +1,10 @@
-//
-//  RFStatusItemView.m
-//  RocketFuel
-//
-//  Created by Ardalan Samimi on 22/10/15.
-//  Copyright © 2015 Saturn Five. All rights reserved.
-//
+/*!
+ *  RFStatusItemView.m
+ *  RocketFuel
+ *
+ *  Created by Ardalan Samimi on 22/10/15.
+ *  Copyright © 2015 Saturn Five. All rights reserved.
+ */
 
 #import "RFStatusItemView.h"
 
@@ -46,19 +46,23 @@
                    fraction:1.0];
 }
 
-- (void)mouseDown:(NSEvent *)theEvent {
-    
+- (void)setHighlightMode:(BOOL)highlightMode {
+    _highlightMode = highlightMode;
     [self setNeedsDisplay:YES];
+}
+
+- (void)mouseDown:(NSEvent *)theEvent {
+    [self.delegate RFStatusItemView:self
+                didReceiveLeftClick:theEvent];
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
     [self.delegate RFStatusItemView:self
                didReceiveRightClick:theEvent];
-    [self setNeedsDisplay:YES];
 }
 
-- (void)openMenu {
-    
+- (void)openMenu:(NSMenu *)menu {
+    [self.statusItem popUpStatusItemMenu:menu];
 }
 
 @end
