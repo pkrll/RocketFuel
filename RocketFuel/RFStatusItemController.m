@@ -140,8 +140,9 @@ NSString *const imageStatePushed = @"rocketPushed";
 
 - (void)openAboutWindow:(id)sender {
     self.aboutWindow = [[RFAboutWindow alloc] init];
-    [self.aboutWindow showWindow:nil];
-    [self.aboutWindow.window makeKeyAndOrderFront:nil];
+    [self.aboutWindow showWindow:self];
+    [self.aboutWindow.window makeKeyAndOrderFront:self];
+    [self.aboutWindow.window setLevel:NSFloatingWindowLevel];
 }
 
 
