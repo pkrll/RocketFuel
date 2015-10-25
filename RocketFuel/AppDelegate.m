@@ -34,6 +34,10 @@
 #pragma mark APPLESCRIPT METHODS
 
 - (void)toggleRocketFuel {
+    if (!_statusItemController) {
+        [self loadStatusItemController];
+    }
+    
     if (self.statusItemController.isActive) {
         [self.statusItemController requestTermination];
     } else {

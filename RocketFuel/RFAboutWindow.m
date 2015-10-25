@@ -25,7 +25,7 @@
 }
 
 - (instancetype)init {
-    self = [super initWithWindowNibName:@"About" owner:self];
+    self = [super initWithWindowNibName:@"About"];
     return self;
 }
 
