@@ -8,14 +8,16 @@
 
 #import "RFStatusItemController.h"
 #import "RFStatusItemView.h"
+#import "RFMenu.h"
 #import "RocketFuel.h"
 #import "RFAboutWindow.h"
 
 @interface RFStatusItemController () <RFStatusItemViewDelegate, RocketFuelDelegate, NSMenuDelegate>
 
-@property (nonatomic, strong) NSMenu *menu;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) RFStatusItemView *statusItemView;
+@property (nonatomic, strong) RFMenu *menu;
+@property (nonatomic, strong) RFMenu *subMenu;
 @property (nonatomic, strong) RocketFuel *rocketFuel;
 @property (nonatomic, strong) RFAboutWindow *aboutWindow;
 @property (nonatomic) BOOL applicationWillLaunchAtLogin;
@@ -71,29 +73,51 @@ NSString *const imageStatePushed = @"rocketPushed";
 
 #pragma mark MENU METHODS
 
-- (NSMenu *)menu {
+- (RFMenu *)menu {
     if (!_menu) {
-        _menu = [[NSMenu alloc] initWithTitle:@"RocketFuel"];
+        _menu = [[RFMenu alloc] initMainMenuWithTitle:@"RocketFuel"];
+        
+        _menu.autoStartMenu.action = @selector(toggleLaunchAtLogin:);
+        _menu.autoStartMenu.target = self;
+        _menu.autoStartMenu.state = self.applicationWillLaunchAtLogin;
+        
+        _menu.durationMenu.submenu = self.subMenu;
+        
+        _menu.aboutAppMenu.action = @selector(openAboutWindow:);
+        _menu.aboutAppMenu.target = self;
+        
         _menu.delegate = self;
-        NSMenuItem *loginMenu = [[NSMenuItem alloc] initWithTitle:@"Launch at login"
-                                                           action:@selector(toggleLaunchAtLogin:)
-                                                    keyEquivalent:@""];
-        NSMenuItem *aboutMenu = [[NSMenuItem alloc] initWithTitle:@"About"
-                                                           action:@selector(openAboutWindow:)
-                                                    keyEquivalent:@""];
-        loginMenu.target = self;
-        aboutMenu.target = self;
-        [_menu addItem:loginMenu];
-        [_menu addItem:aboutMenu];
-        [_menu addItem:[NSMenuItem separatorItem]];
-        [_menu addItemWithTitle:@"Quit"
-                         action:@selector(terminate:)
-                  keyEquivalent:@""];
-        // Set application will launch at login state
-        loginMenu.state = self.applicationWillLaunchAtLogin;
     }
     
     return _menu;
+}
+
+- (RFMenu *)subMenu {
+    if (!_subMenu) {
+        _subMenu = [[RFMenu alloc] initSubMenuWithTitle:@"RocketFuel Submenu"];
+        [_subMenu addItemWithTitle:@"5 minutes"
+                               tag:300
+                          selector:@selector(deactivateAfterDuration:)
+                            target:self];
+        [_subMenu addItemWithTitle:@"15 minutes"
+                               tag:900
+                          selector:@selector(deactivateAfterDuration:)
+                            target:self];
+        [_subMenu addItemWithTitle:@"30 minutes"
+                               tag:1800
+                          selector:@selector(deactivateAfterDuration:)
+                            target:self];
+        [_subMenu addItemWithTitle:@"1 hour"
+                               tag:3600
+                          selector:@selector(deactivateAfterDuration:)
+                            target:self];
+        [_subMenu addItemWithTitle:@"never"
+                               tag:0
+                          selector:@selector(deactivateAfterDuration:)
+                            target:self];
+    }
+    
+    return _subMenu;
 }
 
 - (void)menuWillOpen:(NSMenu *)menu {
@@ -104,6 +128,34 @@ NSString *const imageStatePushed = @"rocketPushed";
 - (void)menuDidClose:(NSMenu *)menu {
     self.statusItemView.image = [self imageForCurrentState];
     self.statusItemView.highlightMode = NO;
+}
+
+- (void)toggleLaunchAtLogin:(NSMenuItem *)sender {
+    self.applicationWillLaunchAtLogin = !self.applicationWillLaunchAtLogin;
+    sender.state = self.applicationWillLaunchAtLogin;
+}
+
+- (void)openAboutWindow:(id)sender {
+    self.aboutWindow = [[RFAboutWindow alloc] init];
+    [self.aboutWindow showWindow:self];
+    [self.aboutWindow.window makeKeyAndOrderFront:self];
+    [self.aboutWindow.window setLevel:NSFloatingWindowLevel];
+}
+
+- (void)deactivateAfterDuration:(NSMenuItem *)sender {
+    if (sender.state == NSOffState) {
+        NSInteger duration = sender.tag;
+        
+        if (self.isActive) {
+            [self.rocketFuel terminate];
+        }
+        
+        self.rocketFuel.duration = duration;
+        [self.rocketFuel toggleSleepMode];
+        
+        [self.subMenu resetStateForMenuItems];
+        sender.state = NSOnState;
+    }
 }
 
 #pragma mark IMAGE METHODS
@@ -155,18 +207,6 @@ NSString *const imageStatePushed = @"rocketPushed";
 }
 
 #pragma mark MISC METHODS
-
-- (void)toggleLaunchAtLogin:(NSMenuItem *)sender {
-    self.applicationWillLaunchAtLogin = !self.applicationWillLaunchAtLogin;
-    sender.state = self.applicationWillLaunchAtLogin;
-}
-
-- (void)openAboutWindow:(id)sender {
-    self.aboutWindow = [[RFAboutWindow alloc] init];
-    [self.aboutWindow showWindow:self];
-    [self.aboutWindow.window makeKeyAndOrderFront:self];
-    [self.aboutWindow.window setLevel:NSFloatingWindowLevel];
-}
 
 - (BOOL)isMenuDark {
     return [NSAppearance.currentAppearance.name hasPrefix:@"NSAppearanceNameVibrantDark"];

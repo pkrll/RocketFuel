@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A72FC1C1BDA9B6400690D05 /* RFAboutWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A72FC1A1BDA9B6400690D05 /* RFAboutWindow.m */; settings = {ASSET_TAGS = (); }; };
-		6A72FC1D1BDA9B6400690D05 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A72FC1B1BDA9B6400690D05 /* About.xib */; settings = {ASSET_TAGS = (); }; };
+		6A0578B11BDE178E0028AAB4 /* RFMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0578B01BDE178E0028AAB4 /* RFMenu.m */; };
+		6A72FC1C1BDA9B6400690D05 /* RFAboutWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A72FC1A1BDA9B6400690D05 /* RFAboutWindow.m */; };
+		6A72FC1D1BDA9B6400690D05 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A72FC1B1BDA9B6400690D05 /* About.xib */; };
 		6A80E57A1BD980E80092CC55 /* RFStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A80E5791BD980E80092CC55 /* RFStatusItemView.m */; };
 		6A80E57D1BD981FF0092CC55 /* RFStatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A80E57C1BD981FF0092CC55 /* RFStatusItemController.m */; };
 		6AC219351BD8E3090093E846 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC219341BD8E3090093E846 /* AppDelegate.m */; };
@@ -16,12 +17,14 @@
 		6AC2193A1BD8E3090093E846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AC219391BD8E3090093E846 /* Assets.xcassets */; };
 		6AC2193D1BD8E3090093E846 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC2193B1BD8E3090093E846 /* Main.xib */; };
 		6AC2194F1BD8F07F0093E846 /* RocketFuel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC2194E1BD8F07F0093E846 /* RocketFuel.m */; };
-		6ACD6F191BDAAA8C00B15623 /* RocketFuel.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 6ACD6F181BDAAA8C00B15623 /* RocketFuel.sdef */; settings = {ASSET_TAGS = (); }; };
-		6ACD6F1F1BDAB9CE00B15623 /* RFAppleScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACD6F1E1BDAB9CE00B15623 /* RFAppleScript.m */; settings = {ASSET_TAGS = (); }; };
-		6ACD6F221BDACE9400B15623 /* RFApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACD6F211BDACE9400B15623 /* RFApplication.m */; settings = {ASSET_TAGS = (); }; };
+		6ACD6F191BDAAA8C00B15623 /* RocketFuel.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 6ACD6F181BDAAA8C00B15623 /* RocketFuel.sdef */; };
+		6ACD6F1F1BDAB9CE00B15623 /* RFAppleScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACD6F1E1BDAB9CE00B15623 /* RFAppleScript.m */; };
+		6ACD6F221BDACE9400B15623 /* RFApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACD6F211BDACE9400B15623 /* RFApplication.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A0578AF1BDE178E0028AAB4 /* RFMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFMenu.h; sourceTree = "<group>"; };
+		6A0578B01BDE178E0028AAB4 /* RFMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFMenu.m; sourceTree = "<group>"; };
 		6A72FC191BDA9B6400690D05 /* RFAboutWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFAboutWindow.h; sourceTree = "<group>"; };
 		6A72FC1A1BDA9B6400690D05 /* RFAboutWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFAboutWindow.m; sourceTree = "<group>"; };
 		6A72FC1B1BDA9B6400690D05 /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 				6A80E57C1BD981FF0092CC55 /* RFStatusItemController.m */,
 				6A80E5781BD980E80092CC55 /* RFStatusItemView.h */,
 				6A80E5791BD980E80092CC55 /* RFStatusItemView.m */,
+				6A0578AF1BDE178E0028AAB4 /* RFMenu.h */,
+				6A0578B01BDE178E0028AAB4 /* RFMenu.m */,
 				6AC2194D1BD8F07F0093E846 /* RocketFuel.h */,
 				6AC2194E1BD8F07F0093E846 /* RocketFuel.m */,
 				6A72FC191BDA9B6400690D05 /* RFAboutWindow.h */,
@@ -209,6 +214,7 @@
 				6AC2194F1BD8F07F0093E846 /* RocketFuel.m in Sources */,
 				6AC219351BD8E3090093E846 /* AppDelegate.m in Sources */,
 				6ACD6F1F1BDAB9CE00B15623 /* RFAppleScript.m in Sources */,
+				6A0578B11BDE178E0028AAB4 /* RFMenu.m in Sources */,
 				6A72FC1C1BDA9B6400690D05 /* RFAboutWindow.m in Sources */,
 				6A80E57D1BD981FF0092CC55 /* RFStatusItemController.m in Sources */,
 				6ACD6F221BDACE9400B15623 /* RFApplication.m in Sources */,
