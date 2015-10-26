@@ -36,13 +36,8 @@
     if (_task) {
         [self terminate];
     } else {
-        [self launch];
+        [self task];
     }
-}
-
-- (void)launch {
-    [self.arguments addObject:@"-di"];
-    [self task];
 }
 
 - (void)terminate {
@@ -51,6 +46,7 @@
     }
     
     _task = nil;
+    _arguments = nil;
     self.active = self.isActive;
 }
 
@@ -79,7 +75,14 @@
 
 - (NSMutableArray *)arguments {
     if (!_arguments) {
-        _arguments = [NSMutableArray array];
+        NSString *argument;
+        if (_duration) {
+            argument = [NSString stringWithFormat:@"-dit %li", _duration];
+        } else {
+            argument = @"-di";
+        }
+        
+        _arguments = [NSMutableArray arrayWithObject:argument];
     }
     
     return _arguments;

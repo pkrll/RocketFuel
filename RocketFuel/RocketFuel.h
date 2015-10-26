@@ -9,7 +9,7 @@
 /*!
  *  @class RocketFuel
  *  @brief The RocketFuel Object.
- *  @version 1.1.0
+ *  @version 1.2.0
  *  @author Ardalan Samimi
  *  @copyright Saturn Five
  */
@@ -19,6 +19,10 @@
  *  @return YES if caffeinate is running, otherwise NO.
  */
 @property (nonatomic, readonly) BOOL active;
+/*!
+ *  @brief The duration in seconds for which RocketFuel is to be active.
+ */
+@property (nonatomic) NSInteger duration;
 /*!
  *  @brief The delegate adopting the Rocket Fuel protocol.
  */
@@ -32,5 +36,9 @@
  *  @discussion To check whether sleep mode is one, use property isSleepModeOn.
  */
 - (void)toggleSleepMode;
+/*!
+ *  @brief Terminate sleep prevention.
+ */
+- (void)terminate;
 
 @end
