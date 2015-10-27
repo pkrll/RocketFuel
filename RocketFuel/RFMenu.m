@@ -31,10 +31,10 @@
 }
 
 - (void)addItemsToMainMenu {
-    self.autoStartMenu = [[NSMenuItem alloc] initWithTitle:@"Launch at login"
+    self.autoStartMenu = [[NSMenuItem alloc] initWithTitle:@"Launch at Login"
                                                     action:nil
                                              keyEquivalent:@""];
-    self.durationMenu = [[NSMenuItem alloc] initWithTitle:@"Deactivate after"
+    self.durationMenu = [[NSMenuItem alloc] initWithTitle:@"Deactivate After"
                                                    action:nil
                                             keyEquivalent:@""];
     self.aboutAppMenu = [[NSMenuItem alloc] initWithTitle:@"About"

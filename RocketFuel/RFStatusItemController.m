@@ -95,23 +95,23 @@ NSString *const imageStatePushed = @"rocketPushed";
 - (RFMenu *)subMenu {
     if (!_subMenu) {
         _subMenu = [[RFMenu alloc] initSubMenuWithTitle:@"RocketFuel Submenu"];
-        [_subMenu addItemWithTitle:@"5 minutes"
+        [_subMenu addItemWithTitle:@"5 Minutes"
                                tag:300
                           selector:@selector(deactivateAfterDuration:)
                             target:self];
-        [_subMenu addItemWithTitle:@"15 minutes"
+        [_subMenu addItemWithTitle:@"15 Minutes"
                                tag:900
                           selector:@selector(deactivateAfterDuration:)
                             target:self];
-        [_subMenu addItemWithTitle:@"30 minutes"
+        [_subMenu addItemWithTitle:@"30 Minutes"
                                tag:1800
                           selector:@selector(deactivateAfterDuration:)
                             target:self];
-        [_subMenu addItemWithTitle:@"1 hour"
+        [_subMenu addItemWithTitle:@"1 Hour"
                                tag:3600
                           selector:@selector(deactivateAfterDuration:)
                             target:self];
-        [_subMenu addItemWithTitle:@"never"
+        [_subMenu addItemWithTitle:@"Never"
                                tag:0
                           selector:@selector(deactivateAfterDuration:)
                             target:self];
