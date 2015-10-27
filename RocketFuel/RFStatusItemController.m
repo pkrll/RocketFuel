@@ -240,14 +240,12 @@ NSString *const imageStatePushed = @"rocketPushed";
 
     if (itemRef != NULL) {
         applicationIsAnLoginItem = YES;
-        CFRelease(itemRef);
     }
-
+    
     return applicationIsAnLoginItem;
 }
 
 - (void)addApplicationToLoginItems {
-    // Modernized from http://bdunagan.com/2010/09/25/cocoa-tip-enabling-launch-on-startup
     LSSharedFileListRef loginItemsRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
     CFURLRef bundleURL = (__bridge CFURLRef)[NSURL fileURLWithPath:[NSBundle.mainBundle bundlePath]];
     LSSharedFileListItemRef itemRef = LSSharedFileListInsertItemURL(loginItemsRef, kLSSharedFileListItemLast, NULL, NULL, bundleURL, NULL, NULL);
@@ -262,9 +260,9 @@ NSString *const imageStatePushed = @"rocketPushed";
 - (void)removeApplicationFromLoginItems {
     LSSharedFileListRef loginItemsRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
     LSSharedFileListItemRef itemRef = [self itemRefInLoginItems];
-    LSSharedFileListItemRemove(loginItemsRef, itemRef);
-
+    
     if (itemRef != NULL) {
+        LSSharedFileListItemRemove(loginItemsRef, itemRef);
         CFRelease(itemRef);
     }
     
@@ -277,6 +275,7 @@ NSString *const imageStatePushed = @"rocketPushed";
     if (loginItemsRef != NULL) {
         NSURL *bundleURL = [NSURL fileURLWithPath:[NSBundle.mainBundle bundlePath]];
         NSArray *loginItems = (__bridge NSArray *)LSSharedFileListCopySnapshot(loginItemsRef, NULL);
+        CFRelease(loginItemsRef);
         CFURLRef itemURLRef = NULL;
         LSSharedFileListItemRef currentItemRef = NULL;
         for (id item in loginItems) {
@@ -285,13 +284,13 @@ NSString *const imageStatePushed = @"rocketPushed";
                 if ([(__bridge NSURL *)itemURLRef isEqualTo:bundleURL]) {
                     itemRef = currentItemRef;
                     CFRetain(itemRef);
+                    CFRelease(currentItemRef);
                 }
             }
         }
-        CFRelease(currentItemRef);
+
+
     }
-    
-    CFRelease(loginItemsRef);
     
     return itemRef;
 }

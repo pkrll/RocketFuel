@@ -11,7 +11,7 @@
 
 @implementation RFApplication
 
-- (NSNumber *)isActive {
+- (NSNumber *)isActivated {
     AppDelegate *appDelegate = NSApplication.sharedApplication.delegate;
     return appDelegate.isActive;
 }

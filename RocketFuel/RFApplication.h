@@ -6,9 +6,9 @@
  *  @copyright Saturn Five
  */
 @interface RFApplication : NSApplication {
-    NSNumber *isActive;
+    NSNumber *isActivated;
 }
 
-- (NSNumber *)isActive;
+- (NSNumber *)isActivated;
 
 @end

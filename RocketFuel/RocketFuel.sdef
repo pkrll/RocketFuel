@@ -5,7 +5,7 @@
         <class name="application" code="capp" description="The Rocket Fuel Application.">
             <cocoa class="RFApplication"/>
             <property name="active" code="SLMD" description="Returns whether Rocket Fuel is active and preventing the computer from sleeping." type="boolean" access="r">
-                <cocoa key="isActive"/>
+                <cocoa key="isActivated"/>
             </property>
         </class>
         <command name="toggle" code="rkfltogl" description="Activate/deactivate Rocket Fuel.">

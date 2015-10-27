@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>RkFl</string>
 	<key>CFBundleVersion</key>
-	<string>01AC</string>
+	<string>01AD</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
