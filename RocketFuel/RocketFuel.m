@@ -39,7 +39,7 @@
         [self task];
         __weak typeof(self) weakSelf = self;
         [_task setTerminationHandler:^(NSTask * _Nonnull task) {
-            weakSelf.active = weakSelf.isActive;
+            [weakSelf terminate];
         }];
     }
 }

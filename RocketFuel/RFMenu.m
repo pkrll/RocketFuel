@@ -34,10 +34,10 @@
     self.autoStartMenu = [[NSMenuItem alloc] initWithTitle:@"Launch at Login"
                                                     action:nil
                                              keyEquivalent:@""];
-    self.durationMenu = [[NSMenuItem alloc] initWithTitle:@"Deactivate After"
+    self.durationMenu = [[NSMenuItem alloc] initWithTitle:@"Deactivate After…"
                                                    action:nil
                                             keyEquivalent:@""];
-    self.aboutAppMenu = [[NSMenuItem alloc] initWithTitle:@"About"
+    self.aboutAppMenu = [[NSMenuItem alloc] initWithTitle:@"About Rocket Fuel"
                                                    action:nil
                                             keyEquivalent:@""];
     self.shutdownMenu = [[NSMenuItem alloc] initWithTitle:@"Quit"

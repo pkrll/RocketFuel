@@ -136,10 +136,22 @@ NSString *const imageStatePushed = @"rocketPushed";
 }
 
 - (void)openAboutWindow:(id)sender {
-    self.aboutWindow = [[RFAboutWindow alloc] init];
+    if (self.aboutWindow == nil) {
+        self.aboutWindow = [[RFAboutWindow alloc] init];
+    }
+    
     [self.aboutWindow showWindow:self];
     [self.aboutWindow.window makeKeyAndOrderFront:self];
     [self.aboutWindow.window setLevel:NSFloatingWindowLevel];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(aboutWindowWillClose:)
+                                               name:NSWindowWillCloseNotification
+                                             object:nil];
+}
+
+- (void)aboutWindowWillClose:(id)sender {
+    self.aboutWindow = nil;
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)deactivateAfterDuration:(NSMenuItem *)sender {
