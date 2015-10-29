@@ -37,6 +37,10 @@
  */
 - (void)toggleSleepMode;
 /*!
+ *  @brief Activates for defined duration.
+ */
+- (void)activateWithDuration:(NSInteger)duration;
+/*!
  *  @brief Terminate sleep prevention.
  */
 - (void)terminate;

@@ -155,16 +155,10 @@ NSString *const imageStatePushed = @"rocketPushed";
 }
 
 - (void)deactivateAfterDuration:(NSMenuItem *)sender {
+    NSInteger duration = sender.tag;
+    [self.rocketFuel activateWithDuration:duration];
+    
     if (sender.state == NSOffState) {
-        NSInteger duration = sender.tag;
-        
-        if (self.isActive) {
-            [self.rocketFuel terminate];
-        }
-        
-        self.rocketFuel.duration = duration;
-        [self.rocketFuel toggleSleepMode];
-        
         [self.subMenu resetStateForMenuItems];
         sender.state = NSOnState;
     }
@@ -252,6 +246,7 @@ NSString *const imageStatePushed = @"rocketPushed";
 
     if (itemRef != NULL) {
         applicationIsAnLoginItem = YES;
+        CFRelease(itemRef);
     }
     
     return applicationIsAnLoginItem;
@@ -259,13 +254,14 @@ NSString *const imageStatePushed = @"rocketPushed";
 
 - (void)addApplicationToLoginItems {
     LSSharedFileListRef loginItemsRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-    CFURLRef bundleURL = (__bridge CFURLRef)[NSURL fileURLWithPath:[NSBundle.mainBundle bundlePath]];
+    CFURLRef bundleURL = (__bridge_retained CFURLRef)[NSURL fileURLWithPath:[NSBundle.mainBundle bundlePath]];
     LSSharedFileListItemRef itemRef = LSSharedFileListInsertItemURL(loginItemsRef, kLSSharedFileListItemLast, NULL, NULL, bundleURL, NULL, NULL);
     
     if (itemRef != NULL) {
         CFRelease(itemRef);
     }
     
+    CFRelease(bundleURL);
     CFRelease(loginItemsRef);
 }
 
@@ -286,22 +282,26 @@ NSString *const imageStatePushed = @"rocketPushed";
     LSSharedFileListRef loginItemsRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
     if (loginItemsRef != NULL) {
         NSURL *bundleURL = [NSURL fileURLWithPath:[NSBundle.mainBundle bundlePath]];
-        NSArray *loginItems = (__bridge NSArray *)LSSharedFileListCopySnapshot(loginItemsRef, NULL);
-        CFRelease(loginItemsRef);
+        NSArray *loginItems = (NSArray *)CFBridgingRelease(LSSharedFileListCopySnapshot(loginItemsRef, NULL));
         CFURLRef itemURLRef = NULL;
         LSSharedFileListItemRef currentItemRef = NULL;
         for (id item in loginItems) {
-            currentItemRef = (__bridge LSSharedFileListItemRef)item;
+            currentItemRef = (__bridge_retained LSSharedFileListItemRef)item;
             if (LSSharedFileListItemResolve(currentItemRef, 0, &itemURLRef, NULL) == noErr) {
                 if ([(__bridge NSURL *)itemURLRef isEqualTo:bundleURL]) {
                     itemRef = currentItemRef;
                     CFRetain(itemRef);
-                    CFRelease(currentItemRef);
                 }
             }
+            
+            if (itemURLRef != NULL) {
+                CFRelease(itemURLRef);
+            }
+            
+            CFRelease(currentItemRef);
         }
-
-
+        
+        CFRelease(loginItemsRef);
     }
     
     return itemRef;
