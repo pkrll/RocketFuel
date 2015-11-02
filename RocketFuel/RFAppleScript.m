@@ -16,6 +16,16 @@
     [appDelegate toggleRocketFuel];
 }
 
+- (void)duration {
+    NSInteger duration = [self.directParameter integerValue];
+    if (!duration) {
+        duration = 1;
+    }
+
+    AppDelegate *appDelegate = NSApplication.sharedApplication.delegate;
+    [appDelegate activateWithDuration:duration];
+}
+
 - (id)performDefaultImplementation {
     SEL commandName = NSSelectorFromString(self.commandDescription.commandName);
     // Was it a valid command?
@@ -24,6 +34,8 @@
         void (* func)(id, SEL) = (void *)imp;
         func(self, commandName);
     }
+    
+
     
     return NO;
 }

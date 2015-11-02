@@ -13,6 +13,7 @@
 @property (nonatomic) NSTask *task;
 @property (nonatomic) NSString *path;
 @property (nonatomic) NSArray *arguments;
+@property (nonatomic, getter = shouldRelaunch) BOOL relaunch;
 
 @end
 
@@ -36,28 +37,34 @@
     if (_task) {
         [self terminate];
     } else {
-        [self launch];
+        [self activate];
     }
 }
 
-- (void)launch {
+- (void)activate {
     [self task];
     __weak typeof(self) weakSelf = self;
     [_task setTerminationHandler:^(NSTask * _Nonnull task) {
         [weakSelf postTerminationCleanup];
+        if (weakSelf.shouldRelaunch) {
+            [weakSelf activate];
+            weakSelf.relaunch = NO;
+        }
     }];
 }
 
 - (void)activateWithDuration:(NSInteger)duration {
     self.duration = duration;
+    self.relaunch = YES;
+    
     if (_task) {
         [self terminate];
         // Make sure the post termination cleanup method is called.
         // Termination handler of NSTask does not always do that.
         [self postTerminationCleanup];
+    } else {
+        [self activate];
     }
-    
-    [self launch];
 }
 
 - (void)terminate {
@@ -69,9 +76,11 @@
 }
 
 - (void)postTerminationCleanup {
-    _task = nil;
-    _arguments = nil;
-    self.active = self.isActive;
+    if (_task) {
+        _task = nil;
+        _arguments = nil;
+        self.active = self.isActive;
+    }
 }
 
 - (BOOL)active {

@@ -11,5 +11,9 @@
         <command name="toggle" code="rkfltogl" description="Activate/deactivate Rocket Fuel.">
             <cocoa class="RFAppleScript"/>
         </command>
+        <command name="duration" code="rkfldura" description="Activate Rocket Fuel for a certain amount of time (in minutes).">
+            <cocoa class="RFAppleScript"/>
+            <direct-parameter name="minutes" description="Amount of time in minutes Rocket Fuel should stay active. Defaults to 1 if no argument is given." code="rkfldupa" type="text"></direct-parameter>
+        </command>
     </suite>
 </dictionary>

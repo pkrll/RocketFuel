@@ -212,6 +212,11 @@ NSString *const imageStatePushed = @"rocketPushed";
     [self.rocketFuel toggleSleepMode];
 }
 
+- (void)requestActivationForDuration:(NSInteger)duration {
+    duration = duration * 60;
+    [self.rocketFuel activateWithDuration:duration];
+}
+
 #pragma mark MISC METHODS
 
 - (BOOL)isMenuDark {

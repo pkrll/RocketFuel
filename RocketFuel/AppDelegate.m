@@ -45,6 +45,14 @@
     }
 }
 
+- (void)activateWithDuration:(NSInteger)duration {
+    if (!_statusItemController) {
+        [self loadStatusItemController];
+    }
+    
+    [self.statusItemController requestActivationForDuration:duration];
+}
+
 - (NSNumber *)isActive {
     BOOL state = self.statusItemController.isActive;
     return [NSNumber numberWithBool:state];
