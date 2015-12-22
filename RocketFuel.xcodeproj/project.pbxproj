@@ -7,50 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A0578B11BDE178E0028AAB4 /* RFMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0578B01BDE178E0028AAB4 /* RFMenu.m */; };
-		6A72FC1C1BDA9B6400690D05 /* RFAboutWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A72FC1A1BDA9B6400690D05 /* RFAboutWindow.m */; };
-		6A72FC1D1BDA9B6400690D05 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A72FC1B1BDA9B6400690D05 /* About.xib */; };
-		6A80E57A1BD980E80092CC55 /* RFStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A80E5791BD980E80092CC55 /* RFStatusItemView.m */; };
-		6A80E57D1BD981FF0092CC55 /* RFStatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A80E57C1BD981FF0092CC55 /* RFStatusItemController.m */; };
-		6AC219351BD8E3090093E846 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC219341BD8E3090093E846 /* AppDelegate.m */; };
-		6AC219381BD8E3090093E846 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC219371BD8E3090093E846 /* main.m */; };
-		6AC2193A1BD8E3090093E846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AC219391BD8E3090093E846 /* Assets.xcassets */; };
-		6AC2193D1BD8E3090093E846 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC2193B1BD8E3090093E846 /* Main.xib */; };
-		6AC2194F1BD8F07F0093E846 /* RocketFuel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC2194E1BD8F07F0093E846 /* RocketFuel.m */; };
-		6ACD6F191BDAAA8C00B15623 /* RocketFuel.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 6ACD6F181BDAAA8C00B15623 /* RocketFuel.sdef */; };
-		6ACD6F1F1BDAB9CE00B15623 /* RFAppleScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACD6F1E1BDAB9CE00B15623 /* RFAppleScript.m */; };
-		6ACD6F221BDACE9400B15623 /* RFApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACD6F211BDACE9400B15623 /* RFApplication.m */; };
+		6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A97FC971C29FA2E00362EBF /* AppDelegate.swift */; };
+		6A97FC9A1C29FA2E00362EBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC991C29FA2E00362EBF /* Assets.xcassets */; };
+		6A97FC9D1C29FA2E00362EBF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */; };
+		6AAE248A1C29FC3C0027C55B /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE24891C29FC3C0027C55B /* StatusItemController.swift */; };
+		6AAE248D1C29FD330027C55B /* StatusItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE248C1C29FD330027C55B /* StatusItemView.swift */; };
+		6AAE248F1C2A00CD0027C55B /* StatusItemViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE248E1C2A00CD0027C55B /* StatusItemViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6A0578AF1BDE178E0028AAB4 /* RFMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFMenu.h; sourceTree = "<group>"; };
-		6A0578B01BDE178E0028AAB4 /* RFMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFMenu.m; sourceTree = "<group>"; };
-		6A72FC191BDA9B6400690D05 /* RFAboutWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFAboutWindow.h; sourceTree = "<group>"; };
-		6A72FC1A1BDA9B6400690D05 /* RFAboutWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFAboutWindow.m; sourceTree = "<group>"; };
-		6A72FC1B1BDA9B6400690D05 /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
-		6A80E5781BD980E80092CC55 /* RFStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFStatusItemView.h; sourceTree = "<group>"; };
-		6A80E5791BD980E80092CC55 /* RFStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFStatusItemView.m; sourceTree = "<group>"; };
-		6A80E57B1BD981FF0092CC55 /* RFStatusItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFStatusItemController.h; sourceTree = "<group>"; };
-		6A80E57C1BD981FF0092CC55 /* RFStatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFStatusItemController.m; sourceTree = "<group>"; };
-		6AC219301BD8E3090093E846 /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6AC219331BD8E3090093E846 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		6AC219341BD8E3090093E846 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6AC219371BD8E3090093E846 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6AC219391BD8E3090093E846 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6AC2193C1BD8E3090093E846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Main.xib; sourceTree = "<group>"; };
-		6AC2193E1BD8E3090093E846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6AC219491BD8E9130093E846 /* RocketFuel.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RocketFuel.pch; sourceTree = "<group>"; };
-		6AC2194D1BD8F07F0093E846 /* RocketFuel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketFuel.h; sourceTree = "<group>"; };
-		6AC2194E1BD8F07F0093E846 /* RocketFuel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketFuel.m; sourceTree = "<group>"; };
-		6ACD6F181BDAAA8C00B15623 /* RocketFuel.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RocketFuel.sdef; sourceTree = "<group>"; };
-		6ACD6F1D1BDAB9CE00B15623 /* RFAppleScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFAppleScript.h; sourceTree = "<group>"; };
-		6ACD6F1E1BDAB9CE00B15623 /* RFAppleScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFAppleScript.m; sourceTree = "<group>"; };
-		6ACD6F201BDACE9400B15623 /* RFApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFApplication.h; sourceTree = "<group>"; };
-		6ACD6F211BDACE9400B15623 /* RFApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFApplication.m; sourceTree = "<group>"; };
+		6A97FC941C29FA2E00362EBF /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A97FC971C29FA2E00362EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6A97FC991C29FA2E00362EBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6A97FC9C1C29FA2E00362EBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6A97FC9E1C29FA2E00362EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6AAE24891C29FC3C0027C55B /* StatusItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemController.swift; path = Controller/StatusItemController.swift; sourceTree = "<group>"; };
+		6AAE248C1C29FD330027C55B /* StatusItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemView.swift; path = View/StatusItemView.swift; sourceTree = "<group>"; };
+		6AAE248E1C2A00CD0027C55B /* StatusItemViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemViewDelegate.swift; path = Protocols/StatusItemViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6AC2192D1BD8E3090093E846 /* Frameworks */ = {
+		6A97FC911C29FA2E00362EBF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -60,79 +37,87 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6AC219271BD8E3090093E846 = {
+		6A97FC8B1C29FA2E00362EBF = {
 			isa = PBXGroup;
 			children = (
-				6AC219321BD8E3090093E846 /* RocketFuel */,
-				6AC219311BD8E3090093E846 /* Products */,
+				6A97FC961C29FA2E00362EBF /* RocketFuel */,
+				6A97FC951C29FA2E00362EBF /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		6AC219311BD8E3090093E846 /* Products */ = {
+		6A97FC951C29FA2E00362EBF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6AC219301BD8E3090093E846 /* RocketFuel.app */,
+				6A97FC941C29FA2E00362EBF /* RocketFuel.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6AC219321BD8E3090093E846 /* RocketFuel */ = {
+		6A97FC961C29FA2E00362EBF /* RocketFuel */ = {
 			isa = PBXGroup;
 			children = (
-				6ACD6F201BDACE9400B15623 /* RFApplication.h */,
-				6ACD6F211BDACE9400B15623 /* RFApplication.m */,
-				6AC219331BD8E3090093E846 /* AppDelegate.h */,
-				6AC219341BD8E3090093E846 /* AppDelegate.m */,
-				6A80E57B1BD981FF0092CC55 /* RFStatusItemController.h */,
-				6A80E57C1BD981FF0092CC55 /* RFStatusItemController.m */,
-				6A80E5781BD980E80092CC55 /* RFStatusItemView.h */,
-				6A80E5791BD980E80092CC55 /* RFStatusItemView.m */,
-				6A0578AF1BDE178E0028AAB4 /* RFMenu.h */,
-				6A0578B01BDE178E0028AAB4 /* RFMenu.m */,
-				6AC2194D1BD8F07F0093E846 /* RocketFuel.h */,
-				6AC2194E1BD8F07F0093E846 /* RocketFuel.m */,
-				6A72FC191BDA9B6400690D05 /* RFAboutWindow.h */,
-				6A72FC1A1BDA9B6400690D05 /* RFAboutWindow.m */,
-				6ACD6F1D1BDAB9CE00B15623 /* RFAppleScript.h */,
-				6ACD6F1E1BDAB9CE00B15623 /* RFAppleScript.m */,
-				6AC219451BD8E7490093E846 /* UI */,
-				6AC219361BD8E3090093E846 /* Supporting Files */,
+				6A97FC971C29FA2E00362EBF /* AppDelegate.swift */,
+				6AAE248B1C29FC450027C55B /* Controllers */,
+				6AAE24911C2A01320027C55B /* Views */,
+				6AAE24901C2A01230027C55B /* Protocols */,
+				6AAE24871C29FBC40027C55B /* UI */,
+				6AAE24881C29FBCB0027C55B /* Supporting Files */,
 			);
 			path = RocketFuel;
 			sourceTree = "<group>";
 		};
-		6AC219361BD8E3090093E846 /* Supporting Files */ = {
+		6AAE24871C29FBC40027C55B /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				6AC219391BD8E3090093E846 /* Assets.xcassets */,
-				6AC2193E1BD8E3090093E846 /* Info.plist */,
-				6AC219371BD8E3090093E846 /* main.m */,
-				6AC219491BD8E9130093E846 /* RocketFuel.pch */,
-				6ACD6F181BDAAA8C00B15623 /* RocketFuel.sdef */,
+				6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		6AAE24881C29FBCB0027C55B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6A97FC991C29FA2E00362EBF /* Assets.xcassets */,
+				6A97FC9E1C29FA2E00362EBF /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6AC219451BD8E7490093E846 /* UI */ = {
+		6AAE248B1C29FC450027C55B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6AC2193B1BD8E3090093E846 /* Main.xib */,
-				6A72FC1B1BDA9B6400690D05 /* About.xib */,
+				6AAE24891C29FC3C0027C55B /* StatusItemController.swift */,
 			);
-			name = UI;
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6AAE24901C2A01230027C55B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6AAE248E1C2A00CD0027C55B /* StatusItemViewDelegate.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		6AAE24911C2A01320027C55B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6AAE248C1C29FD330027C55B /* StatusItemView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6AC2192F1BD8E3090093E846 /* RocketFuel */ = {
+		6A97FC931C29FA2E00362EBF /* RocketFuel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6AC219411BD8E3090093E846 /* Build configuration list for PBXNativeTarget "RocketFuel" */;
+			buildConfigurationList = 6A97FCA11C29FA2E00362EBF /* Build configuration list for PBXNativeTarget "RocketFuel" */;
 			buildPhases = (
-				6AC2192C1BD8E3090093E846 /* Sources */,
-				6AC2192D1BD8E3090093E846 /* Frameworks */,
-				6AC2192E1BD8E3090093E846 /* Resources */,
-				6AC219441BD8E3B80093E846 /* ShellScript */,
+				6A97FC901C29FA2E00362EBF /* Sources */,
+				6A97FC911C29FA2E00362EBF /* Frameworks */,
+				6A97FC921C29FA2E00362EBF /* Resources */,
+				6A97FCA51C29FA6700362EBF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -140,24 +125,25 @@
 			);
 			name = RocketFuel;
 			productName = RocketFuel;
-			productReference = 6AC219301BD8E3090093E846 /* RocketFuel.app */;
+			productReference = 6A97FC941C29FA2E00362EBF /* RocketFuel.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6AC219281BD8E3090093E846 /* Project object */ = {
+		6A97FC8C1C29FA2E00362EBF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Saturn Five";
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Ardalan Samimi";
 				TargetAttributes = {
-					6AC2192F1BD8E3090093E846 = {
-						CreatedOnToolsVersion = 7.0.1;
+					6A97FC931C29FA2E00362EBF = {
+						CreatedOnToolsVersion = 7.2;
 					};
 				};
 			};
-			buildConfigurationList = 6AC2192B1BD8E3090093E846 /* Build configuration list for PBXProject "RocketFuel" */;
+			buildConfigurationList = 6A97FC8F1C29FA2E00362EBF /* Build configuration list for PBXProject "RocketFuel" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -165,32 +151,30 @@
 				en,
 				Base,
 			);
-			mainGroup = 6AC219271BD8E3090093E846;
-			productRefGroup = 6AC219311BD8E3090093E846 /* Products */;
+			mainGroup = 6A97FC8B1C29FA2E00362EBF;
+			productRefGroup = 6A97FC951C29FA2E00362EBF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6AC2192F1BD8E3090093E846 /* RocketFuel */,
+				6A97FC931C29FA2E00362EBF /* RocketFuel */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6AC2192E1BD8E3090093E846 /* Resources */ = {
+		6A97FC921C29FA2E00362EBF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A72FC1D1BDA9B6400690D05 /* About.xib in Resources */,
-				6AC2193A1BD8E3090093E846 /* Assets.xcassets in Resources */,
-				6AC2193D1BD8E3090093E846 /* Main.xib in Resources */,
-				6ACD6F191BDAAA8C00B15623 /* RocketFuel.sdef in Resources */,
+				6A97FC9A1C29FA2E00362EBF /* Assets.xcassets in Resources */,
+				6A97FC9D1C29FA2E00362EBF /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6AC219441BD8E3B80093E846 /* ShellScript */ = {
+		6A97FCA51C29FA6700362EBF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -201,42 +185,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%04X\" $buildNumber)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\n# Set the build number to the count of Git commits\n#buildNumber=$(git rev-list --count HEAD)\n#buildNumber=$(printf \"%04X\" $buildNumber)\n#/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%04X\" $buildNumber)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6AC2192C1BD8E3090093E846 /* Sources */ = {
+		6A97FC901C29FA2E00362EBF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AC219381BD8E3090093E846 /* main.m in Sources */,
-				6AC2194F1BD8F07F0093E846 /* RocketFuel.m in Sources */,
-				6AC219351BD8E3090093E846 /* AppDelegate.m in Sources */,
-				6ACD6F1F1BDAB9CE00B15623 /* RFAppleScript.m in Sources */,
-				6A0578B11BDE178E0028AAB4 /* RFMenu.m in Sources */,
-				6A72FC1C1BDA9B6400690D05 /* RFAboutWindow.m in Sources */,
-				6A80E57D1BD981FF0092CC55 /* RFStatusItemController.m in Sources */,
-				6ACD6F221BDACE9400B15623 /* RFApplication.m in Sources */,
-				6A80E57A1BD980E80092CC55 /* RFStatusItemView.m in Sources */,
+				6AAE248F1C2A00CD0027C55B /* StatusItemViewDelegate.swift in Sources */,
+				6AAE248D1C29FD330027C55B /* StatusItemView.swift in Sources */,
+				6AAE248A1C29FC3C0027C55B /* StatusItemController.swift in Sources */,
+				6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6AC2193B1BD8E3090093E846 /* Main.xib */ = {
+		6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6AC2193C1BD8E3090093E846 /* Base */,
+				6A97FC9C1C29FA2E00362EBF /* Base */,
 			);
-			name = Main.xib;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		6AC2193F1BD8E3090093E846 /* Debug */ = {
+		6A97FC9F1C29FA2E00362EBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -262,7 +241,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = RocketFuel/RocketFuel.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -277,10 +255,11 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		6AC219401BD8E3090093E846 /* Release */ = {
+		6A97FCA01C29FA2E00362EBF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -304,7 +283,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = RocketFuel/RocketFuel.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -317,27 +295,27 @@
 			};
 			name = Release;
 		};
-		6AC219421BD8E3090093E846 /* Debug */ = {
+		6A97FCA21C29FA2E00362EBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RocketFuel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SaturnFive.RocketFuel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		6AC219431BD8E3090093E846 /* Release */ = {
+		6A97FCA31C29FA2E00362EBF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RocketFuel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SaturnFive.RocketFuel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -346,25 +324,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6AC2192B1BD8E3090093E846 /* Build configuration list for PBXProject "RocketFuel" */ = {
+		6A97FC8F1C29FA2E00362EBF /* Build configuration list for PBXProject "RocketFuel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6AC2193F1BD8E3090093E846 /* Debug */,
-				6AC219401BD8E3090093E846 /* Release */,
+				6A97FC9F1C29FA2E00362EBF /* Debug */,
+				6A97FCA01C29FA2E00362EBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6AC219411BD8E3090093E846 /* Build configuration list for PBXNativeTarget "RocketFuel" */ = {
+		6A97FCA11C29FA2E00362EBF /* Build configuration list for PBXNativeTarget "RocketFuel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6AC219421BD8E3090093E846 /* Debug */,
-				6AC219431BD8E3090093E846 /* Release */,
+				6A97FCA21C29FA2E00362EBF /* Debug */,
+				6A97FCA31C29FA2E00362EBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6AC219281BD8E3090093E846 /* Project object */;
+	rootObject = 6A97FC8C1C29FA2E00362EBF /* Project object */;
 }

@@ -17,24 +17,18 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.3.3</string>
+	<string>2.0.0</string>
 	<key>CFBundleSignature</key>
-	<string>RkFl</string>
+	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>022F</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
-	<key>LSUIElement</key>
-	<true/>
-	<key>NSAppleScriptEnabled</key>
-	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2015 Saturn Five. All rights reserved.</string>
+	<string>Copyright © 2015 Ardalan Samimi. All rights reserved.</string>
 	<key>NSMainNibFile</key>
-	<string>Main</string>
+	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>RFApplication</string>
-	<key>OSAScriptingDefinition</key>
-	<string>RocketFuel.sdef</string>
+	<string>NSApplication</string>
 </dict>
 </plist>

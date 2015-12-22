@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6AC2192F1BD8E3090093E846"
+               BlueprintIdentifier = "6A97FC931C29FA2E00362EBF"
                BuildableName = "RocketFuel.app"
                BlueprintName = "RocketFuel"
                ReferencedContainer = "container:RocketFuel.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6AC2192F1BD8E3090093E846"
+            BlueprintIdentifier = "6A97FC931C29FA2E00362EBF"
             BuildableName = "RocketFuel.app"
             BlueprintName = "RocketFuel"
             ReferencedContainer = "container:RocketFuel.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6AC2192F1BD8E3090093E846"
+            BlueprintIdentifier = "6A97FC931C29FA2E00362EBF"
             BuildableName = "RocketFuel.app"
             BlueprintName = "RocketFuel"
             ReferencedContainer = "container:RocketFuel.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6AC2192F1BD8E3090093E846"
+            BlueprintIdentifier = "6A97FC931C29FA2E00362EBF"
             BuildableName = "RocketFuel.app"
             BlueprintName = "RocketFuel"
             ReferencedContainer = "container:RocketFuel.xcodeproj">
