@@ -10,7 +10,7 @@ import Foundation
 
 struct Global {
     
-    static let caffeinate = "/usr/bin/caffeinate"
+    static let caffeinatePath = "/usr/bin/caffeinate"
     
     struct Application {
         /**

@@ -13,24 +13,20 @@ class StatusItemController: NSObject, NSMenuDelegate {
      *  The item displayed in the status bar.
      */
     private let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
-    
-    private lazy var menu: NSMenu = {
-        [unowned self] in
-        let menu = Menu(title: Global.Application.bundleName)
-        
-        menu.itemAutoStart.action = "didClickMenu:"
-        menu.itemAutoStart.target = self
-        menu.itemAutoStart.tag = Global.MenuItem.autoStart
-        
-        menu.itemAboutApp.action = "didClickMenu:"
-        menu.itemAboutApp.target = self
-        menu.itemAboutApp.tag = Global.MenuItem.aboutApp
-        
-        menu.delegate = self
-        
-        return menu
-    }()
-    
+
+    private var willLaunchAtLogin: Bool {
+        get {
+            return self.isApplicationInLoginItems()
+        }
+        set (mode) {
+            if mode {
+                self.addApplicationToLoginItems()
+            } else {
+                self.removeApplicationFromLoginItems()
+            }
+        }
+    }
+
     private lazy var rocketFuel: RocketFuel = {
         let rocketFuel = RocketFuel()
         
@@ -38,6 +34,43 @@ class StatusItemController: NSObject, NSMenuDelegate {
         
         return rocketFuel
     }()
+    
+    private lazy var menu: Menu = {
+        [unowned self] in
+        let menu = Menu(title: Global.Application.bundleName)
+        let action: Selector = "didClickMenuItem:"
+        var item: NSMenuItem?
+        
+        item = menu.addItemWithTitle("Launch at Login", action: action, target: self, tag: Global.MenuItem.autoStart, state: Int(self.willLaunchAtLogin))
+        
+        item = menu.addItemWithTitle("Deactivate after…", action: nil, target: nil, tag: 0)
+        item?.submenu = self.subMenu
+        
+        menu.addItem(NSMenuItem.separatorItem())
+        item = menu.addItemWithTitle("About Rocket Fuel", action: action, target: self, tag: Global.MenuItem.aboutApp)
+        
+        menu.addItem(NSMenuItem.separatorItem())
+        item = menu.addItemWithTitle("Quit", action: "terminate:", target: nil, tag: 0)
+        
+        menu.delegate = self
+
+        return menu
+    }()
+    
+    private lazy var subMenu: Menu = {
+        let menu = Menu(title: "Submenu")
+        let action: Selector = "didClickMenuItem:"
+
+        menu.addItemWithTitle("8 Seconds", action: action, target: self, tag: 8)
+        menu.addItemWithTitle("5 Minutes", action: action, target: self, tag: 300)
+        menu.addItemWithTitle("15 Minutes", action: action, target: self, tag: 900)
+        menu.addItemWithTitle("30 Minutes", action: action, target: self, tag: 1800)
+        menu.addItemWithTitle("1 Hour", action: action, target: self, tag: 3600)
+        menu.addItemWithTitle("Never", action: action, target: self, tag: 0)
+        
+        return menu
+    }()
+    
     /**
      *  Indicates whether the application is in an active state.
      *  - Returns: If application is in an active state, that is preventing sleep, this property is true.
@@ -50,34 +83,57 @@ class StatusItemController: NSObject, NSMenuDelegate {
         super.init()
         self.didLoad()
     }
+    
+    func requestTermination() {
+        if self.isActive {
+            self.rocketFuel.terminate()
+        }
+    }
+    
+    func requestActivation() {
+        if self.isActive == false {
+            self.rocketFuel.activate()
+        }
+    }
     /**
      *  Invoked when the user clicks on the status item.
      *  - Note: Depending on which mouse button, the action should differ.
      */
     func didClickStatusItem(sender: NSStatusBarButton) {
         let click: NSEvent = NSApp.currentEvent!
-
+        
         if click.type == NSEventType.RightMouseUp {
             self.statusItem.menu = self.menu
             self.statusItem.popUpStatusItemMenu(self.menu)
         } else {
-            self.statusItem.button!.highlight(false)
-            self.statusItem.button!.highlighted = false
+
             self.rocketFuel.toggle()
         }
     }
     
-    func didClickMenu(sender: NSMenuItem?) {
-        print(sender)
-    }
-    
-    func menuWillOpen(menu: NSMenu) {
+    func didClickMenuItem(sender: NSMenuItem?) {
+        guard let sender = sender else {
+            return
+        }
+        
+        switch sender.tag {
+            case Global.MenuItem.autoStart:
+                self.willLaunchAtLogin = !self.willLaunchAtLogin
+                sender.state = Int(self.willLaunchAtLogin)
+            case Global.MenuItem.aboutApp:
+                break
+            default:
+                self.rocketFuel.activate(withDuration: sender.tag)
+                self.subMenu.resetStateForMenuItems()
+                sender.state = NSOnState
+        }
     }
 
     func menuDidClose(menu: NSMenu) {
         // IMPORTANT: Fixes the issue where the status bar button would only open the menu once the menu has been assigned to it. By removing the reference the button action is freed up, I guess.
         self.statusItem.menu = nil
     }
+
 }
 
 extension StatusItemController: RocketFuelDelegate {
@@ -101,8 +157,6 @@ private extension StatusItemController {
         self.statusItem.button!.target = self
         self.statusItem.button!.action = "didClickStatusItem:"
         self.statusItem.button!.sendActionOn(actionMasks)
-        
-
     }
     /**
      *  Returns the status bar image for the correct state, or for the specified state.
@@ -113,6 +167,61 @@ private extension StatusItemController {
         }
         
         return NSImage(named: StatusItemImage.isIdle)!
+    }
+ 
+    // MARK: AUTO LAUNCH METHODS
+    
+    func isApplicationInLoginItems() -> Bool {
+        let itemRef = self.sharedFileListItemRef()
+
+        if let _ = itemRef {
+            return true
+        }
+        
+        return false
+    }
+
+    func addApplicationToLoginItems() {
+        // Method takeRetainedValue() will get the value of the unmanaged reference and taking ownership.
+        let listType = kLSSharedFileListSessionLoginItems.takeRetainedValue()
+        let fileList = LSSharedFileListCreate(nil, listType, nil).takeRetainedValue() as LSSharedFileListRef?
+        let bundleURL = NSBundle.mainBundle().bundleURL as CFURLRef
+        // Using kLSSharedFileListItemBeforeFirst, because kLSSharedFileListItemLast caused a crash.
+        let afterItem: LSSharedFileListItem? = kLSSharedFileListItemBeforeFirst.takeRetainedValue()
+
+        LSSharedFileListInsertItemURL(fileList, afterItem, nil, nil, bundleURL, nil, nil)
+    }
+    
+    func removeApplicationFromLoginItems() {
+        let listType: CFString = kLSSharedFileListSessionLoginItems.takeUnretainedValue()
+        let fileList: LSSharedFileListRef = LSSharedFileListCreate(nil, listType, nil).takeRetainedValue()
+        let itemRef: LSSharedFileListItemRef? = self.sharedFileListItemRef()
+        
+        if itemRef != nil {
+            LSSharedFileListItemRemove(fileList, itemRef)
+        }
+    }
+
+    func sharedFileListItemRef() -> LSSharedFileListItemRef? {
+        var itemRef: LSSharedFileListItemRef? = nil
+        let listRef: LSSharedFileList? = LSSharedFileListCreate(nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil).takeRetainedValue()
+
+        if (listRef != nil) {
+            let bundlePath = NSBundle.mainBundle().bundleURL
+            let loginItems: CFArray = LSSharedFileListCopySnapshot(listRef, nil).takeRetainedValue()
+            var itemURLRef: NSURL
+            
+            for item in loginItems as NSArray {
+                let item = item as! LSSharedFileListItemRef
+                itemURLRef = LSSharedFileListItemCopyResolvedURL(item, 0, nil).takeRetainedValue() as NSURL
+                
+                if itemURLRef == bundlePath {
+                    itemRef = item
+                }
+            }
+        }
+        
+        return itemRef
     }
     
 }

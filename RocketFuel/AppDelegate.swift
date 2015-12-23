@@ -12,12 +12,13 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var statusItemController: StatusItemController!
-    
+
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.statusItemController = StatusItemController()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
+        self.statusItemController.requestTermination()
     }
 
 

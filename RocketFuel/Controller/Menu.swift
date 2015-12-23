@@ -9,38 +9,30 @@
 import Cocoa
 
 class Menu: NSMenu {
-
-    internal var itemAutoStart: NSMenuItem = NSMenuItem(title: "Launch at Login", action: nil, keyEquivalent: "")
-    internal var itemDuration: NSMenuItem = NSMenuItem(title: "Deactivate After…", action: nil, keyEquivalent: "")
-    internal var itemAboutApp: NSMenuItem = NSMenuItem(title: "About Rocket Fuel", action: nil, keyEquivalent: "")
-    internal var itemShutDown: NSMenuItem = NSMenuItem(title: "Quit", action: "terminate:", keyEquivalent: "")
     
-    override init(title aTitle: String) {
-        super.init(title: aTitle)
-        self.addItemsToMainMenu()
+    func addItemWithTitle(title: String, action: Selector, target: AnyObject?, tag: Int, state: Int = NSOffState) -> NSMenuItem? {
+        let item = self.addItemWithTitle(title, action: action, keyEquivalent: "")
+        item?.target = target
+        item?.tag = tag
+        item?.state = state
+        
+        return item
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    func menuWithTag(tag: Int) -> NSMenuItem? {
+        for item in self.itemArray {
+            if item.tag == tag {
+                return item
+            }
+        }
+        
+        return nil
     }
     
     func resetStateForMenuItems() {
         for item in self.itemArray {
             item.state = NSOffState
         }
-    }
-    
-}
-
-private extension Menu {
-    
-    func addItemsToMainMenu() {
-        self.addItem(self.itemAutoStart)
-        self.addItem(self.itemDuration)
-        self.addItem(NSMenuItem.separatorItem())
-        self.addItem(self.itemAboutApp)
-        self.addItem(NSMenuItem.separatorItem())
-        self.addItem(self.itemShutDown)
     }
     
 }

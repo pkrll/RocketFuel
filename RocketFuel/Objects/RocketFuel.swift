@@ -9,7 +9,7 @@
 import Foundation
 
 class RocketFuel: NSObject {
-    
+
     internal var delegate: RocketFuelDelegate?
     
     internal var duration: Int = 0
@@ -17,6 +17,10 @@ class RocketFuel: NSObject {
     internal var isActive: Bool {
         return self.task?.running ?? false
     }
+    
+    private var task: NSTask?
+    
+    private var relaunch: Bool = false
     
     private var active: Bool {
         get {
@@ -27,26 +31,51 @@ class RocketFuel: NSObject {
         }
     }
     
-    private var task: NSTask?
-    
     private var arguments: [String] {
         var argument: String = "-di"
         
         if self.duration > 0 {
-            argument += "t \(self.duration)"
+            argument = "-dit \(self.duration)"
         }
         
         return [argument]
     }
     
     func toggle() {
-        if (self.task != nil) {
-            self.terminate()
-        } else {
+        if (self.task == nil) {
             self.activate()
+        } else {
+            self.terminate()
         }
     }
     
+    func activate() {
+        self.task = NSTask.launchedTaskWithLaunchPath(Global.caffeinatePath, arguments: self.arguments)
+        self.task?.terminationHandler = { task in
+            self.didTerminate()
+            
+            if self.relaunch {
+                self.activate()
+                self.relaunch = false
+            }
+        }
+        
+        self.active = self.isActive
+    }
+    
+    func activate(withDuration duration: Int) {
+        self.duration = duration
+        self.relaunch = true
+        
+        if self.task == nil {
+            self.activate()
+        } else {
+            self.terminate()
+            // Make sure the post termination cleanup method is called. Termination handler of NSTask does not always do that.
+            self.didTerminate(true)
+        }
+    }
+
     func terminate() {
         if self.isActive {
             self.task?.terminate()
@@ -55,17 +84,12 @@ class RocketFuel: NSObject {
         }
     }
     
-    func activate() {
-        self.task = NSTask.launchedTaskWithLaunchPath(Global.caffeinate, arguments: self.arguments)
-        self.task?.terminationHandler = { task in
-            self.didTerminate()
-        }
-        
-        self.active = self.isActive
-    }
-    
-    func didTerminate() {
+    func didTerminate(shouldRelaunch: Bool = false) {
         self.task = nil
         self.active = self.isActive
+        
+        if shouldRelaunch {
+            self.activate()
+        }
     }
 }
