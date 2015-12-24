@@ -53,7 +53,7 @@ class RocketFuel: NSObject {
         self.task = NSTask.launchedTaskWithLaunchPath(Global.caffeinatePath, arguments: self.arguments)
         self.task?.terminationHandler = { task in
             self.didTerminate()
-            
+            // Tells RocketFuel to relaunch the task upon termination. Necessary when changing duration.
             if self.relaunch {
                 self.activate()
                 self.relaunch = false
@@ -64,6 +64,11 @@ class RocketFuel: NSObject {
     }
     
     func activate(withDuration duration: Int) {
+        if duration == 0 {
+            self.activate()
+            return
+        }
+        
         self.duration = duration
         self.relaunch = true
         
@@ -72,8 +77,9 @@ class RocketFuel: NSObject {
         } else {
             self.terminate()
             // Make sure the post termination cleanup method is called. Termination handler of NSTask does not always do that.
-            self.didTerminate(true)
+            self.didTerminate()
         }
+
     }
 
     func terminate() {
@@ -84,12 +90,8 @@ class RocketFuel: NSObject {
         }
     }
     
-    func didTerminate(shouldRelaunch: Bool = false) {
+    func didTerminate() {
         self.task = nil
         self.active = self.isActive
-        
-        if shouldRelaunch {
-            self.activate()
-        }
     }
 }

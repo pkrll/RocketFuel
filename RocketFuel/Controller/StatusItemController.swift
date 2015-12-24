@@ -14,6 +14,8 @@ class StatusItemController: NSObject, NSMenuDelegate {
      */
     private let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
+    private var aboutWindow: AboutWindowController?
+    
     private var willLaunchAtLogin: Bool {
         get {
             return self.isApplicationInLoginItems()
@@ -56,12 +58,11 @@ class StatusItemController: NSObject, NSMenuDelegate {
 
         return menu
     }()
-    
+
     private lazy var subMenu: Menu = {
         let menu = Menu(title: "Submenu")
         let action: Selector = "didClickMenuItem:"
 
-        menu.addItemWithTitle("8 Seconds", action: action, target: self, tag: 8)
         menu.addItemWithTitle("5 Minutes", action: action, target: self, tag: 300)
         menu.addItemWithTitle("15 Minutes", action: action, target: self, tag: 900)
         menu.addItemWithTitle("30 Minutes", action: action, target: self, tag: 1800)
@@ -90,9 +91,9 @@ class StatusItemController: NSObject, NSMenuDelegate {
         }
     }
     
-    func requestActivation() {
+    func requestActivation(withDuration: Int = 0) {
         if self.isActive == false {
-            self.rocketFuel.activate()
+            self.rocketFuel.activate(withDuration: withDuration)
         }
     }
     /**
@@ -121,7 +122,9 @@ class StatusItemController: NSObject, NSMenuDelegate {
                 self.willLaunchAtLogin = !self.willLaunchAtLogin
                 sender.state = Int(self.willLaunchAtLogin)
             case Global.MenuItem.aboutApp:
-                break
+                self.aboutWindow = AboutWindowController(windowNibName: "About")
+                self.aboutWindow?.showWindow(self)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "aboutWindowWillClose:", name: NSWindowWillCloseNotification, object: nil)
             default:
                 self.rocketFuel.activate(withDuration: sender.tag)
                 self.subMenu.resetStateForMenuItems()
@@ -134,6 +137,11 @@ class StatusItemController: NSObject, NSMenuDelegate {
         self.statusItem.menu = nil
     }
 
+    func aboutWindowWillClose(sender: AnyObject?) {
+        self.aboutWindow = nil
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
 }
 
 extension StatusItemController: RocketFuelDelegate {

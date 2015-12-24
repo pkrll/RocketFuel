@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary title="RocketFuel Terminology">
+    <suite name="RocketFuel Suite" code="RKFL" description="Rocket Fuel specific classes.">
+        <class name="application" code="capp" description="The Rocket Fuel Application.">
+            <cocoa class="Application"/>
+            <property name="active" code="SLMD" description="Returns whether Rocket Fuel is active and preventing the computer from sleeping." type="boolean" access="r">
+                <cocoa key="isActivated"/>
+            </property>
+        </class>
+        <command name="toggle" code="rkfltogl" description="Activate/deactivate Rocket Fuel.">
+            <cocoa class="AppleScript"/>
+        </command>
+        <command name="duration" code="rkfldura" description="Activate Rocket Fuel for a certain amount of time (in minutes).">
+            <cocoa class="AppleScript"/>
+            <direct-parameter name="minutes" description="Amount of time in minutes Rocket Fuel should stay active. Defaults to 1 if no argument is given." code="rkfldupa" type="text"></direct-parameter>
+        </command>
+    </suite>
+</dictionary>
