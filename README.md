@@ -1,5 +1,3 @@
-# Rocket Fuel <img src="https://raw.githubusercontent.com/Saturn-Five/RocketFuel/master/RocketFuel/Assets.xcassets/statusItemIdle.imageset/statusBarIcon.png" width="28">
-
 <img src="screenshot_rocketfuel.png">
 <b>Rocket Fuel</b> is a small, easy to use app that sits discreetly in your menu bar awaiting your command. One simple click <b>prevents</b> your Mac from going to <b>sleep</b> or <b>dimming</b> its display.
 
