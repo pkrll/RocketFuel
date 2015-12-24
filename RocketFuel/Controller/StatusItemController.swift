@@ -165,6 +165,7 @@ private extension StatusItemController {
         self.statusItem.button!.target = self
         self.statusItem.button!.action = "didClickStatusItem:"
         self.statusItem.button!.sendActionOn(actionMasks)
+        self.statusItem.button!.toolTip = "\(Global.Application.bundleName) \(Global.Application.bundleVersion) (\(Global.Application.bundleBuild))"
     }
     /**
      *  Returns the status bar image for the correct state, or for the specified state.
