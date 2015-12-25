@@ -19,7 +19,8 @@ class AppleScript: NSScriptCommand {
     }
     
     func duration() {
-        let duration: Int = self.directParameter!.integerValue
+        // The duration is expressed in minutes in AppleScript, but seconds in the app, so it needs to be translated to seconds to work correctly.
+        let duration: Double = self.directParameter!.doubleValue * 60
         self.appDelegate.applicationShouldActivateWithDuration(duration)
     }
     

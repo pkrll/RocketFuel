@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    func applicationShouldActivateWithDuration(duration: Int) {
+    func applicationShouldActivateWithDuration(duration: Double) {
         self.loadStatusItemController()
         self.statusItemController.requestActivation(duration)
     }

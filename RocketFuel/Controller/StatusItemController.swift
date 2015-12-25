@@ -91,10 +91,8 @@ class StatusItemController: NSObject, NSMenuDelegate {
         }
     }
     
-    func requestActivation(withDuration: Int = 0) {
-        if self.isActive == false {
-            self.rocketFuel.activate(withDuration: withDuration)
-        }
+    func requestActivation(withDuration: Double = 0) {
+        self.rocketFuel.activate(withDuration: withDuration)
     }
     /**
      *  Invoked when the user clicks on the status item.
@@ -126,7 +124,7 @@ class StatusItemController: NSObject, NSMenuDelegate {
                 self.aboutWindow?.showWindow(self)
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "aboutWindowWillClose:", name: NSWindowWillCloseNotification, object: nil)
             default:
-                self.rocketFuel.activate(withDuration: sender.tag)
+                self.rocketFuel.activate(withDuration: Double(sender.tag))
                 self.subMenu.resetStateForMenuItems()
                 sender.state = NSOnState
         }

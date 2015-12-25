@@ -12,7 +12,7 @@ class RocketFuel: NSObject {
 
     internal var delegate: RocketFuelDelegate?
     
-    internal var duration: Int = 0
+    internal var duration: Double = 0
     
     internal var isActive: Bool {
         return self.task?.running ?? false
@@ -63,7 +63,7 @@ class RocketFuel: NSObject {
         self.active = self.isActive
     }
     
-    func activate(withDuration duration: Int) {
+    func activate(withDuration duration: Double) {
         if duration == 0 {
             self.activate()
             return
