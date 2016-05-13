@@ -24,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A0467DB1CE665B200B0F384 /* RocketFuel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RocketFuel.entitlements; sourceTree = "<group>"; };
 		6A0B2D591C2AA92E00E07FDC /* StatusItemImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemImage.swift; path = Constants/StatusItemImage.swift; sourceTree = "<group>"; };
 		6A0B2D5C1C2AAAFA00E07FDC /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Global.swift; path = Constants/Global.swift; sourceTree = "<group>"; };
 		6A0B2D5E1C2AACD900E07FDC /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Controller/Menu.swift; sourceTree = "<group>"; };
@@ -53,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A0467DC1CE665D500B0F384 /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				6A0467DB1CE665B200B0F384 /* RocketFuel.entitlements */,
+			);
+			name = Entitlements;
+			sourceTree = "<group>";
+		};
 		6A0B2D5B1C2AA9EF00E07FDC /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +97,7 @@
 				6AD0B71A1C2ABFDB00E80988 /* Protocols */,
 				6A0B2D5B1C2AA9EF00E07FDC /* Constants */,
 				6AAE24871C29FBC40027C55B /* UI */,
+				6A0467DC1CE665D500B0F384 /* Entitlements */,
 				6AAE24881C29FBCB0027C55B /* Supporting Files */,
 			);
 			path = RocketFuel;
@@ -172,6 +182,11 @@
 				TargetAttributes = {
 					6A97FC931C29FA2E00362EBF = {
 						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -347,6 +362,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RocketFuel/RocketFuel.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RocketFuel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -360,6 +376,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RocketFuel/RocketFuel.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RocketFuel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
