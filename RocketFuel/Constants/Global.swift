@@ -27,15 +27,14 @@ struct Global {
     
   }
   
-  struct MenuItem {
+  enum MenuItem: Int {
     
-    static let autoStart: Int = 1
-    
-    static let duration: Int = 2
-    
-    static let aboutApp: Int = 3
-    
-    static let shutDown: Int = 4
+    case activate
+    case leftClick
+    case autoStart
+    case duration
+    case aboutApp
+    case shutDown
     
   }
   

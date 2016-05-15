@@ -6,25 +6,34 @@
 //  Copyright © 2015 Ardalan Samimi. All rights reserved.
 //
 import Cocoa
+import ServiceManagement
 
 class StatusItemController: NSObject, NSMenuDelegate {
   /**
    *  The item displayed in the status bar.
    */
   private let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
-  
+
   private var aboutWindow: AboutWindowController?
+  
+  private var willActivateOnLeftClick: Bool {
+    get {
+      return self.isLeftClickEnabled()
+    }
+    set (mode) {
+      self.enableLeftClickActivation(mode)
+    }
+  }
   
   private var willLaunchAtLogin: Bool {
     get {
-      return self.isApplicationInLoginItems()
+      let defaults = NSUserDefaults.standardUserDefaults()
+      let loginAtStart: Bool = defaults.boolForKey("launchAtLogin") ?? false
+      
+      return loginAtStart
     }
     set (mode) {
-      if mode {
-        self.addApplicationToLoginItems()
-      } else {
-        self.removeApplicationFromLoginItems()
-      }
+      self.applicationShouldLaunchAtLogin(mode)
     }
   }
   
@@ -41,13 +50,22 @@ class StatusItemController: NSObject, NSMenuDelegate {
     let action: Selector = #selector(self.didClickMenuItem(_:))
     var item: NSMenuItem?
     
-    item = menu.addItemWithTitle("Launch at Login", action: action, target: self, tag: Global.MenuItem.autoStart, state: Int(self.willLaunchAtLogin))
+    var state = "Activate Rocket Fuel"
     
-    item = menu.addItemWithTitle("Deactivate after…", action: nil, target: nil, tag: 0)
-    item?.submenu = self.subMenu
+    if self.rocketFuel.isActive {
+      state = "Deactivate Rocket Fuel"
+    }
+    
+    item = menu.addItemWithTitle(state, action: action, target: self, tag: Global.MenuItem.activate.rawValue)
     
     menu.addItem(NSMenuItem.separatorItem())
-    item = menu.addItemWithTitle("About Rocket Fuel", action: action, target: self, tag: Global.MenuItem.aboutApp)
+    item = menu.addItemWithTitle("Launch at Login", action: action, target: self, tag: Global.MenuItem.autoStart.rawValue, state: Int(self.willLaunchAtLogin))
+    item = menu.addItemWithTitle("Deactivate after…", action: nil, target: nil, tag: 0)
+    item?.submenu = self.subMenu
+    item = menu.addItemWithTitle("Left Click Activation", action: action, target: self, tag: Global.MenuItem.leftClick.rawValue, state: Int(self.willActivateOnLeftClick))
+    
+    menu.addItem(NSMenuItem.separatorItem())
+    item = menu.addItemWithTitle("About Rocket Fuel", action: action, target: self, tag: Global.MenuItem.aboutApp.rawValue)
     
     menu.addItem(NSMenuItem.separatorItem())
     item = menu.addItemWithTitle("Quit", action: #selector(self.terminate), target: self, tag: 0)
@@ -80,7 +98,7 @@ class StatusItemController: NSObject, NSMenuDelegate {
   
   override init() {
     super.init()
-    self.didLoad()
+    self.didLoad()    
   }
   
   func requestTermination() {
@@ -98,8 +116,8 @@ class StatusItemController: NSObject, NSMenuDelegate {
    */
   func didClickStatusItem(sender: NSStatusBarButton) {
     let click: NSEvent = NSApp.currentEvent!
-    
-    if click.type == NSEventType.RightMouseUp {
+
+    if click.type == NSEventType.RightMouseUp || click.modifierFlags.contains(NSEventModifierFlags.CommandKeyMask) || self.willActivateOnLeftClick == false {
       self.statusItem.menu = self.menu
       self.statusItem.popUpStatusItemMenu(self.menu)
     } else {
@@ -112,15 +130,20 @@ class StatusItemController: NSObject, NSMenuDelegate {
       return
     }
     
-    switch sender.tag {
-      case Global.MenuItem.autoStart:
+    switch Global.MenuItem(rawValue: sender.tag)! {
+      case .activate:
+        self.rocketFuel.toggle()
+      case .leftClick:
+        self.willActivateOnLeftClick = !self.willActivateOnLeftClick
+        sender.state = Int(self.willActivateOnLeftClick)
+      case .autoStart:
         self.willLaunchAtLogin = !self.willLaunchAtLogin
         sender.state = Int(self.willLaunchAtLogin)
-      case Global.MenuItem.aboutApp:
+      case .aboutApp:
         self.aboutWindow = AboutWindowController(windowNibName: "About")
         self.aboutWindow?.showWindow(self)
         self.aboutWindow?.window?.makeKeyAndOrderFront(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.aboutWindowWillClose(_:)), name: NSWindowWillCloseNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.aboutWindowWillClose(_:)), name: "aboutWindowWillClose", object: nil)
       default:
         self.rocketFuel.activate(withDuration: Double(sender.tag))
         self.subMenu.resetStateForMenuItems()
@@ -135,9 +158,9 @@ class StatusItemController: NSObject, NSMenuDelegate {
   
   func aboutWindowWillClose(sender: AnyObject?) {
     self.aboutWindow = nil
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: "aboutWindowWillClose", object: nil)
   }
-
+  
   func terminate() {
     NSApplication.sharedApplication().terminate(self)
   }
@@ -148,6 +171,8 @@ extension StatusItemController: RocketFuelDelegate {
   
   func rocketFuel(rocketFuel: RocketFuel, didChangeStatus mode: Bool) {
     self.statusItem.button!.image = self.statusItemImage(forState: mode)
+    let item = self.menu.menuWithTag(Global.MenuItem.activate.rawValue)
+    item?.title = (mode == true) ? "Deactivate Rocket Fuel" : "Activate Rocket Fuel"
   }
   
 }
@@ -178,59 +203,42 @@ private extension StatusItemController {
     return NSImage(named: StatusItemImage.isIdle)!
   }
   
+  // MARK: LEFT CLICK ACTIVATE METHODS
+  
+  func isLeftClickEnabled() -> Bool {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    return defaults.boolForKey("leftClickActivation")
+  }
+  
+  func enableLeftClickActivation(state: Bool) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setBool(state, forKey: "leftClickActivation")
+
+  }
+  
   // MARK: AUTO LAUNCH METHODS
   
   func isApplicationInLoginItems() -> Bool {
-    let itemRef = self.sharedFileListItemRef()
-    
-    if let _ = itemRef {
-      return true
-    }
-    
-    return false
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let loginAtStart: Bool = defaults.boolForKey("launchAtLogin") ?? false
+
+    return loginAtStart
   }
   
-  func addApplicationToLoginItems() {
-    // Method takeRetainedValue() will get the value of the unmanaged reference and taking ownership.
-    let listType = kLSSharedFileListSessionLoginItems.takeRetainedValue()
-    let fileList = LSSharedFileListCreate(nil, listType, nil).takeRetainedValue() as LSSharedFileListRef?
-    let bundleURL = NSBundle.mainBundle().bundleURL as CFURLRef
-    // Using kLSSharedFileListItemBeforeFirst, because kLSSharedFileListItemLast caused a crash.
-    let afterItem: LSSharedFileListItem? = kLSSharedFileListItemBeforeFirst.takeRetainedValue()
+  func applicationShouldLaunchAtLogin(mode: Bool) -> Bool {
+    let didAddToLoginItems = SMLoginItemSetEnabled("com.ardalansamimi.RocketFuelHelper", mode)
     
-    LSSharedFileListInsertItemURL(fileList, afterItem, nil, nil, bundleURL, nil, nil)
-  }
-  
-  func removeApplicationFromLoginItems() {
-    let listType: CFString = kLSSharedFileListSessionLoginItems.takeUnretainedValue()
-    let fileList: LSSharedFileListRef = LSSharedFileListCreate(nil, listType, nil).takeRetainedValue()
-    let itemRef: LSSharedFileListItemRef? = self.sharedFileListItemRef()
-    
-    if itemRef != nil {
-      LSSharedFileListItemRemove(fileList, itemRef)
-    }
-  }
-  
-  func sharedFileListItemRef() -> LSSharedFileListItemRef? {
-    var itemRef: LSSharedFileListItemRef? = nil
-    let listRef: LSSharedFileList? = LSSharedFileListCreate(nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil).takeRetainedValue()
-    
-    if (listRef != nil) {
-      let bundlePath = NSBundle.mainBundle().bundleURL
-      let loginItems: CFArray = LSSharedFileListCopySnapshot(listRef, nil).takeRetainedValue()
-      var itemURLRef: NSURL
-      
-      for item in loginItems as NSArray {
-        let item = item as! LSSharedFileListItemRef
-        itemURLRef = LSSharedFileListItemCopyResolvedURL(item, 0, nil).takeRetainedValue() as NSURL
-        
-        if itemURLRef == bundlePath {
-          itemRef = item
-        }
-      }
+    if didAddToLoginItems {
+      let defaults = NSUserDefaults.standardUserDefaults()
+      defaults.setBool(mode, forKey: "launchAtLogin")
+      defaults.synchronize()
+    } else {
+      let alert = NSAlert()
+      alert.messageText = "An error occured. Rocket Fuel could not be added to the login items."
+      alert.runModal()
     }
     
-    return itemRef
+    return didAddToLoginItems
   }
   
 }

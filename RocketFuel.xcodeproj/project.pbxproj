@@ -10,6 +10,7 @@
 		6A0B2D5A1C2AA92E00E07FDC /* StatusItemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0B2D591C2AA92E00E07FDC /* StatusItemImage.swift */; };
 		6A0B2D5D1C2AAAFA00E07FDC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0B2D5C1C2AAAFA00E07FDC /* Global.swift */; };
 		6A0B2D5F1C2AACD900E07FDC /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0B2D5E1C2AACD900E07FDC /* Menu.swift */; };
+		6A7CD6011CE8AC8A008B91A4 /* RocketFuelHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A7CD6001CE8AC7E008B91A4 /* RocketFuelHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A97FC971C29FA2E00362EBF /* AppDelegate.swift */; };
 		6A97FC9A1C29FA2E00362EBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC991C29FA2E00362EBF /* Assets.xcassets */; };
 		6A97FC9D1C29FA2E00362EBF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */; };
@@ -23,11 +24,35 @@
 		6AEFA5421C2BEF1C006EE98A /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AEFA5401C2BEF1C006EE98A /* About.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6A7CD5FF1CE8AC7E008B91A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A7CD5FB1CE8AC7E008B91A4 /* RocketFuelHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6A7CD5EB1CE8AC71008B91A4;
+			remoteInfo = RocketFuelHelper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6AC0A9951CE89D4E00D2792E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				6A7CD6011CE8AC8A008B91A4 /* RocketFuelHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6A0467DB1CE665B200B0F384 /* RocketFuel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RocketFuel.entitlements; sourceTree = "<group>"; };
 		6A0B2D591C2AA92E00E07FDC /* StatusItemImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemImage.swift; path = Constants/StatusItemImage.swift; sourceTree = "<group>"; };
 		6A0B2D5C1C2AAAFA00E07FDC /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Global.swift; path = Constants/Global.swift; sourceTree = "<group>"; };
 		6A0B2D5E1C2AACD900E07FDC /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Controller/Menu.swift; sourceTree = "<group>"; };
+		6A7CD5FB1CE8AC7E008B91A4 /* RocketFuelHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RocketFuelHelper.xcodeproj; path = RocketFuelHelper/RocketFuelHelper.xcodeproj; sourceTree = "<group>"; };
 		6A97FC941C29FA2E00362EBF /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A97FC971C29FA2E00362EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A97FC991C29FA2E00362EBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,9 +96,18 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
+		6A7CD5FC1CE8AC7E008B91A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6A7CD6001CE8AC7E008B91A4 /* RocketFuelHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6A97FC8B1C29FA2E00362EBF = {
 			isa = PBXGroup;
 			children = (
+				6A7CD5FB1CE8AC7E008B91A4 /* RocketFuelHelper.xcodeproj */,
 				6A97FC961C29FA2E00362EBF /* RocketFuel */,
 				6A97FC951C29FA2E00362EBF /* Products */,
 			);
@@ -160,6 +194,7 @@
 				6A97FC911C29FA2E00362EBF /* Frameworks */,
 				6A97FC921C29FA2E00362EBF /* Resources */,
 				6A97FCA51C29FA6700362EBF /* ShellScript */,
+				6AC0A9951CE89D4E00D2792E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -177,7 +212,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Ardalan Samimi";
 				TargetAttributes = {
 					6A97FC931C29FA2E00362EBF = {
@@ -202,12 +237,28 @@
 			mainGroup = 6A97FC8B1C29FA2E00362EBF;
 			productRefGroup = 6A97FC951C29FA2E00362EBF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6A7CD5FC1CE8AC7E008B91A4 /* Products */;
+					ProjectRef = 6A7CD5FB1CE8AC7E008B91A4 /* RocketFuelHelper.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6A97FC931C29FA2E00362EBF /* RocketFuel */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6A7CD6001CE8AC7E008B91A4 /* RocketFuelHelper.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = RocketFuelHelper.app;
+			remoteRef = 6A7CD5FF1CE8AC7E008B91A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6A97FC921C29FA2E00362EBF /* Resources */ = {
@@ -368,6 +419,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = RocketFuel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -385,6 +437,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = RocketFuel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;

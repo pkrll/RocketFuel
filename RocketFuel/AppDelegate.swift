@@ -6,6 +6,7 @@
 //  Copyright © 2015 Ardalan Samimi. All rights reserved.
 //
 import Cocoa
+import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   internal var isActive: Int {
     return Int(self.statusItemController.isActive)
   }
-  
+    
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     self.loadStatusItemController()
   }
