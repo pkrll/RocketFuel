@@ -65,17 +65,12 @@ class RocketFuel: NSObject {
   }
   
   func activate(withDuration duration: Double) {
-    if duration == 0 {
-      self.activate()
-      return
-    }
-    
     self.duration = duration
-    self.relaunch = true
     
     if self.task == nil {
       self.activate()
     } else {
+      self.relaunch = true
       self.terminate()
       // Make sure the post termination cleanup method is called. Termination handler of NSTask does not always do that.
       self.didTerminate()

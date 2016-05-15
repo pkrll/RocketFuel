@@ -77,7 +77,7 @@ class StatusItemController: NSObject, NSMenuDelegate {
   
   private lazy var subMenu: Menu = {
     let menu = Menu(title: "Submenu")
-    let action: Selector = #selector(self.didClickMenuItem(_:))
+    let action: Selector = #selector(self.didClickSubMenuItem(_:))
     
     menu.addItemWithTitle("5 Minutes", action: action, target: self, tag: 300)
     menu.addItemWithTitle("15 Minutes", action: action, target: self, tag: 900)
@@ -130,25 +130,33 @@ class StatusItemController: NSObject, NSMenuDelegate {
       return
     }
     
-    switch Global.MenuItem(rawValue: sender.tag)! {
-      case .activate:
+    switch Global.MenuItem(rawValue: sender.tag) {
+      case .activate?:
         self.rocketFuel.toggle()
-      case .leftClick:
+      case .leftClick?:
         self.willActivateOnLeftClick = !self.willActivateOnLeftClick
         sender.state = Int(self.willActivateOnLeftClick)
-      case .autoStart:
+      case .autoStart?:
         self.willLaunchAtLogin = !self.willLaunchAtLogin
         sender.state = Int(self.willLaunchAtLogin)
-      case .aboutApp:
+      case .aboutApp?:
         self.aboutWindow = AboutWindowController(windowNibName: "About")
         self.aboutWindow?.showWindow(self)
         self.aboutWindow?.window?.makeKeyAndOrderFront(self)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.aboutWindowWillClose(_:)), name: "aboutWindowWillClose", object: nil)
       default:
-        self.rocketFuel.activate(withDuration: Double(sender.tag))
-        self.subMenu.resetStateForMenuItems()
-        sender.state = NSOnState
+        break
     }
+  }
+  
+  func didClickSubMenuItem(sender: NSMenuItem?) {
+    guard let sender = sender else {
+      return
+    }
+  
+    self.rocketFuel.activate(withDuration: Double(sender.tag))
+    self.subMenu.resetStateForMenuItems()
+    sender.state = NSOnState
   }
   
   func menuDidClose(menu: NSMenu) {
