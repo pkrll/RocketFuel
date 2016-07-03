@@ -11,8 +11,9 @@ import Cocoa
 class Application: NSApplication {
   
   internal var isActivated: Int {
-    let delegate: AppDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-    return delegate.isActive
+//    let delegate: AppDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+//    return delegate.isActive
+    return 0
   }
   
 }

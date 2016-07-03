@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController" customModule="RocketFuel" customModuleProvider="target">
+            <connections>
+                <outlet property="batteryLevelPopUpButton" destination="s3q-fo-Xdc" id="V0g-eZ-4BR"/>
+                <outlet property="preventSleepOnLidCloseButton" destination="6Y5-JP-rpS" id="5yb-ps-My8"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="428" y="329" width="373" height="188"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="373" height="188"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <box fixedFrame="YES" title="General" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Sm3-YK-zwF">
+                        <rect key="frame" x="17" y="57" width="339" height="111"/>
+                        <view key="contentView" id="m1f-1R-Bfy">
+                            <rect key="frame" x="1" y="1" width="337" height="95"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s3q-fo-Xdc">
+                                    <rect key="frame" x="13" y="17" width="71" height="26"/>
+                                    <popUpButtonCell key="cell" type="push" title="Off" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="j2e-lM-Lec" id="yim-i4-Fhe">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="4Ey-8D-n7C">
+                                            <items>
+                                                <menuItem title="Off" state="on" id="j2e-lM-Lec"/>
+                                                <menuItem title="5%" tag="5" id="CkT-2l-2Xy"/>
+                                                <menuItem title="10%" tag="10" id="epz-c2-0sc"/>
+                                                <menuItem title="20%" tag="20" id="XcL-v3-Xwg"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="batteryLevelPopUpButtonDidChange:" target="-2" id="dLb-2r-wfq"/>
+                                    </connections>
+                                </popUpButton>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jh5-uH-C1z">
+                                    <rect key="frame" x="87" y="20" width="236" height="20"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Deactivate when battery level is below" id="Ib2-su-ent">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Y5-JP-rpS">
+                                    <rect key="frame" x="13" y="46" width="310" height="39"/>
+                                    <buttonCell key="cell" type="check" title="Prevent sleep while lid is close (AC Power only)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QQv-rE-EFG">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="preventSleepOnLidCloseButtonDidChange:" target="-2" id="8NV-rw-Y7B"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </view>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </box>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-ui-8nd">
+                        <rect key="frame" x="287" y="13" width="72" height="32"/>
+                        <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OwB-pl-ei6">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="performClose:" target="QvC-M9-y7g" id="6w2-c2-W9E"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="191.5" y="307"/>
+        </window>
+    </objects>
+</document>

@@ -7,20 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A0B2D5A1C2AA92E00E07FDC /* StatusItemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0B2D591C2AA92E00E07FDC /* StatusItemImage.swift */; };
-		6A0B2D5D1C2AAAFA00E07FDC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0B2D5C1C2AAAFA00E07FDC /* Global.swift */; };
-		6A0B2D5F1C2AACD900E07FDC /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0B2D5E1C2AACD900E07FDC /* Menu.swift */; };
+		6A4EC5281D2467AF00ABB1AF /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4EC5261D2467AF00ABB1AF /* Preferences.xib */; };
+		6A710DB31D26ED94008ADC76 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DB21D26ED94008ADC76 /* StatusItemController.swift */; };
+		6A710DB91D26FB29008ADC76 /* StatusItemController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DB81D26FB29008ADC76 /* StatusItemController+Menu.swift */; };
+		6A710DBE1D26FB89008ADC76 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DBD1D26FB89008ADC76 /* Constants.swift */; };
+		6A710DC21D26FBC4008ADC76 /* MenuItemTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DC11D26FBC4008ADC76 /* MenuItemTag.swift */; };
+		6A710DC41D26FC10008ADC76 /* NSMenuDelegate+DidClickMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DC31D26FC10008ADC76 /* NSMenuDelegate+DidClickMenuItem.swift */; };
+		6A710DC71D26FC38008ADC76 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DC61D26FC38008ADC76 /* Menu.swift */; };
+		6A710DC91D26FD2A008ADC76 /* RocketFuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DC81D26FD2A008ADC76 /* RocketFuel.swift */; };
+		6A710DCB1D2902DF008ADC76 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DCA1D2902DF008ADC76 /* Preference.swift */; };
+		6A710DCD1D29040A008ADC76 /* StatusItemController+LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DCC1D29040A008ADC76 /* StatusItemController+LoginItem.swift */; };
+		6A710DCF1D2905B4008ADC76 /* StatusItemController+StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DCE1D2905B4008ADC76 /* StatusItemController+StatusItem.swift */; };
+		6A710DD11D290715008ADC76 /* StatusIconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DD01D290715008ADC76 /* StatusIconImage.swift */; };
+		6A710DD41D2907F2008ADC76 /* RocketFuelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DD31D2907F2008ADC76 /* RocketFuelDelegate.swift */; };
+		6A710DD71D290837008ADC76 /* AssertionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DD61D290837008ADC76 /* AssertionType.swift */; };
+		6A710DD91D290859008ADC76 /* RocketFuel+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DD81D290859008ADC76 /* RocketFuel+Assertions.swift */; };
+		6A710DDB1D290985008ADC76 /* Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DDA1D290985008ADC76 /* Battery.swift */; };
 		6A7CD6011CE8AC8A008B91A4 /* RocketFuelHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A7CD6001CE8AC7E008B91A4 /* RocketFuelHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A97FC971C29FA2E00362EBF /* AppDelegate.swift */; };
 		6A97FC9A1C29FA2E00362EBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC991C29FA2E00362EBF /* Assets.xcassets */; };
 		6A97FC9D1C29FA2E00362EBF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */; };
-		6AAE248A1C29FC3C0027C55B /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE24891C29FC3C0027C55B /* StatusItemController.swift */; };
-		6AD0B7161C2AB68F00E80988 /* RocketFuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0B7151C2AB68F00E80988 /* RocketFuel.swift */; };
-		6AD0B7191C2ABA6200E80988 /* RocketFuelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0B7181C2ABA6200E80988 /* RocketFuelDelegate.swift */; };
 		6ADD48591C2BFA0D00136857 /* RocketFuel.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 6ADD48581C2BFA0D00136857 /* RocketFuel.sdef */; };
 		6ADD485B1C2BFAA700136857 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADD485A1C2BFAA700136857 /* Application.swift */; };
 		6ADD485D1C2BFB9600136857 /* AppleScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADD485C1C2BFB9600136857 /* AppleScript.swift */; };
-		6AEFA53F1C2B4B68006EE98A /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEFA53E1C2B4B68006EE98A /* AboutWindowController.swift */; };
 		6AEFA5421C2BEF1C006EE98A /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AEFA5401C2BEF1C006EE98A /* About.xib */; };
 /* End PBXBuildFile section */
 
@@ -49,22 +58,32 @@
 
 /* Begin PBXFileReference section */
 		6A0467DB1CE665B200B0F384 /* RocketFuel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RocketFuel.entitlements; sourceTree = "<group>"; };
-		6A0B2D591C2AA92E00E07FDC /* StatusItemImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemImage.swift; path = Constants/StatusItemImage.swift; sourceTree = "<group>"; };
-		6A0B2D5C1C2AAAFA00E07FDC /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Global.swift; path = Constants/Global.swift; sourceTree = "<group>"; };
-		6A0B2D5E1C2AACD900E07FDC /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Controller/Menu.swift; sourceTree = "<group>"; };
+		6A4EC5271D2467AF00ABB1AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
+		6A710DB21D26ED94008ADC76 /* StatusItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemController.swift; path = Controllers/StatusItemController.swift; sourceTree = "<group>"; };
+		6A710DB81D26FB29008ADC76 /* StatusItemController+Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StatusItemController+Menu.swift"; path = "Controllers/StatusItemController+Menu.swift"; sourceTree = "<group>"; };
+		6A710DBD1D26FB89008ADC76 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Support/Constants/Constants.swift; sourceTree = "<group>"; };
+		6A710DC11D26FBC4008ADC76 /* MenuItemTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemTag.swift; path = Support/Constants/MenuItemTag.swift; sourceTree = "<group>"; };
+		6A710DC31D26FC10008ADC76 /* NSMenuDelegate+DidClickMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSMenuDelegate+DidClickMenuItem.swift"; path = "Support/Extensions/NSMenuDelegate+DidClickMenuItem.swift"; sourceTree = "<group>"; };
+		6A710DC61D26FC38008ADC76 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Controllers/Menu.swift; sourceTree = "<group>"; };
+		6A710DC81D26FD2A008ADC76 /* RocketFuel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RocketFuel.swift; path = Core/RocketFuel.swift; sourceTree = "<group>"; };
+		6A710DCA1D2902DF008ADC76 /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preference.swift; path = Support/Constants/Preference.swift; sourceTree = "<group>"; };
+		6A710DCC1D29040A008ADC76 /* StatusItemController+LoginItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StatusItemController+LoginItem.swift"; path = "Controllers/StatusItemController+LoginItem.swift"; sourceTree = "<group>"; };
+		6A710DCE1D2905B4008ADC76 /* StatusItemController+StatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StatusItemController+StatusItem.swift"; path = "Controllers/StatusItemController+StatusItem.swift"; sourceTree = "<group>"; };
+		6A710DD01D290715008ADC76 /* StatusIconImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusIconImage.swift; path = Support/Constants/StatusIconImage.swift; sourceTree = "<group>"; };
+		6A710DD31D2907F2008ADC76 /* RocketFuelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RocketFuelDelegate.swift; path = Support/Delegates/RocketFuelDelegate.swift; sourceTree = "<group>"; };
+		6A710DD61D290837008ADC76 /* AssertionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssertionType.swift; path = Support/Constants/AssertionType.swift; sourceTree = "<group>"; };
+		6A710DD81D290859008ADC76 /* RocketFuel+Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RocketFuel+Assertions.swift"; path = "Core/RocketFuel+Assertions.swift"; sourceTree = "<group>"; };
+		6A710DDA1D290985008ADC76 /* Battery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Battery.swift; path = Support/Battery.swift; sourceTree = "<group>"; };
+		6A71C79D1D25950100811775 /* RocketFuel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RocketFuel-Bridging-Header.h"; sourceTree = "<group>"; };
 		6A7CD5FB1CE8AC7E008B91A4 /* RocketFuelHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RocketFuelHelper.xcodeproj; path = RocketFuelHelper/RocketFuelHelper.xcodeproj; sourceTree = "<group>"; };
 		6A97FC941C29FA2E00362EBF /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A97FC971C29FA2E00362EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A97FC991C29FA2E00362EBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A97FC9C1C29FA2E00362EBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6A97FC9E1C29FA2E00362EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6AAE24891C29FC3C0027C55B /* StatusItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemController.swift; path = Controller/StatusItemController.swift; sourceTree = "<group>"; };
-		6AD0B7151C2AB68F00E80988 /* RocketFuel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RocketFuel.swift; path = Objects/RocketFuel.swift; sourceTree = "<group>"; };
-		6AD0B7181C2ABA6200E80988 /* RocketFuelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RocketFuelDelegate.swift; path = Protocols/RocketFuelDelegate.swift; sourceTree = "<group>"; };
 		6ADD48581C2BFA0D00136857 /* RocketFuel.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RocketFuel.sdef; sourceTree = "<group>"; };
 		6ADD485A1C2BFAA700136857 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		6ADD485C1C2BFB9600136857 /* AppleScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleScript.swift; sourceTree = "<group>"; };
-		6AEFA53E1C2B4B68006EE98A /* AboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutWindowController.swift; path = Controller/AboutWindowController.swift; sourceTree = "<group>"; };
 		6AEFA5411C2BEF1C006EE98A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/About.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,13 +106,64 @@
 			name = Entitlements;
 			sourceTree = "<group>";
 		};
-		6A0B2D5B1C2AA9EF00E07FDC /* Constants */ = {
+		6A710DB41D26EDC8008ADC76 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6A0B2D591C2AA92E00E07FDC /* StatusItemImage.swift */,
-				6A0B2D5C1C2AAAFA00E07FDC /* Global.swift */,
+				6A710DB21D26ED94008ADC76 /* StatusItemController.swift */,
+				6A710DCE1D2905B4008ADC76 /* StatusItemController+StatusItem.swift */,
+				6A710DB81D26FB29008ADC76 /* StatusItemController+Menu.swift */,
+				6A710DCC1D29040A008ADC76 /* StatusItemController+LoginItem.swift */,
+				6A710DC61D26FC38008ADC76 /* Menu.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6A710DBF1D26FB8C008ADC76 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				6A710DC01D26FB92008ADC76 /* Constants */,
+				6A710DC51D26FC1D008ADC76 /* Extensions */,
+				6A710DD51D290822008ADC76 /* Delegates */,
+				6A710DDA1D290985008ADC76 /* Battery.swift */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		6A710DC01D26FB92008ADC76 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				6A710DBD1D26FB89008ADC76 /* Constants.swift */,
+				6A710DC11D26FBC4008ADC76 /* MenuItemTag.swift */,
+				6A710DCA1D2902DF008ADC76 /* Preference.swift */,
+				6A710DD01D290715008ADC76 /* StatusIconImage.swift */,
+				6A710DD61D290837008ADC76 /* AssertionType.swift */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		6A710DC51D26FC1D008ADC76 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6A710DC31D26FC10008ADC76 /* NSMenuDelegate+DidClickMenuItem.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		6A710DD21D2907D3008ADC76 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6A710DC81D26FD2A008ADC76 /* RocketFuel.swift */,
+				6A710DD81D290859008ADC76 /* RocketFuel+Assertions.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		6A710DD51D290822008ADC76 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				6A710DD31D2907F2008ADC76 /* RocketFuelDelegate.swift */,
+			);
+			name = Delegates;
 			sourceTree = "<group>";
 		};
 		6A7CD5FC1CE8AC7E008B91A4 /* Products */ = {
@@ -126,13 +196,12 @@
 			children = (
 				6ADD485A1C2BFAA700136857 /* Application.swift */,
 				6A97FC971C29FA2E00362EBF /* AppDelegate.swift */,
-				6AD0B7171C2AB6FE00E80988 /* Objects */,
-				6AAE248B1C29FC450027C55B /* Controllers */,
-				6AD0B71A1C2ABFDB00E80988 /* Protocols */,
-				6A0B2D5B1C2AA9EF00E07FDC /* Constants */,
+				6A710DB41D26EDC8008ADC76 /* Controllers */,
+				6A710DD21D2907D3008ADC76 /* Core */,
+				6A710DBF1D26FB8C008ADC76 /* Support */,
 				6AAE24871C29FBC40027C55B /* UI */,
 				6A0467DC1CE665D500B0F384 /* Entitlements */,
-				6AAE24881C29FBCB0027C55B /* Supporting Files */,
+				6AAE24881C29FBCB0027C55B /* Resources */,
 			);
 			path = RocketFuel;
 			sourceTree = "<group>";
@@ -142,45 +211,21 @@
 			children = (
 				6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */,
 				6AEFA5401C2BEF1C006EE98A /* About.xib */,
+				6A4EC5261D2467AF00ABB1AF /* Preferences.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
 		};
-		6AAE24881C29FBCB0027C55B /* Supporting Files */ = {
+		6AAE24881C29FBCB0027C55B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				6ADD485C1C2BFB9600136857 /* AppleScript.swift */,
 				6A97FC991C29FA2E00362EBF /* Assets.xcassets */,
 				6A97FC9E1C29FA2E00362EBF /* Info.plist */,
 				6ADD48581C2BFA0D00136857 /* RocketFuel.sdef */,
+				6A71C79D1D25950100811775 /* RocketFuel-Bridging-Header.h */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6AAE248B1C29FC450027C55B /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				6A0B2D5E1C2AACD900E07FDC /* Menu.swift */,
-				6AAE24891C29FC3C0027C55B /* StatusItemController.swift */,
-				6AEFA53E1C2B4B68006EE98A /* AboutWindowController.swift */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
-		6AD0B7171C2AB6FE00E80988 /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				6AD0B7151C2AB68F00E80988 /* RocketFuel.swift */,
-			);
-			name = Objects;
-			sourceTree = "<group>";
-		};
-		6AD0B71A1C2ABFDB00E80988 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				6AD0B7181C2ABA6200E80988 /* RocketFuelDelegate.swift */,
-			);
-			name = Protocols;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +314,7 @@
 				6A97FC9A1C29FA2E00362EBF /* Assets.xcassets in Resources */,
 				6A97FC9D1C29FA2E00362EBF /* MainMenu.xib in Resources */,
 				6ADD48591C2BFA0D00136857 /* RocketFuel.sdef in Resources */,
+				6A4EC5281D2467AF00ABB1AF /* Preferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,22 +341,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A710DB91D26FB29008ADC76 /* StatusItemController+Menu.swift in Sources */,
+				6A710DD41D2907F2008ADC76 /* RocketFuelDelegate.swift in Sources */,
+				6A710DCF1D2905B4008ADC76 /* StatusItemController+StatusItem.swift in Sources */,
+				6A710DCD1D29040A008ADC76 /* StatusItemController+LoginItem.swift in Sources */,
 				6ADD485B1C2BFAA700136857 /* Application.swift in Sources */,
-				6A0B2D5D1C2AAAFA00E07FDC /* Global.swift in Sources */,
-				6AAE248A1C29FC3C0027C55B /* StatusItemController.swift in Sources */,
-				6AD0B7191C2ABA6200E80988 /* RocketFuelDelegate.swift in Sources */,
+				6A710DD91D290859008ADC76 /* RocketFuel+Assertions.swift in Sources */,
+				6A710DB31D26ED94008ADC76 /* StatusItemController.swift in Sources */,
+				6A710DCB1D2902DF008ADC76 /* Preference.swift in Sources */,
+				6A710DBE1D26FB89008ADC76 /* Constants.swift in Sources */,
+				6A710DDB1D290985008ADC76 /* Battery.swift in Sources */,
 				6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */,
-				6A0B2D5A1C2AA92E00E07FDC /* StatusItemImage.swift in Sources */,
-				6AEFA53F1C2B4B68006EE98A /* AboutWindowController.swift in Sources */,
-				6A0B2D5F1C2AACD900E07FDC /* Menu.swift in Sources */,
-				6AD0B7161C2AB68F00E80988 /* RocketFuel.swift in Sources */,
+				6A710DD11D290715008ADC76 /* StatusIconImage.swift in Sources */,
+				6A710DC41D26FC10008ADC76 /* NSMenuDelegate+DidClickMenuItem.swift in Sources */,
+				6A710DC71D26FC38008ADC76 /* Menu.swift in Sources */,
+				6A710DD71D290837008ADC76 /* AssertionType.swift in Sources */,
+				6A710DC21D26FBC4008ADC76 /* MenuItemTag.swift in Sources */,
 				6ADD485D1C2BFB9600136857 /* AppleScript.swift in Sources */,
+				6A710DC91D26FD2A008ADC76 /* RocketFuel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		6A4EC5261D2467AF00ABB1AF /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A4EC5271D2467AF00ABB1AF /* Base */,
+			);
+			name = Preferences.xib;
+			sourceTree = "<group>";
+		};
 		6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -426,6 +488,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "RocketFuel/RocketFuel-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -444,6 +507,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "RocketFuel/RocketFuel-Bridging-Header.h";
 			};
 			name = Release;
 		};
