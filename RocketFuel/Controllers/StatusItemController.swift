@@ -7,13 +7,7 @@
 //
 import Cocoa
 
-enum RequestType: Int {
-
-  case Activation, Termination
-
-}
-
-class StatusItemController: NSObject, NSMenuDelegate {
+class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindowDelegate {
   
   // --------------------------------------------
   // MARK: - Public Properties
@@ -27,6 +21,14 @@ class StatusItemController: NSObject, NSMenuDelegate {
    *  The RocketFuel Default Manager.
    */
   let rocketFuel: RocketFuel = RocketFuel.defaultManager
+  /**
+   *  The about window.
+   */
+  var aboutWindowController: AboutWindowController?
+  /**
+   *  The preferences window.
+   */
+  var preferencesWindowController: PreferencesWindowController?
   /**
    *  Determines if the application should be started on launch.
    */
@@ -48,6 +50,7 @@ class StatusItemController: NSObject, NSMenuDelegate {
     set (mode) {
       let defaults = NSUserDefaults.standardUserDefaults()
       defaults.setBool(mode, forKey: Preference.LeftClickActivation.rawValue)
+      defaults.synchronize()
     }
   }
   
@@ -57,6 +60,8 @@ class StatusItemController: NSObject, NSMenuDelegate {
   
   override init() {
     super.init()
+    self.configureStatusItem()
+    self.rocketFuel.delegate = self
   }
   
   // --------------------------------------------
@@ -68,12 +73,13 @@ class StatusItemController: NSObject, NSMenuDelegate {
    *
    *  - Parameter type: The request type.
    */
-  func request(type: RequestType) {
+  func request(type: RequestType, withDuration duration: Double = 0) {
     switch type {
       case .Activation:
-        break
+        let level = NSUserDefaults.standardUserDefaults().integerForKey(Preference.StopAtBatteryLevel.rawValue)
+        self.rocketFuel.start(AssertionType.PreventIdleSystemSleep, duration: duration, stopAtBatteryLevel: level)
       case .Termination:
-        break
+        self.rocketFuel.stop()
     }
   }
   /**
@@ -92,6 +98,14 @@ class StatusItemController: NSObject, NSMenuDelegate {
     }
     
     NSApp.terminate(self)
+  }
+
+  // --------------------------------------------
+  // MARK: - Rocket Fuel Delegate Methods
+  // --------------------------------------------
+  
+  func rocketFuel(_: RocketFuel, didChangeStatus mode: Bool) {
+    self.statusItem.button?.image = self.imageForStatusIcon(forState: mode)
   }
   
 }

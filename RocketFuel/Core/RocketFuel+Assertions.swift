@@ -10,35 +10,39 @@ import Foundation
 extension RocketFuel {
   
   func start(assertionType: AssertionType, duration: Double = 0, stopAtBatteryLevel: Int = 0) -> Bool {
-    guard self.createAssertion(ofType: assertionType) else { return false }
+    guard self.createAssertion(ofType: assertionType, withDuration: duration) else { return false }
     
     if duration > 0 {
       self.durationTimer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: #selector(self.stop), userInfo: nil, repeats: false)
     }
     
-    if stopAtBatteryLevel > 0 {
-      let powerSourceCallback: IOPowerSourceCallbackType = { context in
-        let this = Unmanaged<RocketFuel>.fromOpaque(COpaquePointer(context)).takeRetainedValue()
-        this.checkBatteryLevel()
-      }
-      // Get notifications on power source updates
-      let this = UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque())
-      self.notificationRunLoopSource = IOPSNotificationCreateRunLoopSource(powerSourceCallback, this).takeRetainedValue()
-      CFRunLoopAddSource(CFRunLoopGetCurrent(), notificationRunLoopSource, kCFRunLoopDefaultMode)
-    }
+    self.shouldStopAtBatteryLevel = stopAtBatteryLevel
+    
+    self.delegate?.rocketFuel(self, didChangeStatus: true)
     
     return true
   }
  
   @objc func stop() {
     self.assertion = IOPMAssertionRelease(self.assertionID)
+    self.assertionID = IOPMAssertionID(0)
+    self.delegate?.rocketFuel(self, didChangeStatus: false)
     
     guard let _ = self.durationTimer else { return }
     self.durationTimer?.invalidate()
     self.durationTimer = nil
+    
+    guard let _ = self.notificationRunLoopSource else { return }
+    self.shouldStopAtBatteryLevel = 0
   }
   
-  func createAssertion(ofType type: AssertionType) -> Bool {
+  private func createAssertion(ofType type: AssertionType, withDuration duration: Double) -> Bool {
+    if self.isActive {
+      self.stop()
+    }
+    
+    self.timeout = duration
+    
     var assertionType: CFString
     switch type {
       case .PreventIdleSystemSleep:
@@ -47,20 +51,9 @@ extension RocketFuel {
         assertionType = kIOPMAssertPreventUserIdleDisplaySleep
     }
     
-    self.assertion = IOPMAssertionCreateWithName(assertionType, UInt32(kIOPMAssertionLevelOn), "Rocket Fuel is active", &self.assertionID)
-
+    self.assertion = IOPMAssertionCreateWithDescription(assertionType, "Rocket Fuel", nil, nil, nil, duration, kIOPMAssertionTimeoutActionRelease, &self.assertionID)
+    
     return self.assertion == kIOReturnSuccess
   }
-  
-  func checkBatteryLevel() {
-    print("Checking battery level...")
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    let batteryLevel = userDefaults.integerForKey("batteryLevelThreshold")
-    
-    if Battery.currentCharge <= batteryLevel {
-      self.stop()
-      CFRunLoopRemoveSource(CFRunLoopGetCurrent(), self.notificationRunLoopSource, kCFRunLoopDefaultMode)
-    }
-  }
-  
+
 }

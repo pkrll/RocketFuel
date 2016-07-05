@@ -11,5 +11,6 @@ enum Preference: String {
   
   case LeftClickActivation = "leftClickActivation"
   case LaunchAtLogin = "launchAtLogin"
+  case StopAtBatteryLevel = "stopAtBatteryLevel"
   
 }

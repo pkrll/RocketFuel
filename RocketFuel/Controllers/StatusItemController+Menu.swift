@@ -12,7 +12,7 @@ extension StatusItemController {
   var menu: Menu {
     let menu = Menu(title: Constants.bundleName)
     let state = (RocketFuel.defaultManager.isActive) ? "Deactivate Rocket Fuel" : "Activate Rocket Fuel"
-    
+        
     menu.addItem(withTitle: state, tag: MenuItemTag.Normal(.Activate).rawValue)
     
     menu.addSeparatorItem()
@@ -38,36 +38,41 @@ extension StatusItemController {
   
   var timeoutSubmenu: Menu {
     let menu = Menu(title: "Submenu")
-    
-    menu.addItem(withTitle: "5 Minutes", tag: 300)
-    menu.addItem(withTitle: "15 Minutes", tag: 900)
-    menu.addItem(withTitle: "30 Minutes", tag: 1800)
-    menu.addItem(withTitle: "1 Hour", tag: 3600)
+
+    menu.addItem(withTitle: "5 Minutes", tag: 300, state: (300 == self.rocketFuel.timeout))
+    menu.addItem(withTitle: "15 Minutes", tag: 900, state: (900 == self.rocketFuel.timeout))
+    menu.addItem(withTitle: "30 Minutes", tag: 1800, state: (1800 == self.rocketFuel.timeout))
+    menu.addItem(withTitle: "1 Hour", tag: 3600, state: (3600 == self.rocketFuel.timeout))
     menu.addItem(withTitle: "Never", tag: 0)
+    
+    menu.delegate = self
     
     return menu
   }
   
-  func didClickMenuItem(item: NSMenuItem) {
-    switch MenuItemTag(rawValue: item.tag) {
+  func didClickMenuItem(menuItem: NSMenuItem) {
+    switch MenuItemTag(rawValue: menuItem.tag) {
     case .Normal(.Activate):
       self.toggleState()
     case .Normal(.LaunchAtLogin):
       self.shouldLaunchAtLogin = !self.shouldLaunchAtLogin
-      item.state = Int(self.shouldLaunchAtLogin)
+      menuItem.state = Int(self.shouldLaunchAtLogin)
     case .Normal(.LeftClickActivation):
       self.shouldActivateOnLeftClick = !self.shouldActivateOnLeftClick
-      item.state = Int(self.shouldActivateOnLeftClick)
+      menuItem.state = Int(self.shouldActivateOnLeftClick)
     case .Normal(.Preferences):
-      break
+      self.openPreferences()
     case .Normal(.About):
-      break
+      self.openAbout()
     case .Normal(.Terminate):
       self.terminate()
-    case .Custom(let tag):
-      print(tag)
+    case .Custom(let timeout):
+      self.request(.Activation, withDuration: Double(timeout))
     }
   }
 
+  func menuDidClose(menu: NSMenu) {
+    self.statusItem.menu = nil
+  }
   
 }

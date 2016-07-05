@@ -14,13 +14,13 @@ class AppleScript: NSScriptCommand {
   }
   
   func toggle() {
-//    self.appDelegate.applicationShouldChangeState()
+    self.appDelegate.applicationShouldChangeState()
   }
   
   func duration() {
     // The duration is expressed in minutes in AppleScript, but seconds in the app, so it needs to be translated to seconds to work correctly.
-//    let duration: Double = self.directParameter!.doubleValue * 60
-//    self.appDelegate.applicationShouldActivateWithDuration(duration)
+    let duration: Double = self.directParameter!.doubleValue * 60
+    self.appDelegate.applicationShouldActivateWithDuration(duration)
   }
   
   override func performDefaultImplementation() -> AnyObject? {

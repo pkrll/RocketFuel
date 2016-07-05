@@ -9,4 +9,6 @@ import Foundation
 
 protocol RocketFuelDelegate {
   
+  func rocketFuel(_:RocketFuel, didChangeStatus mode: Bool)
+  
 }

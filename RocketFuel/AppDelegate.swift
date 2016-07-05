@@ -14,12 +14,35 @@ import ServiceManagement
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   
+  var statusItemController: StatusItemController?
+  
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    
+    self.loadStatusItem()
   }
   
   func applicationWillTerminate(aNotification: NSNotification) {
     
   }
+  
+  func applicationShouldChangeState() {
+    self.loadStatusItem()
     
+    if RocketFuel.defaultManager.isActive {
+      self.statusItemController?.request(.Termination)
+    } else {
+      self.statusItemController?.request(.Activation)
+    }
+  }
+  
+  func applicationShouldActivateWithDuration(duration: Double) {
+    self.loadStatusItem()
+    self.statusItemController?.request(.Activation, withDuration: duration)
+  }
+  
+  private func loadStatusItem() {
+    if self.statusItemController == nil {
+      self.statusItemController = StatusItemController()
+    }
+  }
+  
 }

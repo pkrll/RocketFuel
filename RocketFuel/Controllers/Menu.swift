@@ -40,9 +40,11 @@ class Menu: NSMenu {
     }
   }
   
-  func selectMenuItem(sender: AnyObject?) {
-    guard let sender = sender as? NSMenuItem else { return }
-    self.delegate?.didClickMenuItem(sender)
+  func selectMenuItem(sender: NSMenuItem?) {
+    guard let sender = sender else { return }
+    if let delegate = self.delegate as? MenuDelegate {
+      delegate.didClickMenuItem(sender)
+    }
   }
   
 }

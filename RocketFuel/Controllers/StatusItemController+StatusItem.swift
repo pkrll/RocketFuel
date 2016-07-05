@@ -21,7 +21,6 @@ extension StatusItemController {
     self.statusItem.button!.sendActionOn(actionMasks)
     self.statusItem.button!.toolTip = "\(Constants.bundleName) \(Constants.bundleVersion) (\(Constants.bundleBuild))"
   }
-  
   /**
    *  Invoked on iteraction with the Status Item
    *
@@ -37,8 +36,10 @@ extension StatusItemController {
       self.toggleState()
     }
   }
-  
-  func imageForStatusIcon(state: Bool = true) -> NSImage? {
+  /**
+   *  Returns the status icon for a specific state.
+   */
+  func imageForStatusIcon(forState state: Bool = true) -> NSImage? {
     if RocketFuel.defaultManager.isActive && state == true {
       return NSImage(named: StatusItemImage.StatusItemActive.rawValue)
     }

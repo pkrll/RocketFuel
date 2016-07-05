@@ -13,7 +13,7 @@ enum MenuItemTag {
   case Custom(Int)
   
   enum NormalMenuItem: Int {
-    case Activate
+    case Activate = 1
     case LaunchAtLogin
     case LeftClickActivation
     case Preferences
