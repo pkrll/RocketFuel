@@ -40,7 +40,7 @@ extension StatusItemController {
    *  Returns the status icon for a specific state.
    */
   func imageForStatusIcon(forState state: Bool = true) -> NSImage? {
-    if RocketFuel.defaultManager.isActive && state == true {
+    if self.rocketFuel.isActive && state == true {
       return NSImage(named: StatusItemImage.StatusItemActive.rawValue)
     }
     

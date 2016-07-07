@@ -10,8 +10,8 @@ import Foundation
 struct Battery {
   
   static var currentCharge: Int? {
-    let blob = IOPSCopyPowerSourcesInfo().takeUnretainedValue()
-    let sources = IOPSCopyPowerSourcesList(blob).takeUnretainedValue() as Array
+    let blob = IOPSCopyPowerSourcesInfo().takeRetainedValue()
+    let sources = IOPSCopyPowerSourcesList(blob).takeRetainedValue() as Array
     
     for source in sources {
       let description = IOPSGetPowerSourceDescription(blob, source).takeUnretainedValue() as Dictionary

@@ -11,8 +11,8 @@ extension StatusItemController {
   
   var menu: Menu {
     let menu = Menu(title: Constants.bundleName)
-    let state = (RocketFuel.defaultManager.isActive) ? "Deactivate Rocket Fuel" : "Activate Rocket Fuel"
-        
+    let state = (self.rocketFuel.isActive) ? "Deactivate Rocket Fuel" : "Activate Rocket Fuel"
+
     menu.addItem(withTitle: state, tag: MenuItemTag.Normal(.Activate).rawValue)
     
     menu.addSeparatorItem()
@@ -38,12 +38,20 @@ extension StatusItemController {
   
   var timeoutSubmenu: Menu {
     let menu = Menu(title: "Submenu")
-
-    menu.addItem(withTitle: "5 Minutes", tag: 300, state: (300 == self.rocketFuel.timeout))
-    menu.addItem(withTitle: "15 Minutes", tag: 900, state: (900 == self.rocketFuel.timeout))
-    menu.addItem(withTitle: "30 Minutes", tag: 1800, state: (1800 == self.rocketFuel.timeout))
-    menu.addItem(withTitle: "1 Hour", tag: 3600, state: (3600 == self.rocketFuel.timeout))
-    menu.addItem(withTitle: "Never", tag: 0)
+    let timeout = self.rocketFuel.timeout
+    
+    menu.addItem(withTitle: "5 Minutes", tag: 300, state: (300 == timeout))
+    menu.addItem(withTitle: "15 Minutes", tag: 900, state: (900 == timeout))
+    menu.addItem(withTitle: "30 Minutes", tag: 1800, state: (1800 == timeout))
+    menu.addItem(withTitle: "1 Hour", tag: 3600, state: (3600 == timeout))
+    menu.addItem(withTitle: "Never", tag: 0, state: (0 == timeout))
+    
+    // Add a new menu item if the timeout is user defined. 
+    if [300, 900, 1800, 3600, 0].contains(timeout) == false {
+      let time = Time.humanReadableTime(fromSeconds: timeout)
+      menu.addSeparatorItem()
+      menu.addItem(withTitle: time, tag: Int(timeout), state: true)
+    }
     
     menu.delegate = self
     

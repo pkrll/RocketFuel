@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A0DB74A1D2C07ED00C59453 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DB7481D2C07ED00C59453 /* PreferencesWindowController.swift */; };
 		6A0DB74E1D2C0CDF00C59453 /* StatusItemController+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DB74D1D2C0CDF00C59453 /* StatusItemController+Window.swift */; };
+		6A2A69071D2F123D006BC994 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2A69061D2F123D006BC994 /* Time.swift */; };
 		6A4EC5281D2467AF00ABB1AF /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4EC5261D2467AF00ABB1AF /* Preferences.xib */; };
 		6A710DB31D26ED94008ADC76 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DB21D26ED94008ADC76 /* StatusItemController.swift */; };
 		6A710DB91D26FB29008ADC76 /* StatusItemController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DB81D26FB29008ADC76 /* StatusItemController+Menu.swift */; };
@@ -64,6 +65,7 @@
 		6A0467DB1CE665B200B0F384 /* RocketFuel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RocketFuel.entitlements; sourceTree = "<group>"; };
 		6A0DB7481D2C07ED00C59453 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferencesWindowController.swift; path = Controllers/PreferencesWindowController.swift; sourceTree = "<group>"; };
 		6A0DB74D1D2C0CDF00C59453 /* StatusItemController+Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StatusItemController+Window.swift"; path = "Controllers/StatusItemController+Window.swift"; sourceTree = "<group>"; };
+		6A2A69061D2F123D006BC994 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Time.swift; path = Support/Time.swift; sourceTree = "<group>"; };
 		6A4EC5271D2467AF00ABB1AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		6A710DB21D26ED94008ADC76 /* StatusItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemController.swift; path = Controllers/StatusItemController.swift; sourceTree = "<group>"; };
 		6A710DB81D26FB29008ADC76 /* StatusItemController+Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StatusItemController+Menu.swift"; path = "Controllers/StatusItemController+Menu.swift"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				6A710DC01D26FB92008ADC76 /* Constants */,
 				6A710DD51D290822008ADC76 /* Delegates */,
 				6A710DDA1D290985008ADC76 /* Battery.swift */,
+				6A2A69061D2F123D006BC994 /* Time.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				6A710DC21D26FBC4008ADC76 /* MenuItemTag.swift in Sources */,
 				6A0DB74A1D2C07ED00C59453 /* PreferencesWindowController.swift in Sources */,
 				6ADD485D1C2BFB9600136857 /* AppleScript.swift in Sources */,
+				6A2A69071D2F123D006BC994 /* Time.swift in Sources */,
 				6A710DC91D26FD2A008ADC76 /* RocketFuel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,10 +6,6 @@
 //  Copyright © 2015 Ardalan Samimi. All rights reserved.
 //
 import Cocoa
-import ServiceManagement
-
-// IOPS notification callback on power source change
-
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

@@ -5,7 +5,6 @@
 //  Created by Ardalan Samimi on 15/05/16.
 //  Copyright © 2016 Ardalan Samimi. All rights reserved.
 //
-
 import Cocoa
 
 @NSApplicationMain
@@ -21,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     for app in activeApps {
       if app.bundleIdentifier == "com.ardalansamimi.RocketFuel" {
         appIsRunning = true
+        break
       }
     }
     
@@ -33,8 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       comp?.append("MacOS")
       comp?.append("RocketFuel")
       let url = NSString.pathWithComponents(comp!)
-      if (NSWorkspace.sharedWorkspace().launchApplication(url)) {
-      } else {
+      if (NSWorkspace.sharedWorkspace().launchApplication(url)) == false {
         NSLog("Rocket Fuel Helper App could not launch Rocket Fuel...")
       }
     }
@@ -42,10 +41,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     NSApp.terminate(nil)
   }
 
-  func applicationWillTerminate(aNotification: NSNotification) {
-    // Insert code here to tear down your application
-  }
-
-
 }
-

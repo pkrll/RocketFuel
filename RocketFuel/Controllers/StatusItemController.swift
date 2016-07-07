@@ -15,12 +15,10 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
   
   /**
    *  The item that is displayed in the system status bar.
-   */
+   */  
   let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
-  /**
-   *  The RocketFuel Default Manager.
-   */
-  let rocketFuel: RocketFuel = RocketFuel.defaultManager
+
+  let rocketFuel: RocketFuel!
   /**
    *  The about window.
    */
@@ -59,6 +57,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
   // --------------------------------------------
   
   override init() {
+    self.rocketFuel = RocketFuel()
     super.init()
     self.configureStatusItem()
     self.rocketFuel.delegate = self
@@ -86,8 +85,8 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    *  Toggle Rocket Fuel state.
    */
   func toggleState() {
-    let state: RequestType = (RocketFuel.defaultManager.isActive) ? .Termination : .Activation
-    self.request(state)
+    let state: RequestType = (self.rocketFuel.isActive) ? .Termination : .Activation
+    self.request(state, withDuration: self.rocketFuel.timeout)
   }
   /**
    *  Terminates the app.
