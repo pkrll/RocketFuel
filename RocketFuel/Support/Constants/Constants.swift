@@ -7,7 +7,15 @@
 //
 import Cocoa
 
-struct Constants {  
+struct Constants {
+  /**
+   *  The application name.
+   */
+  static let applicationName: String = "Rocket Fuel"
+  /**
+   *  The full application version.
+   */
+  static let applicationVersion: String = "Version \(Constants.bundleVersion) (\(Constants.bundleBuild))"
   /**
    *  The Application's name as set in the bundle.
    */

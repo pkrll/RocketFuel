@@ -16,10 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     Preferences.registerDefaults()
   }
   
-  func applicationWillTerminate(aNotification: NSNotification) {
-    Preferences.save(self.statusItemController.rocketFuel.isActive, forKey: PreferencesType.LastApplicationState)
-  }
-  
   func applicationShouldChangeState() {
     if self.statusItemController.rocketFuel.isActive {
       self.statusItemController.request(.Termination)
@@ -33,6 +29,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func applicationShouldDeactivate(atBatteryLevel level: Int) {
+    // This function is called either from the Preferences Window or an apple script.
+    Preferences.save(level, forKey: PreferencesType.StopAtBatteryLevel)
     self.statusItemController.shouldDeactivateOnBatteryLevel = level
   }
 

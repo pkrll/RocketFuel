@@ -13,7 +13,7 @@ extension StatusItemController {
     guard self.preferencesWindowController == nil else { return }
     
     NSApp.activateIgnoringOtherApps(true)
-    self.preferencesWindowController = PreferencesWindowController(windowNibName: "Preferences")
+    self.preferencesWindowController = PreferencesWindowController()
     self.preferencesWindowController?.showWindow(nil)
     self.preferencesWindowController?.window?.makeKeyAndOrderFront(nil)
     self.preferencesWindowController?.window?.delegate = self
@@ -23,7 +23,7 @@ extension StatusItemController {
     guard self.aboutWindowController == nil else { return }
 
     NSApp.activateIgnoringOtherApps(true)
-    self.aboutWindowController = AboutWindowController(windowNibName: "About")
+    self.aboutWindowController = AboutWindowController()
     self.aboutWindowController?.showWindow(nil)
     self.aboutWindowController?.window?.makeKeyAndOrderFront(nil)
     self.aboutWindowController?.window?.delegate = self

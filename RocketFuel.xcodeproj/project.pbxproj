@@ -10,7 +10,6 @@
 		6A0DB74A1D2C07ED00C59453 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DB7481D2C07ED00C59453 /* PreferencesWindowController.swift */; };
 		6A0DB74E1D2C0CDF00C59453 /* StatusItemController+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DB74D1D2C0CDF00C59453 /* StatusItemController+Window.swift */; };
 		6A2A69071D2F123D006BC994 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2A69061D2F123D006BC994 /* Time.swift */; };
-		6A4EC5281D2467AF00ABB1AF /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4EC5261D2467AF00ABB1AF /* Preferences.xib */; };
 		6A710DB31D26ED94008ADC76 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DB21D26ED94008ADC76 /* StatusItemController.swift */; };
 		6A710DB91D26FB29008ADC76 /* StatusItemController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DB81D26FB29008ADC76 /* StatusItemController+Menu.swift */; };
 		6A710DBE1D26FB89008ADC76 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DBD1D26FB89008ADC76 /* Constants.swift */; };
@@ -36,7 +35,6 @@
 		6ADD48591C2BFA0D00136857 /* RocketFuel.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 6ADD48581C2BFA0D00136857 /* RocketFuel.sdef */; };
 		6ADD485B1C2BFAA700136857 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADD485A1C2BFAA700136857 /* Application.swift */; };
 		6ADD485D1C2BFB9600136857 /* AppleScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADD485C1C2BFB9600136857 /* AppleScript.swift */; };
-		6AEFA5421C2BEF1C006EE98A /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AEFA5401C2BEF1C006EE98A /* About.xib */; };
 		6AFF17521D32B01500902F90 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF17511D32B01500902F90 /* Preferences.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +66,6 @@
 		6A0DB7481D2C07ED00C59453 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferencesWindowController.swift; path = Controllers/PreferencesWindowController.swift; sourceTree = "<group>"; };
 		6A0DB74D1D2C0CDF00C59453 /* StatusItemController+Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StatusItemController+Window.swift"; path = "Controllers/StatusItemController+Window.swift"; sourceTree = "<group>"; };
 		6A2A69061D2F123D006BC994 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Time.swift; path = Support/Time.swift; sourceTree = "<group>"; };
-		6A4EC5271D2467AF00ABB1AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		6A710DB21D26ED94008ADC76 /* StatusItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemController.swift; path = Controllers/StatusItemController.swift; sourceTree = "<group>"; };
 		6A710DB81D26FB29008ADC76 /* StatusItemController+Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StatusItemController+Menu.swift"; path = "Controllers/StatusItemController+Menu.swift"; sourceTree = "<group>"; };
 		6A710DBD1D26FB89008ADC76 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Support/Constants/Constants.swift; sourceTree = "<group>"; };
@@ -97,7 +94,6 @@
 		6ADD48581C2BFA0D00136857 /* RocketFuel.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RocketFuel.sdef; sourceTree = "<group>"; };
 		6ADD485A1C2BFAA700136857 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		6ADD485C1C2BFB9600136857 /* AppleScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleScript.swift; sourceTree = "<group>"; };
-		6AEFA5411C2BEF1C006EE98A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/About.xib; sourceTree = "<group>"; };
 		6AFF17511D32B01500902F90 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = Support/Preferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,8 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */,
-				6AEFA5401C2BEF1C006EE98A /* About.xib */,
-				6A4EC5261D2467AF00ABB1AF /* Preferences.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -323,12 +317,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AEFA5421C2BEF1C006EE98A /* About.xib in Resources */,
 				6ABD0C611D319512003EC959 /* UserDefaults.plist in Resources */,
 				6A97FC9A1C29FA2E00362EBF /* Assets.xcassets in Resources */,
 				6A97FC9D1C29FA2E00362EBF /* MainMenu.xib in Resources */,
 				6ADD48591C2BFA0D00136857 /* RocketFuel.sdef in Resources */,
-				6A4EC5281D2467AF00ABB1AF /* Preferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,28 +377,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6A4EC5261D2467AF00ABB1AF /* Preferences.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A4EC5271D2467AF00ABB1AF /* Base */,
-			);
-			name = Preferences.xib;
-			sourceTree = "<group>";
-		};
 		6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6A97FC9C1C29FA2E00362EBF /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		6AEFA5401C2BEF1C006EE98A /* About.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6AEFA5411C2BEF1C006EE98A /* Base */,
-			);
-			name = About.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
