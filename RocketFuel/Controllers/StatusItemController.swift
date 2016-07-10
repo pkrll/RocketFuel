@@ -18,7 +18,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    */  
   let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
-  let rocketFuel: RocketFuel!
+  let rocketFuel: RocketFuel = RocketFuel()
   /**
    *  The about window.
    */
@@ -28,14 +28,18 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    */
   var preferencesWindowController: PreferencesWindowController?
   /**
-   *  Determines if the application should be started on launch.
+   *  Determines if the application should be started on system launch.
    */
   var shouldLaunchAtLogin: Bool {
     get {
-      return NSUserDefaults.standardUserDefaults().boolForKey(Preference.LaunchAtLogin.rawValue)
+      return Preferences.bool(forKey: .LaunchAtLogin)
     }
     set (mode) {
-      self.addApplicationToLoginItems(mode)
+      let status = self.addApplicationToLoginItems(mode)
+      
+      if status {
+        Preferences.save(mode, forKey: .LaunchAtLogin)
+      }
     }
   }
   /**
@@ -43,12 +47,21 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    */
   var shouldActivateOnLeftClick: Bool {
     get {
-      return NSUserDefaults.standardUserDefaults().boolForKey(Preference.LeftClickActivation.rawValue)
+      return Preferences.bool(forKey: .LeftClickActivation)
     }
     set (mode) {
-      let defaults = NSUserDefaults.standardUserDefaults()
-      defaults.setBool(mode, forKey: Preference.LeftClickActivation.rawValue)
-      defaults.synchronize()
+      Preferences.save(mode, forKey: .LeftClickActivation)
+    }
+  }
+  /**
+   *  Determines if the application should deactivate when the system reaches a certain battery level.
+   */
+  var shouldDeactivateOnBatteryLevel: Int {
+    get {
+      return self.rocketFuel.shouldStopAtBatteryLevel
+    }
+    set (level) {
+      self.rocketFuel.shouldStopAtBatteryLevel = level
     }
   }
   
@@ -57,7 +70,6 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
   // --------------------------------------------
   
   override init() {
-    self.rocketFuel = RocketFuel()
     super.init()
     self.configureStatusItem()
     self.rocketFuel.delegate = self
@@ -75,7 +87,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
   func request(type: RequestType, withDuration duration: Double = 0) {
     switch type {
       case .Activation:
-        let level = NSUserDefaults.standardUserDefaults().integerForKey(Preference.StopAtBatteryLevel.rawValue)
+        let level = Preferences.value(forKey: .StopAtBatteryLevel) as? Int ?? 0
         self.rocketFuel.start(AssertionType.PreventIdleSystemSleep, duration: duration, stopAtBatteryLevel: level)
       case .Termination:
         self.rocketFuel.stop()

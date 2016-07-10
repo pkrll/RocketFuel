@@ -15,5 +15,10 @@
             <cocoa class="AppleScript"/>
             <direct-parameter name="minutes" description="Amount of time in minutes Rocket Fuel should stay active. Defaults to 1 if no argument is given." code="rkfldupa" type="text"></direct-parameter>
         </command>
+        <command name="battery level" code="rkflbtry" description="Deactivate Rocket Fuel if the battery reaches this level.">
+          <cocoa class="AppleScript"/>
+          <cocoa key="batteryLevel"/>
+          <direct-parameter name="percentage" description="The minimum battery level (in percentage)." code="rkflbtpa" type="text"></direct-parameter>
+        </command>
     </suite>
 </dictionary>

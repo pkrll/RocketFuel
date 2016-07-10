@@ -7,10 +7,11 @@
 //
 import Foundation
 
-enum Preference: String {
+enum PreferencesType: String {
   
-  case LeftClickActivation = "leftClickActivation"
   case LaunchAtLogin = "launchAtLogin"
+  case LeftClickActivation = "leftClickActivation"
   case StopAtBatteryLevel = "stopAtBatteryLevel"
+  case LastApplicationState = "lastApplicationState"
   
 }

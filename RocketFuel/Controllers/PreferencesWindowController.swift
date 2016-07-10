@@ -10,17 +10,17 @@ import Cocoa
 class PreferencesWindowController: NSWindowController {
   
   @IBOutlet var batteryLevelPopUpButton: NSPopUpButton!
-
-  @IBAction func batteryLevelPopUpButtonDidChange(sender: AnyObject) {
-    let defaults = NSUserDefaults.standardUserDefaults()
+  
+  @IBAction func buttonCloseTapped(sender: AnyObject) {
     let threshold = self.batteryLevelPopUpButton.selectedTag()
-    defaults.setInteger(threshold, forKey: Preference.StopAtBatteryLevel.rawValue)
+    Preferences.save(threshold, forKey: .StopAtBatteryLevel)
+    (NSApplication.sharedApplication().delegate as! AppDelegate).applicationShouldDeactivate(atBatteryLevel: threshold)
+    self.close()
   }
   
   override func windowDidLoad() {
     super.windowDidLoad()
-    let defaults = NSUserDefaults.standardUserDefaults()
-    let option = defaults.integerForKey(Preference.StopAtBatteryLevel.rawValue)
+    let option = Preferences.value(forKey: .StopAtBatteryLevel) as? Int ?? 0
     self.batteryLevelPopUpButton.selectItemWithTag(option)
   }
 

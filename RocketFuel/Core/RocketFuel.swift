@@ -56,12 +56,7 @@ class RocketFuel {
     }
     set {
       self.minimumBatteryLevel = newValue
-
-      guard newValue > 0 else {
-        self.removeNotificationRunLoopSource()
-        return
-      }
-
+      self.removeNotificationRunLoopSource()
       self.beginMonitorBatteryLevel()
     }
   }
@@ -85,8 +80,8 @@ class RocketFuel {
    *  This method will create a Run Loop Source that notifies when a power source information change has been made.
    */
   private func beginMonitorBatteryLevel() {
-    self.removeNotificationRunLoopSource()
-  
+    guard self.minimumBatteryLevel > 0 else { return }
+
     let powerSourceCallback: IOPowerSourceCallbackType = { context in
       let this = Unmanaged<RocketFuel>.fromOpaque(COpaquePointer(context)).takeUnretainedValue()
       this.checkBatteryLevel()
@@ -94,27 +89,28 @@ class RocketFuel {
     // Get notifications on power source updates
     let this = UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque())
     self.notificationRunLoopSource = IOPSNotificationCreateRunLoopSource(powerSourceCallback, this).takeUnretainedValue()
-    CFRunLoopAddSource(CFRunLoopGetCurrent(), notificationRunLoopSource, kCFRunLoopDefaultMode)
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), self.notificationRunLoopSource, kCFRunLoopDefaultMode)
   }
   /**
    *  Checks the battery level. If it is below the minimum level allowed, Rocket Fuel will stop.
    */
   private func checkBatteryLevel() {
-    print("Checking battery level...")
-    print(self.minimumBatteryLevel)
-    if Battery.currentCharge <= self.minimumBatteryLevel {
+    print("Checking battery level (min: \(self.minimumBatteryLevel))")
+    // If on AC power the battery limit should not matter.
+    guard IOPSGetTimeRemainingEstimate() > -2 else { return }
+    
+    if Battery.currentCharge <= self.minimumBatteryLevel  {
       self.stop()
-      self.removeNotificationRunLoopSource()
     }
   }
   /**
    *  Removes the IOPS Notification Run Loop Source.
    */
   private func removeNotificationRunLoopSource() {
-    if self.notificationRunLoopSource != nil {
-      CFRunLoopRemoveSource(CFRunLoopGetCurrent(), self.notificationRunLoopSource, kCFRunLoopDefaultMode)
+    if let runLoopSource = self.notificationRunLoopSource {
+      CFRunLoopRemoveSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode)
+      self.notificationRunLoopSource = nil
     }
   }
 
-  
 }

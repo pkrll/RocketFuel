@@ -44,11 +44,11 @@ extension RocketFuel {
     self.assertionID = IOPMAssertionID(0)
     self.delegate?.rocketFuel(self, didChangeStatus: false)
     
-    guard let _ = self.durationTimer else { return }
-    self.durationTimer?.invalidate()
-    self.durationTimer = nil
-    
-    guard let _ = self.notificationRunLoopSource else { return }
+    if self.durationTimer != nil {
+      self.durationTimer?.invalidate()
+      self.durationTimer = nil
+    }
+
     self.shouldStopAtBatteryLevel = 0
   }
   

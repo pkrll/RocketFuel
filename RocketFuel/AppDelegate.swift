@@ -10,35 +10,30 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   
-  var statusItemController: StatusItemController?
+  var statusItemController: StatusItemController = StatusItemController()
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    self.loadStatusItem()
+    Preferences.registerDefaults()
   }
   
   func applicationWillTerminate(aNotification: NSNotification) {
-    
+    Preferences.save(self.statusItemController.rocketFuel.isActive, forKey: PreferencesType.LastApplicationState)
   }
   
   func applicationShouldChangeState() {
-    self.loadStatusItem()
-    
-    if RocketFuel.defaultManager.isActive {
-      self.statusItemController?.request(.Termination)
+    if self.statusItemController.rocketFuel.isActive {
+      self.statusItemController.request(.Termination)
     } else {
-      self.statusItemController?.request(.Activation)
+      self.statusItemController.request(.Activation)
     }
   }
   
-  func applicationShouldActivateWithDuration(duration: Double) {
-    self.loadStatusItem()
-    self.statusItemController?.request(.Activation, withDuration: duration)
+  func applicationShouldActivate(withDuration duration: Double) {
+    self.statusItemController.request(.Activation, withDuration: duration)
   }
   
-  private func loadStatusItem() {
-    if self.statusItemController == nil {
-      self.statusItemController = StatusItemController()
-    }
+  func applicationShouldDeactivate(atBatteryLevel level: Int) {
+    self.statusItemController.shouldDeactivateOnBatteryLevel = level
   }
-  
+
 }

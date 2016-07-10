@@ -6,6 +6,7 @@
 //  Copyright © 2015 Ardalan Samimi. All rights reserved.
 //
 import Cocoa
+
 @objc(AppleScript)
 class AppleScript: NSScriptCommand {
   
@@ -20,7 +21,12 @@ class AppleScript: NSScriptCommand {
   func duration() {
     // The duration is expressed in minutes in AppleScript, but seconds in the app, so it needs to be translated to seconds to work correctly.
     let duration: Double = self.directParameter!.doubleValue * 60
-    self.appDelegate.applicationShouldActivateWithDuration(duration)
+    self.appDelegate.applicationShouldActivate(withDuration: duration)
+  }
+  
+  func batteryLevel() {
+    let level: Int = self.directParameter! as? Int ?? 0
+    self.appDelegate.applicationShouldDeactivate(atBatteryLevel: level)
   }
   
   override func performDefaultImplementation() -> AnyObject? {

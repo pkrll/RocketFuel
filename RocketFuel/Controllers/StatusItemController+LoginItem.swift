@@ -11,19 +11,7 @@ import ServiceManagement
 extension StatusItemController {
   
   func addApplicationToLoginItems(mode: Bool) -> Bool {
-    let status = SMLoginItemSetEnabled("com.ardalansamimi.RocketFuelHelper", mode)
-    
-    if status {
-      let defaults = NSUserDefaults.standardUserDefaults()
-      defaults.setBool(mode, forKey: Preference.LaunchAtLogin.rawValue)
-      defaults.synchronize()
-    } else {
-      let alert = NSAlert()
-      alert.messageText = "An error occured. Rocket Fuel could not be added to the login items."
-      alert.runModal()
-    }
-    
-    return status
+    return SMLoginItemSetEnabled("com.ardalansamimi.RocketFuelHelper", mode)
   }
   
 }

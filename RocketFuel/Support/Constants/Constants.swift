@@ -7,8 +7,7 @@
 //
 import Cocoa
 
-struct Constants {
-  
+struct Constants {  
   /**
    *  The Application's name as set in the bundle.
    */
@@ -21,6 +20,9 @@ struct Constants {
    *  The Application's build number, set in the bundle.
    */
   static let bundleBuild: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
-  
-}
+  /**
+   *  The Application's bundle identifier.
+   */
+  static let bundleIdentifier: String = NSBundle.mainBundle().bundleIdentifier!
 
+}
