@@ -7,12 +7,13 @@
 //
 import Cocoa
 
-class PreferencesWindowController: NSWindowController {
+class PreferencesWindowController: NSWindowController, RecorderDelegate {
   
   var batteryLevelPopUpButton: NSPopUpButton?
+  var shortcutRecorder: KeyRecorderField?
   
   init() {
-    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 188), styleMask: NSTitledWindowMask | NSClosableWindowMask, backing: NSBackingStoreType.Buffered, defer: false)
+    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 220), styleMask: NSTitledWindowMask | NSClosableWindowMask, backing: NSBackingStoreType.Buffered, defer: false)
     window.releasedWhenClosed = true
     window.oneShot = true
     super.init(window: window)
@@ -25,31 +26,58 @@ class PreferencesWindowController: NSWindowController {
   }
   
   func configureViews() {
-    let generalBox = NSBox(frame: NSRect(x: 17, y: 57, width: 204, height: 111))
+    let appDelegate = (NSApplication.sharedApplication().delegate as! AppDelegate)
+    let generalBox = NSBox(frame: NSRect(x: 17, y: 57, width: 204, height: 151))
     generalBox.title = "General"
+
+    self.shortcutRecorder = KeyRecorderField(frame: NSRect(x: 18, y: 8, width: 160, height: 23))
+    self.shortcutRecorder?.recorderDelegate = self
     
-    let text = NSTextField(frame: NSRect(x: 18, y: 41, width: 162, height: 34))
-    text.lineBreakMode = .ByWordWrapping
-    text.editable = false
-    text.selectable = false
-    text.stringValue = "Deactivate when battery level is below:"
-    text.bordered = false
-    text.textColor = NSColor.blackColor()
-    text.backgroundColor = NSColor.controlColor()
+    if let shortcut = Preferences.value(forKey: PreferencesType.ActivationHotKey) as? NSDictionary {
+      self.shortcutRecorder?.keyCode = shortcut.objectForKey("keyCode") as? Int ?? -1
+      self.shortcutRecorder?.modifierFlags = shortcut.objectForKey("modifierFlags") as? Int ?? 0
+      self.shortcutRecorder?.stringValue = shortcut.objectForKey("readable") as? String ?? ""
+    }
     
-    self.batteryLevelPopUpButton = NSPopUpButton(frame: NSRect(x: 18, y: 9, width: 163, height: 26))
+    let shortcutLabel = NSTextField(frame: NSRect(x: 18, y: 32, width: 162, height: 18))
+    shortcutLabel.lineBreakMode = .ByWordWrapping
+    shortcutLabel.editable = false
+    shortcutLabel.selectable = false
+    shortcutLabel.stringValue = "Activate/Deactivate:"
+    shortcutLabel.bordered = false
+    shortcutLabel.textColor = NSColor.blackColor()
+    shortcutLabel.backgroundColor = NSColor.controlColor()
+    
+    self.batteryLevelPopUpButton = NSPopUpButton(frame: NSRect(x: 18, y: 52, width: 160, height: 26))
     self.batteryLevelPopUpButton?.addItemsWithTitles(["Off", "5%", "10%", "15%", "20%"])
     self.batteryLevelPopUpButton?.itemArray.forEach { (item: NSMenuItem) in
       item.tag = (self.batteryLevelPopUpButton?.indexOfItem(item) ?? 0) * 5
     }
     
-    generalBox.addSubview(text)
+    let custom = appDelegate.statusItemController.shouldDeactivateOnBatteryLevel
+    if custom > 0 && self.batteryLevelPopUpButton?.itemTitles.contains("\(custom)%") == false ?? false {
+      self.batteryLevelPopUpButton?.addItemWithTitle("\(custom)%")
+      self.batteryLevelPopUpButton?.itemWithTitle("\(custom)%")?.tag = custom
+    }
+    
+    let batteryLevelLabel = NSTextField(frame: NSRect(x: 18, y: 80, width: 162, height: 34))
+    batteryLevelLabel.lineBreakMode = .ByWordWrapping
+    batteryLevelLabel.editable = false
+    batteryLevelLabel.selectable = false
+    batteryLevelLabel.stringValue = "Deactivate when battery level is below:"
+    batteryLevelLabel.bordered = false
+    batteryLevelLabel.textColor = NSColor.blackColor()
+    batteryLevelLabel.backgroundColor = NSColor.controlColor()
+
+    generalBox.addSubview(self.shortcutRecorder!)
+    generalBox.addSubview(shortcutLabel)
     generalBox.addSubview(self.batteryLevelPopUpButton!)
+    generalBox.addSubview(batteryLevelLabel)
 
     let doneButton = NSButton(frame: NSRect(x: 152, y: 13, width: 72, height: 32))
     doneButton.bezelStyle = .RoundedBezelStyle
     doneButton.title = "Done"
-    doneButton.action = #selector(self.savePreferencesAndClose(_:))
+    doneButton.action = #selector(self.doneButtonTapped(_:))
     
     self.window?.contentView?.addSubview(generalBox)
     self.window?.contentView?.addSubview(doneButton)
@@ -61,10 +89,15 @@ class PreferencesWindowController: NSWindowController {
     self.batteryLevelPopUpButton?.selectItemWithTag(option)
   }
   
-  func savePreferencesAndClose(sender: AnyObject?) {
+  func doneButtonTapped(sender: AnyObject?) {
     // The App Delegate will handle the save
+    let appDelegate = (NSApplication.sharedApplication().delegate as! AppDelegate)
     let level = self.batteryLevelPopUpButton?.selectedTag() ?? 0
-    (NSApplication.sharedApplication().delegate as! AppDelegate).applicationShouldDeactivate(atBatteryLevel: level)
+    let hotKey = HotKey(keyCode: self.shortcutRecorder!.keyCode, modifier: self.shortcutRecorder!.modifierFlags ?? 0, readable: self.shortcutRecorder!.stringValue, action: appDelegate.applicationShouldChangeState)
+    
+    appDelegate.applicationShouldDeactivate(atBatteryLevel: level)
+    appDelegate.applicationShouldRegisterHotKey(hotKey)
+
     self.close()
   }
   

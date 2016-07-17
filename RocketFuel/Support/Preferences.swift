@@ -29,6 +29,11 @@ struct Preferences {
     NSUserDefaults.standardUserDefaults().synchronize()
   }
   
+  static func remove(key: PreferencesType) {
+    NSUserDefaults.standardUserDefaults().removeObjectForKey(key.rawValue)
+    NSUserDefaults.standardUserDefaults().synchronize()
+  }
+  
   static func reset() {
     let domainName = Constants.bundleIdentifier
     NSUserDefaults.standardUserDefaults().removePersistentDomainForName(domainName)

@@ -10,6 +10,9 @@
 		6A0DB74A1D2C07ED00C59453 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DB7481D2C07ED00C59453 /* PreferencesWindowController.swift */; };
 		6A0DB74E1D2C0CDF00C59453 /* StatusItemController+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0DB74D1D2C0CDF00C59453 /* StatusItemController+Window.swift */; };
 		6A2A69071D2F123D006BC994 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2A69061D2F123D006BC994 /* Time.swift */; };
+		6A387EB11D3BDDD4004520BD /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A387EB01D3BDDD4004520BD /* HotKey.swift */; };
+		6A387EB41D3BDDF6004520BD /* HotKeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A387EB31D3BDDF6004520BD /* HotKeyCenter.swift */; };
+		6A387EB61D3BDE2E004520BD /* KeyRecorderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A387EB51D3BDE2E004520BD /* KeyRecorderField.swift */; };
 		6A710DB31D26ED94008ADC76 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DB21D26ED94008ADC76 /* StatusItemController.swift */; };
 		6A710DB91D26FB29008ADC76 /* StatusItemController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DB81D26FB29008ADC76 /* StatusItemController+Menu.swift */; };
 		6A710DBE1D26FB89008ADC76 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DBD1D26FB89008ADC76 /* Constants.swift */; };
@@ -25,6 +28,8 @@
 		6A710DD91D290859008ADC76 /* RocketFuel+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DD81D290859008ADC76 /* RocketFuel+Assertions.swift */; };
 		6A710DDB1D290985008ADC76 /* Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A710DDA1D290985008ADC76 /* Battery.swift */; };
 		6A7CD6011CE8AC8A008B91A4 /* RocketFuelHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A7CD6001CE8AC7E008B91A4 /* RocketFuelHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6A82B0661D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82B0651D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift */; };
+		6A82B06A1D359C6E0095FE3A /* RecorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82B0691D359C6E0095FE3A /* RecorderDelegate.swift */; };
 		6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A97FC971C29FA2E00362EBF /* AppDelegate.swift */; };
 		6A97FC9A1C29FA2E00362EBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC991C29FA2E00362EBF /* Assets.xcassets */; };
 		6A97FC9D1C29FA2E00362EBF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */; };
@@ -66,6 +71,9 @@
 		6A0DB7481D2C07ED00C59453 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferencesWindowController.swift; path = Controllers/PreferencesWindowController.swift; sourceTree = "<group>"; };
 		6A0DB74D1D2C0CDF00C59453 /* StatusItemController+Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StatusItemController+Window.swift"; path = "Controllers/StatusItemController+Window.swift"; sourceTree = "<group>"; };
 		6A2A69061D2F123D006BC994 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Time.swift; path = Support/Time.swift; sourceTree = "<group>"; };
+		6A387EB01D3BDDD4004520BD /* HotKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HotKey.swift; path = Support/HotKey/HotKey.swift; sourceTree = "<group>"; };
+		6A387EB31D3BDDF6004520BD /* HotKeyCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HotKeyCenter.swift; path = Support/HotKey/HotKeyCenter.swift; sourceTree = "<group>"; };
+		6A387EB51D3BDE2E004520BD /* KeyRecorderField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyRecorderField.swift; path = Views/KeyRecorderField.swift; sourceTree = "<group>"; };
 		6A710DB21D26ED94008ADC76 /* StatusItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusItemController.swift; path = Controllers/StatusItemController.swift; sourceTree = "<group>"; };
 		6A710DB81D26FB29008ADC76 /* StatusItemController+Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StatusItemController+Menu.swift"; path = "Controllers/StatusItemController+Menu.swift"; sourceTree = "<group>"; };
 		6A710DBD1D26FB89008ADC76 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Support/Constants/Constants.swift; sourceTree = "<group>"; };
@@ -82,6 +90,8 @@
 		6A710DDA1D290985008ADC76 /* Battery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Battery.swift; path = Support/Battery.swift; sourceTree = "<group>"; };
 		6A71C79D1D25950100811775 /* RocketFuel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RocketFuel-Bridging-Header.h"; sourceTree = "<group>"; };
 		6A7CD5FB1CE8AC7E008B91A4 /* RocketFuelHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RocketFuelHelper.xcodeproj; path = RocketFuelHelper/RocketFuelHelper.xcodeproj; sourceTree = "<group>"; };
+		6A82B0651D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PreferencesWindowController+Recorder.swift"; path = "Controllers/PreferencesWindowController+Recorder.swift"; sourceTree = "<group>"; };
+		6A82B0691D359C6E0095FE3A /* RecorderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecorderDelegate.swift; path = Support/Delegates/RecorderDelegate.swift; sourceTree = "<group>"; };
 		6A97FC941C29FA2E00362EBF /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A97FC971C29FA2E00362EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A97FC991C29FA2E00362EBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,6 +126,23 @@
 			name = Entitlements;
 			sourceTree = "<group>";
 		};
+		6A387EB21D3BDDE2004520BD /* HotKey */ = {
+			isa = PBXGroup;
+			children = (
+				6A387EB01D3BDDD4004520BD /* HotKey.swift */,
+				6A387EB31D3BDDF6004520BD /* HotKeyCenter.swift */,
+			);
+			name = HotKey;
+			sourceTree = "<group>";
+		};
+		6A387EB71D3BDE36004520BD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6A387EB51D3BDE2E004520BD /* KeyRecorderField.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		6A710DB41D26EDC8008ADC76 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +153,7 @@
 				6A710DCC1D29040A008ADC76 /* StatusItemController+LoginItem.swift */,
 				6A710DC61D26FC38008ADC76 /* Menu.swift */,
 				6A0DB7481D2C07ED00C59453 /* PreferencesWindowController.swift */,
+				6A82B0651D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift */,
 				6AA015021D2B1E5000CC2313 /* AboutWindowController.swift */,
 			);
 			name = Controllers;
@@ -136,6 +164,7 @@
 			children = (
 				6A710DC01D26FB92008ADC76 /* Constants */,
 				6A710DD51D290822008ADC76 /* Delegates */,
+				6A387EB21D3BDDE2004520BD /* HotKey */,
 				6A710DDA1D290985008ADC76 /* Battery.swift */,
 				6A2A69061D2F123D006BC994 /* Time.swift */,
 				6AFF17511D32B01500902F90 /* Preferences.swift */,
@@ -170,6 +199,7 @@
 			children = (
 				6A710DD31D2907F2008ADC76 /* RocketFuelDelegate.swift */,
 				6AA015001D2B1A8E00CC2313 /* MenuDelegate.swift */,
+				6A82B0691D359C6E0095FE3A /* RecorderDelegate.swift */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -206,25 +236,18 @@
 				6A97FC971C29FA2E00362EBF /* AppDelegate.swift */,
 				6A710DB41D26EDC8008ADC76 /* Controllers */,
 				6A710DD21D2907D3008ADC76 /* Core */,
+				6A387EB71D3BDE36004520BD /* Views */,
 				6A710DBF1D26FB8C008ADC76 /* Support */,
-				6AAE24871C29FBC40027C55B /* UI */,
 				6A0467DC1CE665D500B0F384 /* Entitlements */,
 				6AAE24881C29FBCB0027C55B /* Resources */,
 			);
 			path = RocketFuel;
 			sourceTree = "<group>";
 		};
-		6AAE24871C29FBC40027C55B /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
 		6AAE24881C29FBCB0027C55B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */,
 				6ADD485C1C2BFB9600136857 /* AppleScript.swift */,
 				6ADD48581C2BFA0D00136857 /* RocketFuel.sdef */,
 				6A71C79D1D25950100811775 /* RocketFuel-Bridging-Header.h */,
@@ -349,18 +372,23 @@
 			files = (
 				6A710DB91D26FB29008ADC76 /* StatusItemController+Menu.swift in Sources */,
 				6AA015031D2B1E5000CC2313 /* AboutWindowController.swift in Sources */,
+				6A82B06A1D359C6E0095FE3A /* RecorderDelegate.swift in Sources */,
 				6A710DD41D2907F2008ADC76 /* RocketFuelDelegate.swift in Sources */,
 				6A710DCF1D2905B4008ADC76 /* StatusItemController+StatusItem.swift in Sources */,
+				6A82B0661D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift in Sources */,
 				6A710DCD1D29040A008ADC76 /* StatusItemController+LoginItem.swift in Sources */,
 				6ADD485B1C2BFAA700136857 /* Application.swift in Sources */,
 				6A710DD91D290859008ADC76 /* RocketFuel+Assertions.swift in Sources */,
 				6A710DB31D26ED94008ADC76 /* StatusItemController.swift in Sources */,
 				6A710DCB1D2902DF008ADC76 /* PreferencesType.swift in Sources */,
+				6A387EB61D3BDE2E004520BD /* KeyRecorderField.swift in Sources */,
 				6A710DBE1D26FB89008ADC76 /* Constants.swift in Sources */,
 				6AA015011D2B1A8E00CC2313 /* MenuDelegate.swift in Sources */,
 				6A710DDB1D290985008ADC76 /* Battery.swift in Sources */,
 				6A0DB74E1D2C0CDF00C59453 /* StatusItemController+Window.swift in Sources */,
+				6A387EB11D3BDDD4004520BD /* HotKey.swift in Sources */,
 				6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */,
+				6A387EB41D3BDDF6004520BD /* HotKeyCenter.swift in Sources */,
 				6AFF17521D32B01500902F90 /* Preferences.swift in Sources */,
 				6A710DD11D290715008ADC76 /* StatusIconImage.swift in Sources */,
 				6A710DC71D26FC38008ADC76 /* Menu.swift in Sources */,
