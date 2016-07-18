@@ -95,7 +95,6 @@ class RocketFuel {
    *  Checks the battery level. If it is below the minimum level allowed, Rocket Fuel will stop.
    */
   private func checkBatteryLevel() {
-    print("Checking battery level (min: \(self.minimumBatteryLevel))")
     // If on AC power the battery limit should not matter.
     guard IOPSGetTimeRemainingEstimate() > -2 else { return }
     

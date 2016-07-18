@@ -10,9 +10,13 @@ import Cocoa
 extension StatusItemController {
   
   func openPreferences() {
-    guard self.preferencesWindowController == nil else { return }
-    
     NSApp.activateIgnoringOtherApps(true)
+    
+    guard self.preferencesWindowController == nil else {
+      self.preferencesWindowController?.window?.makeKeyAndOrderFront(nil)
+      return
+    }
+    
     self.preferencesWindowController = PreferencesWindowController()
     self.preferencesWindowController?.showWindow(nil)
     self.preferencesWindowController?.window?.makeKeyAndOrderFront(nil)
@@ -20,9 +24,13 @@ extension StatusItemController {
   }
   
   func openAbout() {
-    guard self.aboutWindowController == nil else { return }
-
     NSApp.activateIgnoringOtherApps(true)
+    
+    guard self.aboutWindowController == nil else {
+      self.aboutWindowController?.window?.makeKeyAndOrderFront(nil)
+      return
+    }
+
     self.aboutWindowController = AboutWindowController()
     self.aboutWindowController?.showWindow(nil)
     self.aboutWindowController?.window?.makeKeyAndOrderFront(nil)
@@ -34,12 +42,12 @@ extension StatusItemController {
   // --------------------------------------------
   
   func windowWillClose(notification: NSNotification) {
-    if let window = notification.object as? NSWindow {
-      if window == self.aboutWindowController?.window {
-        self.aboutWindowController = nil
-      } else if window == self.preferencesWindowController?.window {
-        self.preferencesWindowController = nil
-      }
+    guard let window = notification.object as? NSWindow else { return }
+    
+    if window == self.aboutWindowController?.window {
+      self.aboutWindowController = nil
+    } else if window == self.preferencesWindowController?.window {
+      self.preferencesWindowController = nil
     }
   }
   

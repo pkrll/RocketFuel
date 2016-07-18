@@ -28,8 +28,7 @@ class HotKeyCenter {
     
     hotKeyID.id = UInt32(hotKey.id)
     hotKeyID.signature = UTGetOSTypeFromString("RKFL")
-    print(hotKey.modifier)
-    
+
     let status = RegisterEventHotKey(UInt32(hotKey.keyCode), UInt32(hotKey.modifier), hotKeyID, GetApplicationEventTarget(), 0, &hotKeyRef)
     guard status == noErr else { return }
     hotKey.hotKeyRef = hotKeyRef

@@ -18,7 +18,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    */  
   let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
-  let rocketFuel: RocketFuel = RocketFuel()
+  let rocketFuel: RocketFuel = RocketFuel.defaultManager
   /**
    *  The about window.
    */
@@ -88,7 +88,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
     switch type {
       case .Activation:
         let level = Preferences.value(forKey: .StopAtBatteryLevel) as? Int ?? 0
-        self.rocketFuel.start(AssertionType.PreventIdleSystemSleep, duration: duration, stopAtBatteryLevel: level)
+        self.rocketFuel.start(AssertionType.PreventIdleDisplaySleep, duration: duration, stopAtBatteryLevel: level)
       case .Termination:
         self.rocketFuel.stop()
     }

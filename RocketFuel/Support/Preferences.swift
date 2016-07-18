@@ -24,6 +24,10 @@ struct Preferences {
     return NSUserDefaults.standardUserDefaults().boolForKey(key.rawValue)
   }
   
+  static func dictionary(forKey key: PreferencesType) -> NSDictionary? {
+    return Preferences.value(forKey: key) as? NSDictionary
+  }
+  
   static func save(value: AnyObject, forKey: PreferencesType) {
     NSUserDefaults.standardUserDefaults().setObject(value, forKey: forKey.rawValue)
     NSUserDefaults.standardUserDefaults().synchronize()

@@ -13,7 +13,7 @@ Features:
 Requires:
 - OS X 10.10 or later.
 
-[<img src="appstore.svg">](https://itunes.apple.com/se/app/rocket-fuel/id1114196460?l=en&mt=12)
+[Download on the App Store](https://itunes.apple.com/se/app/rocket-fuel/id1114196460?l=en&mt=12)
 
 #### Author
 Rocket Fuel is created by <b>Ardalan Samimi</b>.
