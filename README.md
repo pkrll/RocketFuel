@@ -10,8 +10,15 @@ Features:
 - Works with Dark Mode in Yosemite
 - Support for AppleScript
 
+New in version 2.1:
+- You can now add custom hot keys to enable/disable Rocket Fuel.
+- You can also set a minimum battery level at which Rocket Fuel automatically disables.
+- Your Deactivation Preset Time is not saved between activations (not launches, though).
+- More AppleScript commands.
+- Minor bug fixes and more improvements.
+
 Requires:
-- OS X 10.10 or later.
+- OS X Yosemite (10.10) or later.
 
 [Download on the App Store](https://itunes.apple.com/se/app/rocket-fuel/id1114196460?l=en&mt=12)
 
