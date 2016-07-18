@@ -6,44 +6,34 @@
 //  Copyright © 2015 Ardalan Samimi. All rights reserved.
 //
 import Cocoa
-import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   
-  private var statusItemController: StatusItemController!
+  var statusItemController: StatusItemController = StatusItemController()
+  var activationHotKey: HotKey?
   
-  internal var isActive: Int {
-    return Int(self.statusItemController.isActive)
-  }
-    
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    self.loadStatusItemController()
-  }
-  
-  func applicationWillTerminate(aNotification: NSNotification) {
-    self.statusItemController.requestTermination()
+    Preferences.registerDefaults()
+    self.applicationShouldLoadHotKey()
   }
   
   func applicationShouldChangeState() {
-    self.loadStatusItemController()
-    
-    if self.statusItemController.isActive {
-      self.statusItemController.requestTermination()
+    if self.statusItemController.rocketFuel.isActive {
+      self.statusItemController.request(.Termination)
     } else {
-      self.statusItemController.requestActivation()
+      self.statusItemController.request(.Activation)
     }
   }
   
-  func applicationShouldActivateWithDuration(duration: Double) {
-    self.loadStatusItemController()
-    self.statusItemController.requestActivation(duration)
+  func applicationShouldActivate(withDuration duration: Double) {
+    self.statusItemController.request(.Activation, withDuration: duration)
   }
   
-  func loadStatusItemController() {
-    if self.statusItemController == nil {
-      self.statusItemController = StatusItemController()
-    }
+  func applicationShouldDeactivate(atBatteryLevel level: Int) {
+    // This function is called either from the Preferences Window or an apple script.
+    Preferences.save(level, forKey: PreferencesType.StopAtBatteryLevel)
+    self.statusItemController.shouldDeactivateOnBatteryLevel = level
   }
   
 }
