@@ -9,7 +9,7 @@ import Foundation
 
 enum AssertionType: Int {
   
-  case PreventIdleSystemSleep
-  case PreventIdleDisplaySleep
+  case preventIdleSystemSleep
+  case preventIdleDisplaySleep
   
 }

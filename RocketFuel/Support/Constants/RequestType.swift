@@ -9,6 +9,6 @@ import Foundation
 
 enum RequestType: Int {
   
-  case Activation, Termination
+  case activation, termination
   
 }

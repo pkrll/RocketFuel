@@ -10,27 +10,27 @@ import Carbon
 
 extension PreferencesWindowController {
   
-  func recorderDidReceiveMouseDown(recorder: KeyRecorderField) {
+  func recorderDidReceiveMouseDown(_ recorder: KeyRecorderField) {
     if self.shortcutRecorder!.captureMode == false {
       self.shortcutRecorder?.beginCapture()
     }
   }
 
-  func recorderDidReceiveKeyDown(recorder: KeyRecorderField) {
+  func recorderDidReceiveKeyDown(_ recorder: KeyRecorderField) {
     if self.shortcutRecorder!.captureMode {
       self.shortcutRecorder?.endCapture()
     }
   }
   
-  override func mouseDown(theEvent: NSEvent) {
+  override func mouseDown(with theEvent: NSEvent) {
     if self.shortcutRecorder!.captureMode {
       self.shortcutRecorder?.endCapture()
     }
   }
   
-  override func keyDown(theEvent: NSEvent) {
+  override func keyDown(with theEvent: NSEvent) {
     if self.shortcutRecorder!.captureMode {
-      self.shortcutRecorder?.keyDown(theEvent)
+      self.shortcutRecorder?.keyDown(with: theEvent)
     }
   }
   

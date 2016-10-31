@@ -11,7 +11,7 @@ import Cocoa
 class Application: NSApplication {
   
   internal var isActivated: Int {
-    return Int(RocketFuel.defaultManager.isActive)
+    return RocketFuel.defaultManager.isActive.intValue()
   }
   
 }

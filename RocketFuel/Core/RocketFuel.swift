@@ -6,6 +6,30 @@
 //  Copyright © 2016 Ardalan Samimi. All rights reserved.
 //
 import Cocoa
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
 
 class RocketFuel {
   
@@ -32,7 +56,7 @@ class RocketFuel {
   /**
    *  The timer for the assertion.
    */
-  var durationTimer: NSTimer?
+  var durationTimer: Timer?
   /**
    *  The timeout for the assertion.
    */
@@ -68,7 +92,7 @@ class RocketFuel {
   /**
    *  Defines the minimum battery level.
    */
-  private var minimumBatteryLevel: Int = 0
+  fileprivate var minimumBatteryLevel: Int = 0
   
   // --------------------------------------------
   // MARK: - Private Methods
@@ -79,22 +103,22 @@ class RocketFuel {
    * 
    *  This method will create a Run Loop Source that notifies when a power source information change has been made.
    */
-  private func beginMonitorBatteryLevel() {
+  fileprivate func beginMonitorBatteryLevel() {
     guard self.minimumBatteryLevel > 0 else { return }
 
     let powerSourceCallback: IOPowerSourceCallbackType = { context in
-      let this = Unmanaged<RocketFuel>.fromOpaque(COpaquePointer(context)).takeUnretainedValue()
+      let this = Unmanaged<RocketFuel>.fromOpaque(UnsafeRawPointer(context)!).takeUnretainedValue()
       this.checkBatteryLevel()
     }
     // Get notifications on power source updates
-    let this = UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque())
+    let this = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
     self.notificationRunLoopSource = IOPSNotificationCreateRunLoopSource(powerSourceCallback, this).takeUnretainedValue()
-    CFRunLoopAddSource(CFRunLoopGetCurrent(), self.notificationRunLoopSource, kCFRunLoopDefaultMode)
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), self.notificationRunLoopSource, CFRunLoopMode.defaultMode)
   }
   /**
    *  Checks the battery level. If it is below the minimum level allowed, Rocket Fuel will stop.
    */
-  private func checkBatteryLevel() {
+  fileprivate func checkBatteryLevel() {
     // If on AC power the battery limit should not matter.
     guard IOPSGetTimeRemainingEstimate() > -2 else { return }
     
@@ -105,9 +129,9 @@ class RocketFuel {
   /**
    *  Removes the IOPS Notification Run Loop Source.
    */
-  private func removeNotificationRunLoopSource() {
+  fileprivate func removeNotificationRunLoopSource() {
     if let runLoopSource = self.notificationRunLoopSource {
-      CFRunLoopRemoveSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode)
+      CFRunLoopRemoveSource(CFRunLoopGetCurrent(), runLoopSource, CFRunLoopMode.defaultMode)
       self.notificationRunLoopSource = nil
     }
   }

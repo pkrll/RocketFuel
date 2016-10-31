@@ -10,7 +10,7 @@ import Cocoa
 extension StatusItemController {
   
   func openPreferences() {
-    NSApp.activateIgnoringOtherApps(true)
+    NSApp.activate(ignoringOtherApps: true)
     
     guard self.preferencesWindowController == nil else {
       self.preferencesWindowController?.window?.makeKeyAndOrderFront(nil)
@@ -24,7 +24,7 @@ extension StatusItemController {
   }
   
   func openAbout() {
-    NSApp.activateIgnoringOtherApps(true)
+    NSApp.activate(ignoringOtherApps: true)
     
     guard self.aboutWindowController == nil else {
       self.aboutWindowController?.window?.makeKeyAndOrderFront(nil)
@@ -41,7 +41,7 @@ extension StatusItemController {
   // MARK: - NSWindow Delegate Methods
   // --------------------------------------------
   
-  func windowWillClose(notification: NSNotification) {
+  func windowWillClose(_ notification: Notification) {
     guard let window = notification.object as? NSWindow else { return }
     
     if window == self.aboutWindowController?.window {

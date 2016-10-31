@@ -13,9 +13,9 @@ import Foundation
  */
 struct Time {
   
-  static private var secondsInHour: Double = 3600
-  static private var secondsInMinute: Double = 60
-  static private var unitsOfTime: [Double: String] = [3600: "hour", 60: "minute", 1: "second"]
+  static fileprivate var secondsInHour: Double = 3600
+  static fileprivate var secondsInMinute: Double = 60
+  static fileprivate var unitsOfTime: [Double: String] = [3600: "hour", 60: "minute", 1: "second"]
   
   /**
    *  Converts seconds to a human readable time format.
@@ -36,12 +36,12 @@ struct Time {
     let component = seconds / unit
     time.append(Time.format(component, unit: unit) ?? "")
     // A remainder means the there are more components. 
-    if component % 1 > 0 {
-      let minorComponent = floor(((seconds / unit) % 1) * unit)
+    if component.truncatingRemainder(dividingBy: 1) > 0 {
+      let minorComponent = floor(((seconds / unit).truncatingRemainder(dividingBy: 1)) * unit)
       time.append(Time.humanReadableTime(fromSeconds: minorComponent))
     }
     
-    return time.joinWithSeparator(", ")
+    return time.joined(separator: ", ")
   }
   /**
    *  Formats the time component.
@@ -52,12 +52,12 @@ struct Time {
    *
    *  - Returns: A string or nil.
    */
-  private static func format(component: Double, unit: Double) -> String? {
+  fileprivate static func format(_ component: Double, unit: Double) -> String? {
     guard component > 0 else { return nil }
     var string = "\(Int(component)) \(Time.unitsOfTime[unit]!)"
     
     if Int(component) > 1 {
-      string.appendContentsOf("s")
+      string.append("s")
     }
     
     return string

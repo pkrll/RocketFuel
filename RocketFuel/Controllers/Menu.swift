@@ -12,20 +12,20 @@ class Menu: NSMenu {
   func addItem(withTitle title: String, tag: Int, state: Bool = false, isClickable: Bool = true) -> NSMenuItem? {
     
     let action = (isClickable) ? #selector(self.selectMenuItem(_:)) : nil
-    let menuItem = self.addItemWithTitle(title, action: action, keyEquivalent: "")
-    menuItem?.target = self
-    menuItem?.state = (state) ? NSOnState : NSOffState
-    menuItem?.tag = tag
+    let menuItem = self.addItem(withTitle: title, action: action, keyEquivalent: "")
+    menuItem.target = self
+    menuItem.state = (state) ? NSOnState : NSOffState
+    menuItem.tag = tag
     
     return menuItem
   }
   
   func addSeparatorItem() {
-    self.addItem(NSMenuItem.separatorItem())
+    self.addItem(NSMenuItem.separator())
   }
   
   func menu(withTag tag: Int) -> NSMenuItem? {
-    for item in self.itemArray {
+    for item in self.items {
       if item.tag == tag {
         return item
       }
@@ -35,12 +35,12 @@ class Menu: NSMenu {
   }
   
   func resetMenuItemStates() {
-    for item in self.itemArray {
+    for item in self.items {
       item.state = NSOffState
     }
   }
   
-  func selectMenuItem(sender: NSMenuItem?) {
+  func selectMenuItem(_ sender: NSMenuItem?) {
     guard let sender = sender else { return }
     if let delegate = self.delegate as? MenuDelegate {
       delegate.didClickMenuItem(sender)

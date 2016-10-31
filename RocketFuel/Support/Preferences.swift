@@ -10,37 +10,37 @@ import Foundation
 struct Preferences {
   
   static func registerDefaults() {
-    let defaultsPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")
+    let defaultsPath = Bundle.main.path(forResource: "UserDefaults", ofType: "plist")
     let userDefaults = NSDictionary(contentsOfFile: defaultsPath!) as! [String: AnyObject]
-    NSUserDefaults.standardUserDefaults().registerDefaults(userDefaults)
-    NSUserDefaults.standardUserDefaults().synchronize()
+    UserDefaults.standard.register(defaults: userDefaults)
+    UserDefaults.standard.synchronize()
   }
   
   static func value(forKey key: PreferencesType) -> AnyObject? {
-    return NSUserDefaults.standardUserDefaults().valueForKey(key.rawValue)
+    return UserDefaults.standard.value(forKey: key.rawValue) as AnyObject?
   }
   
   static func bool(forKey key: PreferencesType) -> Bool {
-    return NSUserDefaults.standardUserDefaults().boolForKey(key.rawValue)
+    return UserDefaults.standard.bool(forKey: key.rawValue)
   }
   
   static func dictionary(forKey key: PreferencesType) -> NSDictionary? {
     return Preferences.value(forKey: key) as? NSDictionary
   }
   
-  static func save(value: AnyObject, forKey: PreferencesType) {
-    NSUserDefaults.standardUserDefaults().setObject(value, forKey: forKey.rawValue)
-    NSUserDefaults.standardUserDefaults().synchronize()
+  static func save(_ value: AnyObject, forKey: PreferencesType) {
+    UserDefaults.standard.set(value, forKey: forKey.rawValue)
+    UserDefaults.standard.synchronize()
   }
   
-  static func remove(key: PreferencesType) {
-    NSUserDefaults.standardUserDefaults().removeObjectForKey(key.rawValue)
-    NSUserDefaults.standardUserDefaults().synchronize()
+  static func remove(_ key: PreferencesType) {
+    UserDefaults.standard.removeObject(forKey: key.rawValue)
+    UserDefaults.standard.synchronize()
   }
   
   static func reset() {
     let domainName = Constants.bundleIdentifier
-    NSUserDefaults.standardUserDefaults().removePersistentDomainForName(domainName)
+    UserDefaults.standard.removePersistentDomain(forName: domainName)
   }
   
 }

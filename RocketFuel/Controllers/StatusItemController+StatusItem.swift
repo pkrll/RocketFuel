@@ -14,11 +14,11 @@ extension StatusItemController {
    */
   func configureStatusItem() {
     // The bit mask must contain conditions for both right and left click
-    let actionMasks = Int((NSEventMask.LeftMouseUpMask).rawValue | (NSEventMask.RightMouseUpMask).rawValue)
+    let actionMasks = Int((NSEventMask.leftMouseUp).rawValue | (NSEventMask.rightMouseUp).rawValue)
     self.statusItem.button!.image = self.imageForStatusIcon()
     self.statusItem.button!.target = self
     self.statusItem.button!.action = #selector(self.didClickStatusItem(_:))
-    self.statusItem.button!.sendActionOn(actionMasks)
+    self.statusItem.button!.sendAction(on: NSEventMask(rawValue: UInt64(actionMasks)))
     self.statusItem.button!.toolTip = "\(Constants.bundleName) \(Constants.bundleVersion) (\(Constants.bundleBuild))"
   }
   /**
@@ -26,12 +26,12 @@ extension StatusItemController {
    *
    *  Note: If the left click activation option is set, the app will activate. Otherwise the menu will be shown.
    */
-  func didClickStatusItem(sender: NSStatusBarButton) {
+  func didClickStatusItem(_ sender: NSStatusBarButton) {
     let click: NSEvent = NSApp.currentEvent!
     
-    if click.type == NSEventType.RightMouseUp || click.modifierFlags.contains(NSEventModifierFlags.CommandKeyMask) || self.shouldActivateOnLeftClick == false {
+    if click.type == NSEventType.rightMouseUp || click.modifierFlags.contains(NSEventModifierFlags.command) || self.shouldActivateOnLeftClick == false {
       self.statusItem.menu = self.menu
-      self.statusItem.popUpStatusItemMenu(self.menu)
+      self.statusItem.popUpMenu(self.menu)
     } else {
       self.toggleState()
     }

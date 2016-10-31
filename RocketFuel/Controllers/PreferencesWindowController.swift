@@ -13,9 +13,9 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
   var shortcutRecorder: KeyRecorderField?
   
   init() {
-    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 220), styleMask: NSTitledWindowMask | NSClosableWindowMask, backing: NSBackingStoreType.Buffered, defer: false)
-    window.releasedWhenClosed = true
-    window.oneShot = true
+    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 220), styleMask: [NSTitledWindowMask, NSClosableWindowMask], backing: NSBackingStoreType.buffered, defer: false)
+    window.isReleasedWhenClosed = true
+    window.isOneShot = true
     super.init(window: window)
     self.configureViews()
     self.windowDidLoad()
@@ -26,7 +26,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
   }
   
   func configureViews() {
-    let appDelegate = (NSApplication.sharedApplication().delegate as! AppDelegate)
+    let appDelegate = (NSApplication.shared().delegate as! AppDelegate)
     let generalBox = NSBox(frame: NSRect(x: 17, y: 57, width: 204, height: 151))
     generalBox.title = "General"
 
@@ -34,40 +34,40 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     self.shortcutRecorder?.recorderDelegate = self
     
     if let shortcut = Preferences.value(forKey: PreferencesType.ActivationHotKey) as? NSDictionary {
-      self.shortcutRecorder?.keyCode = shortcut.objectForKey("keyCode") as? Int ?? -1
-      self.shortcutRecorder?.modifierFlags = shortcut.objectForKey("modifierFlags") as? Int ?? 0
-      self.shortcutRecorder?.stringValue = shortcut.objectForKey("readable") as? String ?? ""
+      self.shortcutRecorder?.keyCode = shortcut.object(forKey: "keyCode") as? Int ?? -1
+      self.shortcutRecorder?.modifierFlags = shortcut.object(forKey: "modifierFlags") as? Int ?? 0
+      self.shortcutRecorder?.stringValue = shortcut.object(forKey: "readable") as? String ?? ""
     }
     
     let shortcutLabel = NSTextField(frame: NSRect(x: 18, y: 32, width: 162, height: 18))
-    shortcutLabel.lineBreakMode = .ByWordWrapping
-    shortcutLabel.editable = false
-    shortcutLabel.selectable = false
+    shortcutLabel.lineBreakMode = .byWordWrapping
+    shortcutLabel.isEditable = false
+    shortcutLabel.isSelectable = false
     shortcutLabel.stringValue = "Activate/Deactivate:"
-    shortcutLabel.bordered = false
-    shortcutLabel.textColor = NSColor.blackColor()
-    shortcutLabel.backgroundColor = NSColor.controlColor()
+    shortcutLabel.isBordered = false
+    shortcutLabel.textColor = NSColor.black
+    shortcutLabel.backgroundColor = NSColor.controlColor
     
     self.batteryLevelPopUpButton = NSPopUpButton(frame: NSRect(x: 18, y: 52, width: 160, height: 26))
-    self.batteryLevelPopUpButton?.addItemsWithTitles(["Off", "5%", "10%", "15%", "20%"])
+    self.batteryLevelPopUpButton?.addItems(withTitles: ["Off", "5%", "10%", "15%", "20%"])
     self.batteryLevelPopUpButton?.itemArray.forEach { (item: NSMenuItem) in
-      item.tag = (self.batteryLevelPopUpButton?.indexOfItem(item) ?? 0) * 5
+      item.tag = (self.batteryLevelPopUpButton?.index(of: item) ?? 0) * 5
     }
     
     let custom = appDelegate.statusItemController.shouldDeactivateOnBatteryLevel
-    if custom > 0 && self.batteryLevelPopUpButton?.itemTitles.contains("\(custom)%") == false ?? false {
-      self.batteryLevelPopUpButton?.addItemWithTitle("\(custom)%")
-      self.batteryLevelPopUpButton?.itemWithTitle("\(custom)%")?.tag = custom
+    if custom > 0 && self.batteryLevelPopUpButton?.itemTitles.contains("\(custom)%") == false {
+      self.batteryLevelPopUpButton?.addItem(withTitle: "\(custom)%")
+      self.batteryLevelPopUpButton?.item(withTitle: "\(custom)%")?.tag = custom
     }
     
     let batteryLevelLabel = NSTextField(frame: NSRect(x: 18, y: 80, width: 162, height: 34))
-    batteryLevelLabel.lineBreakMode = .ByWordWrapping
-    batteryLevelLabel.editable = false
-    batteryLevelLabel.selectable = false
+    batteryLevelLabel.lineBreakMode = .byWordWrapping
+    batteryLevelLabel.isEditable = false
+    batteryLevelLabel.isSelectable = false
     batteryLevelLabel.stringValue = "Deactivate when battery level is below:"
-    batteryLevelLabel.bordered = false
-    batteryLevelLabel.textColor = NSColor.blackColor()
-    batteryLevelLabel.backgroundColor = NSColor.controlColor()
+    batteryLevelLabel.isBordered = false
+    batteryLevelLabel.textColor = NSColor.black
+    batteryLevelLabel.backgroundColor = NSColor.controlColor
 
     generalBox.addSubview(self.shortcutRecorder!)
     generalBox.addSubview(shortcutLabel)
@@ -75,7 +75,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     generalBox.addSubview(batteryLevelLabel)
 
     let doneButton = NSButton(frame: NSRect(x: 152, y: 13, width: 72, height: 32))
-    doneButton.bezelStyle = .RoundedBezelStyle
+    doneButton.bezelStyle = .rounded
     doneButton.title = "Done"
     doneButton.action = #selector(self.doneButtonTapped(_:))
     
@@ -86,14 +86,14 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
   override func windowDidLoad() {
     self.window?.center()
     let option = Preferences.value(forKey: .StopAtBatteryLevel) as? Int ?? 0
-    self.batteryLevelPopUpButton?.selectItemWithTag(option)
+    self.batteryLevelPopUpButton?.selectItem(withTag: option)
   }
   
-  func doneButtonTapped(sender: AnyObject?) {
+  func doneButtonTapped(_ sender: AnyObject?) {
     // The App Delegate will handle the save
-    let appDelegate = (NSApplication.sharedApplication().delegate as! AppDelegate)
+    let appDelegate = (NSApplication.shared().delegate as! AppDelegate)
     let level = self.batteryLevelPopUpButton?.selectedTag() ?? 0
-    let hotKey = HotKey(keyCode: self.shortcutRecorder!.keyCode, modifier: self.shortcutRecorder!.modifierFlags ?? 0, readable: self.shortcutRecorder!.stringValue, action: appDelegate.applicationShouldChangeState)
+    let hotKey = HotKey(keyCode: self.shortcutRecorder!.keyCode, modifier: self.shortcutRecorder!.modifierFlags, readable: self.shortcutRecorder!.stringValue, action: appDelegate.applicationShouldChangeState)
     
     appDelegate.applicationShouldDeactivate(atBatteryLevel: level)
     appDelegate.applicationShouldRegisterHotKey(hotKey)

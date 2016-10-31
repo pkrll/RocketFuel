@@ -10,8 +10,8 @@ import ServiceManagement
 
 extension StatusItemController {
   
-  func addApplicationToLoginItems(mode: Bool) -> Bool {
-    return SMLoginItemSetEnabled("com.ardalansamimi.RocketFuelHelper", mode)
+  func addApplicationToLoginItems(_ mode: Bool) -> Bool {
+    return SMLoginItemSetEnabled("com.ardalansamimi.RocketFuelHelper" as CFString, mode)
   }
   
 }

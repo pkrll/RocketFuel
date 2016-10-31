@@ -16,7 +16,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
   /**
    *  The item that is displayed in the system status bar.
    */  
-  let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
+  let statusItem: NSStatusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
 
   let rocketFuel: RocketFuel = RocketFuel.defaultManager
   /**
@@ -38,7 +38,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
       let status = self.addApplicationToLoginItems(mode)
       
       if status {
-        Preferences.save(mode, forKey: .LaunchAtLogin)
+        Preferences.save(mode as AnyObject, forKey: .LaunchAtLogin)
       }
     }
   }
@@ -50,7 +50,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
       return Preferences.bool(forKey: .LeftClickActivation)
     }
     set (mode) {
-      Preferences.save(mode, forKey: .LeftClickActivation)
+      Preferences.save(mode as AnyObject, forKey: .LeftClickActivation)
     }
   }
   /**
@@ -84,12 +84,12 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    *
    *  - Parameter type: The request type.
    */
-  func request(type: RequestType, withDuration duration: Double = 0) {
+  func request(_ type: RequestType, withDuration duration: Double = 0) {
     switch type {
-      case .Activation:
+      case .activation:
         let level = Preferences.value(forKey: .StopAtBatteryLevel) as? Int ?? 0
-        self.rocketFuel.start(AssertionType.PreventIdleDisplaySleep, duration: duration, stopAtBatteryLevel: level)
-      case .Termination:
+        _ = self.rocketFuel.start(AssertionType.preventIdleDisplaySleep, duration: duration, stopAtBatteryLevel: level)
+      case .termination:
         self.rocketFuel.stop()
     }
   }
@@ -97,7 +97,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    *  Toggle Rocket Fuel state.
    */
   func toggleState() {
-    let state: RequestType = (self.rocketFuel.isActive) ? .Termination : .Activation
+    let state: RequestType = (self.rocketFuel.isActive) ? .termination : .activation
     self.request(state, withDuration: self.rocketFuel.timeout)
   }
   /**

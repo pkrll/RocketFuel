@@ -16,8 +16,8 @@ class HotKey {
   var modifier: Int
   var readable: String
   var action: HotKeyAction?
-  var hotKeyRef: EventHotKeyRef = nil
-  private(set) var id: Int
+  var hotKeyRef: EventHotKeyRef? = nil
+  fileprivate(set) var id: Int
   
   init(keyCode: Int, modifier: Int, readable: String, action: HotKeyAction?) {
     self.keyCode = keyCode

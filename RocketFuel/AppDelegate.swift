@@ -13,26 +13,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var statusItemController: StatusItemController = StatusItemController()
   var activationHotKey: HotKey?
   
-  func applicationDidFinishLaunching(aNotification: NSNotification) {
+  func applicationDidFinishLaunching(_ aNotification: Notification) {
     Preferences.registerDefaults()
     self.applicationShouldLoadHotKey()
   }
   
   func applicationShouldChangeState() {
     if self.statusItemController.rocketFuel.isActive {
-      self.statusItemController.request(.Termination)
+      self.statusItemController.request(.termination)
     } else {
-      self.statusItemController.request(.Activation)
+      self.statusItemController.request(.activation)
     }
   }
   
   func applicationShouldActivate(withDuration duration: Double) {
-    self.statusItemController.request(.Activation, withDuration: duration)
+    self.statusItemController.request(.activation, withDuration: duration)
   }
   
   func applicationShouldDeactivate(atBatteryLevel level: Int) {
     // This function is called either from the Preferences Window or an apple script.
-    Preferences.save(level, forKey: PreferencesType.StopAtBatteryLevel)
+    Preferences.save(level as AnyObject, forKey: PreferencesType.StopAtBatteryLevel)
     self.statusItemController.shouldDeactivateOnBatteryLevel = level
   }
   

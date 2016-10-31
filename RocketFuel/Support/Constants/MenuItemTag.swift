@@ -9,32 +9,32 @@ import Foundation
 
 enum MenuItemTag {
   
-  case Normal(NormalMenuItem)
-  case Custom(Int)
+  case normal(NormalMenuItem)
+  case custom(Int)
   
   enum NormalMenuItem: Int {
-    case Activate = 1
-    case LaunchAtLogin
-    case LeftClickActivation
-    case Preferences
-    case About
-    case Terminate
+    case activate = 1
+    case launchAtLogin
+    case leftClickActivation
+    case preferences
+    case about
+    case terminate
   }
   
   var rawValue: Int {
     switch self {
-    case .Normal(let tag):
+    case .normal(let tag):
       return tag.rawValue
-    case .Custom(let tag):
+    case .custom(let tag):
       return tag
     }
   }
   
   init(rawValue: Int) {
     if let item = NormalMenuItem(rawValue: rawValue) {
-      self = MenuItemTag.Normal(item)
+      self = MenuItemTag.normal(item)
     } else {
-      self = MenuItemTag.Custom(rawValue)
+      self = MenuItemTag.custom(rawValue)
     }
   }
   

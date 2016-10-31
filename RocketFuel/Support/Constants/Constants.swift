@@ -19,18 +19,18 @@ struct Constants {
   /**
    *  The Application's name as set in the bundle.
    */
-  static let bundleName: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String
+  static let bundleName: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
   /**
    *  The Application's version number, set in the bundle.
    */
-  static let bundleVersion: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+  static let bundleVersion: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
   /**
    *  The Application's build number, set in the bundle.
    */
-  static let bundleBuild: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+  static let bundleBuild: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
   /**
    *  The Application's bundle identifier.
    */
-  static let bundleIdentifier: String = NSBundle.mainBundle().bundleIdentifier!
+  static let bundleIdentifier: String = Bundle.main.bundleIdentifier!
 
 }

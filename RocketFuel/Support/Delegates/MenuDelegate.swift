@@ -9,6 +9,6 @@ import Cocoa
 
 protocol MenuDelegate: NSMenuDelegate {
   
-  func didClickMenuItem(menuItem: NSMenuItem)
+  func didClickMenuItem(_ menuItem: NSMenuItem)
   
 }

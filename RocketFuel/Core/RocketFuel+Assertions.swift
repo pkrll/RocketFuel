@@ -23,11 +23,11 @@ extension RocketFuel {
    *    - duration: The duration of the assertion.
    *    - stopAtBatteryLevel: The minimum battery level before releasing the assertion.
    */
-  func start(assertionType: AssertionType, duration: Double = 0, stopAtBatteryLevel: Int = 0) -> Bool {
+  func start(_ assertionType: AssertionType, duration: Double = 0, stopAtBatteryLevel: Int = 0) -> Bool {
     guard self.createAssertion(ofType: assertionType, withDuration: duration) else { return false }
     
     if duration > 0 {
-      self.durationTimer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: #selector(self.stop), userInfo: nil, repeats: false)
+      self.durationTimer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(self.stop), userInfo: nil, repeats: false)
     }
     
     self.shouldStopAtBatteryLevel = stopAtBatteryLevel
@@ -59,7 +59,7 @@ extension RocketFuel {
   /**
    *  Creates an assertion.
    */
-  private func createAssertion(ofType type: AssertionType, withDuration duration: Double) -> Bool {
+  fileprivate func createAssertion(ofType type: AssertionType, withDuration duration: Double) -> Bool {
     if self.isActive {
       self.stop()
     }
@@ -68,13 +68,13 @@ extension RocketFuel {
     
     var assertionType: CFString
     switch type {
-      case .PreventIdleSystemSleep:
-        assertionType = kIOPMAssertPreventUserIdleSystemSleep
-      case .PreventIdleDisplaySleep:
-        assertionType = kIOPMAssertPreventUserIdleDisplaySleep
+      case .preventIdleSystemSleep:
+        assertionType = kIOPMAssertPreventUserIdleSystemSleep as CFString
+      case .preventIdleDisplaySleep:
+        assertionType = kIOPMAssertPreventUserIdleDisplaySleep as CFString
     }
     
-    self.assertion = IOPMAssertionCreateWithDescription(assertionType, "Rocket Fuel", nil, nil, nil, duration, kIOPMAssertionTimeoutActionRelease, &self.assertionID)
+    self.assertion = IOPMAssertionCreateWithDescription(assertionType, "Rocket Fuel" as CFString!, nil, nil, nil, duration, kIOPMAssertionTimeoutActionRelease as CFString!, &self.assertionID)
     
     return self.assertion == kIOReturnSuccess
   }

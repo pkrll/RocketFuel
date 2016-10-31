@@ -10,8 +10,8 @@ import Cocoa
 @objc(AppleScript)
 class AppleScript: NSScriptCommand {
 
-  private var appDelegate: AppDelegate {
-    return NSApplication.sharedApplication().delegate as! AppDelegate
+  fileprivate var appDelegate: AppDelegate {
+    return NSApplication.shared().delegate as! AppDelegate
   }
   
   func Toggle() {
@@ -20,7 +20,7 @@ class AppleScript: NSScriptCommand {
   
   func Duration() {
     // The duration is expressed in minutes in AppleScript, but seconds in the app, so it needs to be translated to seconds to work correctly.
-    let duration: Double = (self.directParameter?.doubleValue ?? 0) * 60
+    let duration: Double = ((self.directParameter as AnyObject).doubleValue ?? 0) * 60
     self.appDelegate.applicationShouldActivate(withDuration: duration)
   }
   
@@ -29,15 +29,15 @@ class AppleScript: NSScriptCommand {
     self.appDelegate.applicationShouldDeactivate(atBatteryLevel: level)
   }
   
-  override func performDefaultImplementation() -> AnyObject? {
-    let commandName = self.commandDescription.commandName.componentsSeparatedByString(" ").map { $0.capitalizedString }.joinWithSeparator("")
+  override func performDefaultImplementation() -> Any? {
+    let commandName = self.commandDescription.commandName.components(separatedBy: " ").map { $0.capitalized }.joined(separator: "")
     let commandFunc = NSSelectorFromString(commandName)
     
     // Make sure the command was valid
-    if self.respondsToSelector(commandFunc) {
-      let imp: IMP = self.methodForSelector(commandFunc)
+    if self.responds(to: commandFunc) {
+      let imp: IMP = self.method(for: commandFunc)
       typealias function = @convention(c) (AnyObject, Selector) -> Void
-      let curriedImplementation = unsafeBitCast(imp, function.self)
+      let curriedImplementation = unsafeBitCast(imp, to: function.self)
       curriedImplementation(self, commandFunc)
     }
     

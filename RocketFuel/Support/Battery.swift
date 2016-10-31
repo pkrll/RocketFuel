@@ -14,7 +14,7 @@ struct Battery {
     let sources = IOPSCopyPowerSourcesList(blob).takeRetainedValue() as Array
     
     for source in sources {
-      let description = IOPSGetPowerSourceDescription(blob, source).takeUnretainedValue() as Dictionary
+      let description = IOPSGetPowerSourceDescription(blob, source).takeUnretainedValue() as NSDictionary
       
       if let currentCapacity = description[kIOPSCurrentCapacityKey] as? Double, let maxCapacity = description[kIOPSMaxCapacityKey] as? Double {
         return Int((currentCapacity / maxCapacity) * 100.0)

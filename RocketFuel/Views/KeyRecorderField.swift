@@ -24,7 +24,7 @@ class KeyRecorderField: NSSearchField {
   
   override init(frame frameRect: NSRect) {
     super.init(frame: frameRect)
-    self.alignment = .Center
+    self.alignment = .center
     self.refusesFirstResponder = true
     
     (self.cell as? NSSearchFieldCell)?.searchButtonCell = nil
@@ -48,11 +48,11 @@ class KeyRecorderField: NSSearchField {
     self.placeholderString = self.placeholderStringForNormalMode
   }
   
-  override func mouseDown(theEvent: NSEvent) {
+  override func mouseDown(with theEvent: NSEvent) {
     self.recorderDelegate?.recorderDidReceiveMouseDown(self)
   }
   
-  override func keyDown(theEvent: NSEvent) {
+  override func keyDown(with theEvent: NSEvent) {
     let keyCode = theEvent.keyCode
     let modifierFlags = theEvent.modifierFlags//.intersect(NSEventModifierFlags.DeviceIndependentModifierFlagsMask)
     var character: String?
@@ -89,22 +89,22 @@ class KeyRecorderField: NSSearchField {
     self.keyCode = Int(keyCode)
     self.modifierFlags = 0
     
-    if modifierFlags.contains(.CommandKeyMask) {
+    if modifierFlags.contains(.command) {
       character = "⌘" + character!
       self.modifierFlags |= cmdKey
     }
     
-    if modifierFlags.contains(.AlternateKeyMask) {
+    if modifierFlags.contains(.option) {
       character = "⌥" + character!
       self.modifierFlags |= optionKey
     }
     
-    if modifierFlags.contains(.ShiftKeyMask) {
+    if modifierFlags.contains(.shift) {
       character = "⇧" + character!
       self.modifierFlags |= shiftKey
     }
     
-    if modifierFlags.contains(.ControlKeyMask) {
+    if modifierFlags.contains(.control) {
       character = "^" + character!
       self.modifierFlags |= controlKey
     }

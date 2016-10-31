@@ -93,6 +93,7 @@
 					6A7CD5EA1CE8AC71008B91A4 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = ZHSKC28PQ8;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -249,6 +250,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuelHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -266,6 +268,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuelHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

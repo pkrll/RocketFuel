@@ -9,7 +9,7 @@ import Foundation
 
 protocol RecorderDelegate {
   
-  func recorderDidReceiveMouseDown(recorder: KeyRecorderField)
-  func recorderDidReceiveKeyDown(recorder: KeyRecorderField)
+  func recorderDidReceiveMouseDown(_ recorder: KeyRecorderField)
+  func recorderDidReceiveKeyDown(_ recorder: KeyRecorderField)
   
 }
