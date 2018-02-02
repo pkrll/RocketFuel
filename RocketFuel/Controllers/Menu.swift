@@ -14,7 +14,7 @@ class Menu: NSMenu {
     let action = (isClickable) ? #selector(self.selectMenuItem(_:)) : nil
     let menuItem = self.addItem(withTitle: title, action: action, keyEquivalent: "")
     menuItem.target = self
-    menuItem.state = (state) ? NSOnState : NSOffState
+    menuItem.state = (state) ? NSControl.StateValue.on : NSControl.StateValue.off
     menuItem.tag = tag
     
     return menuItem
@@ -36,11 +36,11 @@ class Menu: NSMenu {
   
   func resetMenuItemStates() {
     for item in self.items {
-      item.state = NSOffState
+      item.state = NSControl.StateValue.off
     }
   }
   
-  func selectMenuItem(_ sender: NSMenuItem?) {
+  @objc func selectMenuItem(_ sender: NSMenuItem?) {
     guard let sender = sender else { return }
     if let delegate = self.delegate as? MenuDelegate {
       delegate.didClickMenuItem(sender)

@@ -16,7 +16,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
   /**
    *  The item that is displayed in the system status bar.
    */  
-  let statusItem: NSStatusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+  let statusItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
   let rocketFuel: RocketFuel = RocketFuel.defaultManager
   /**

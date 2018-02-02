@@ -11,7 +11,7 @@ import Cocoa
 class AppleScript: NSScriptCommand {
 
   fileprivate var appDelegate: AppDelegate {
-    return NSApplication.shared().delegate as! AppDelegate
+    return NSApplication.shared.delegate as! AppDelegate
   }
   
   func Toggle() {

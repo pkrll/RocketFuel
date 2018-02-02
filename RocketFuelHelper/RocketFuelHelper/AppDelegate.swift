@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/
     // If the app is running, the helper app should not do anything.
     var appIsRunning: Bool = false
-    let activeApps = NSWorkspace.shared().runningApplications
+    let activeApps = NSWorkspace.shared.runningApplications
     
     for app in activeApps {
       if app.bundleIdentifier == "com.ardalansamimi.RocketFuel" {
@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       comp.append("MacOS")
       comp.append("RocketFuel")
       let url = NSString.path(withComponents: comp)
-      if (NSWorkspace.shared().launchApplication(url)) == false {
+      if (NSWorkspace.shared.launchApplication(url)) == false {
         NSLog("Rocket Fuel Helper App could not launch Rocket Fuel...")
       }
     }

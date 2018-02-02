@@ -12,7 +12,7 @@ class AboutWindowController: NSWindowController {
   fileprivate var applicationVersion: String = "Version \(Constants.bundleVersion) (\(Constants.bundleBuild))"
   
   init() {
-    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 344, height: 157), styleMask: [NSTitledWindowMask, NSClosableWindowMask], backing: NSBackingStoreType.buffered, defer: false)
+    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 344, height: 157), styleMask: [.titled, .closable], backing: NSWindow.BackingStoreType.buffered, defer: false)
     window.isReleasedWhenClosed = true
     window.isOneShot = true
     super.init(window: window)
@@ -27,7 +27,7 @@ class AboutWindowController: NSWindowController {
   
   func loadSubviews() {
     let imageView = NSImageView(frame: NSRect(x: 20, y: 43, width: 108, height: 94))
-    imageView.image = NSImage(named: "Rocket")
+    imageView.image = NSImage(named: NSImage.Name(rawValue: "Rocket"))
     imageView.imageFrameStyle = .none
     imageView.imageScaling = .scaleProportionallyDown
     

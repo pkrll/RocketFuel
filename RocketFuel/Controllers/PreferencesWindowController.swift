@@ -13,7 +13,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
   var shortcutRecorder: KeyRecorderField?
   
   init() {
-    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 220), styleMask: [NSTitledWindowMask, NSClosableWindowMask], backing: NSBackingStoreType.buffered, defer: false)
+    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 220), styleMask: [.titled, .closable], backing: NSWindow.BackingStoreType.buffered, defer: false)
     window.isReleasedWhenClosed = true
     window.isOneShot = true
     super.init(window: window)
@@ -26,7 +26,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
   }
   
   func configureViews() {
-    let appDelegate = (NSApplication.shared().delegate as! AppDelegate)
+    let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
     let generalBox = NSBox(frame: NSRect(x: 17, y: 57, width: 204, height: 151))
     generalBox.title = "General"
 
@@ -89,9 +89,9 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     self.batteryLevelPopUpButton?.selectItem(withTag: option)
   }
   
-  func doneButtonTapped(_ sender: AnyObject?) {
+  @objc func doneButtonTapped(_ sender: AnyObject?) {
     // The App Delegate will handle the save
-    let appDelegate = (NSApplication.shared().delegate as! AppDelegate)
+    let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
     let level = self.batteryLevelPopUpButton?.selectedTag() ?? 0
     let hotKey = HotKey(keyCode: self.shortcutRecorder!.keyCode, modifier: self.shortcutRecorder!.modifierFlags, readable: self.shortcutRecorder!.stringValue, action: appDelegate.applicationShouldChangeState)
     

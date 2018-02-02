@@ -89,22 +89,22 @@ class KeyRecorderField: NSSearchField {
     self.keyCode = Int(keyCode)
     self.modifierFlags = 0
     
-    if modifierFlags.contains(.command) {
+    if modifierFlags.contains(NSEvent.ModifierFlags.command) {
       character = "⌘" + character!
       self.modifierFlags |= cmdKey
     }
     
-    if modifierFlags.contains(.option) {
+    if modifierFlags.contains(NSEvent.ModifierFlags.option) {
       character = "⌥" + character!
       self.modifierFlags |= optionKey
     }
     
-    if modifierFlags.contains(.shift) {
+    if modifierFlags.contains(NSEvent.ModifierFlags.shift) {
       character = "⇧" + character!
       self.modifierFlags |= shiftKey
     }
     
-    if modifierFlags.contains(.control) {
+    if modifierFlags.contains(NSEvent.ModifierFlags.control) {
       character = "^" + character!
       self.modifierFlags |= controlKey
     }

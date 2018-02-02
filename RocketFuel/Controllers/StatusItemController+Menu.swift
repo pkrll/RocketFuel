@@ -64,10 +64,10 @@ extension StatusItemController {
       self.toggleState()
     case .normal(.launchAtLogin):
       self.shouldLaunchAtLogin = !self.shouldLaunchAtLogin
-      menuItem.state = self.shouldLaunchAtLogin.intValue()
+      menuItem.state = NSControl.StateValue(rawValue: self.shouldLaunchAtLogin.intValue())
     case .normal(.leftClickActivation):
       self.shouldActivateOnLeftClick = !self.shouldActivateOnLeftClick
-      menuItem.state = self.shouldActivateOnLeftClick.intValue()
+      menuItem.state = NSControl.StateValue(rawValue: self.shouldActivateOnLeftClick.intValue())
     case .normal(.preferences):
       self.openPreferences()
     case .normal(.about):
