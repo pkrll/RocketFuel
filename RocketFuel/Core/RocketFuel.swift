@@ -127,17 +127,18 @@ class RocketFuel {
   func shouldDeactivate(atBatteryLevel batteryLevel: Int, onBatteryMode value: Bool) {
     self.minimumBatteryLevel = batteryLevel
     self.shouldStopOnBatteryMode = value
-    
-    if self.onBatteryPower && self.isActive {
-      self.didStopDuringBatteryMode = true
-    } else {
-      self.didStopDuringBatteryMode = false
-    }
-    
+
     if self.isActive {
+      self.retrievePowerSourceInformation()
+      
+      if self.onBatteryPower {
+        self.didStopDuringBatteryMode = true
+      }
+      
       self.removeNotificationRunLoopSource()
       self.beginMonitorBatteryLevel()
     } else {
+      self.didStopDuringBatteryMode = false
       self.removeNotificationRunLoopSource()
     }
   }

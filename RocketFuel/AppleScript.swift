@@ -14,19 +14,24 @@ class AppleScript: NSScriptCommand {
     return NSApplication.shared.delegate as! AppDelegate
   }
   
-  func Toggle() {
+  @objc func Toggle() {
     self.appDelegate.applicationShouldChangeState()
   }
   
-  func Duration() {
+  @objc func Duration() {
     // The duration is expressed in minutes in AppleScript, but seconds in the app, so it needs to be translated to seconds to work correctly.
     let duration: Double = ((self.directParameter as AnyObject).doubleValue ?? 0) * 60
     self.appDelegate.applicationShouldActivate(withDuration: duration)
   }
   
-  func BatteryLevel() {
+  @objc func BatteryLevel() {
     let level: Int = self.directParameter as? Int ?? 0
     self.appDelegate.applicationShouldDeactivate(atBatteryLevel: level)
+  }
+  
+  @objc func BatteryMode() {
+    let mode: Bool = self.directParameter as? Bool ?? false
+    self.appDelegate.applicationShouldDeactivate(onBatteryMode: mode)
   }
   
   override func performDefaultImplementation() -> Any? {

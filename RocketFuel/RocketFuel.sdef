@@ -19,5 +19,9 @@
           <cocoa class="AppleScript"/>
           <direct-parameter name="" description="The minimum battery level (in percentage)." code="rkflbtpa" type="integer"></direct-parameter>
         </command>
+        <command name="battery mode" code="rkflbmde" description="Deactivate Rocket Fuel if the power source changes from AC to battery.">
+          <cocoa class="AppleScript"/>
+          <direct-parameter name="" description="True if Rocket Fuel should deactivate on battery power" code="rkflbtpa" type="boolean"></direct-parameter>
+        </command>
     </suite>
 </dictionary>

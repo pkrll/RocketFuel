@@ -10,7 +10,7 @@ import Cocoa
 @objc(Application)
 class Application: NSApplication {
   
-  internal var isActivated: Int {
+  @objc internal var isActivated: Int {
     return RocketFuel.defaultManager.isActive.intValue()
   }
   
