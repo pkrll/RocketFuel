@@ -8,5 +8,7 @@
 	<false/>
 	<key>stopAtBatteryLevel</key>
 	<integer>0</integer>
+	<key>disableOnBatteryMode</key>
+	<false/>
 </dict>
 </plist>

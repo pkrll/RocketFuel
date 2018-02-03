@@ -58,10 +58,10 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    */
   var shouldDeactivateOnBatteryLevel: Int {
     get {
-      return self.rocketFuel.shouldStopAtBatteryLevel
+      return self.rocketFuel.minimumBatteryLevel
     }
     set (level) {
-      self.rocketFuel.shouldStopAtBatteryLevel = level
+      self.rocketFuel.shouldDeactivate(atBatteryLevel: level)
     }
   }
   /**
@@ -69,10 +69,10 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    */
   var shouldDeactivateOnBatteryMode: Bool {
     get {
-      return self.rocketFuel.shouldStopAtBatteryMode
+      return self.rocketFuel.shouldStopOnBatteryMode
     }
     set (mode) {
-      self.rocketFuel.shouldStopAtBatteryMode = mode
+      self.rocketFuel.shouldDeactivate(onBatteryMode: mode)
     }
   }
   
@@ -99,9 +99,10 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
     switch type {
       case .activation:
         let level = Preferences.value(forKey: .StopAtBatteryLevel) as? Int ?? 0
-        _ = self.rocketFuel.start(AssertionType.preventIdleDisplaySleep, duration: duration, stopAtBatteryLevel: level)
+        let stopOnBatteryMode = Preferences.value(forKey: .DisableOnBatteryMode) as? Bool ?? false
+        _ = self.rocketFuel.start(AssertionType.preventIdleDisplaySleep, duration: duration, stopAtBatteryLevel: level, stopOnBatteryMode: stopOnBatteryMode)
       case .termination:
-        self.rocketFuel.stop()
+        self.rocketFuel.deactivate()
     }
   }
   /**
@@ -116,7 +117,7 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
    */
   func terminate() {
     if self.rocketFuel.isActive {
-      self.rocketFuel.stop()
+      self.rocketFuel.deactivate()
     }
     
     NSApp.terminate(self)

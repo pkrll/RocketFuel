@@ -8,35 +8,34 @@
 import Cocoa
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l <= r
-  default:
-    return !(rhs < lhs)
-  }
-}
-
+//fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+//  switch (lhs, rhs) {
+//  case let (l?, r?):
+//    return l < r
+//  case (nil, _?):
+//    return true
+//  default:
+//    return false
+//  }
+//}
+//
+//// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+//// Consider refactoring the code to use the non-optional operators.
+//fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+//  switch (lhs, rhs) {
+//  case let (l?, r?):
+//    return l <= r
+//  default:
+//    return !(rhs < lhs)
+//  }
+//}
 
 class RocketFuel {
-  
+
   // --------------------------------------------
   // MARK: - Public Properties
   // --------------------------------------------
-  
+
   /**
    *  The default manager.
    */
@@ -71,23 +70,7 @@ class RocketFuel {
   var isActive: Bool {
     return (self.assertionID != IOPMAssertionID(0))
   }
-  /**
-   *  If set Rocket Fuel will stop when the battery charge is below the specified level.
-   */
-  var shouldStopAtBatteryLevel: Int {
-    get {
-      return self.minimumBatteryLevel
-    }
-    set {
-      self.minimumBatteryLevel = newValue
-      self.removeNotificationRunLoopSource()
-      self.beginMonitorBatteryLevel()
-    }
-  }
-  /**
-   *  If set Rocket Fuel will stop when the on battery mode.
-   */
-  var shouldStopAtBatteryMode: Bool = false
+
   // --------------------------------------------
   // MARK: - Private Properties
   // --------------------------------------------
@@ -95,39 +78,87 @@ class RocketFuel {
   /**
    *  Defines the minimum battery level.
    */
-  fileprivate var minimumBatteryLevel: Int = 0
+  fileprivate(set) var minimumBatteryLevel: Int = 0
   /**
-   *  If set, the computer is on battery mode.
-   *
-   *  This is used to prevent Rocket Fuel from deactivating if the user turns on
-   *  the app while in battery mode.
+   *  Determines if the application should stop when switching to battery power.
    */
-  fileprivate var batteryMode: Bool = false;
-
+  fileprivate(set) var shouldStopOnBatteryMode: Bool = false
+  /**
+   *  Set to true when activated while the computer is on battery mode.
+   *
+   *  This is used to prevent Rocket Fuel from deactivating if the user turns on the app while in battery mode.
+   */
+  fileprivate var didStopDuringBatteryMode: Bool = false;
+  /**
+   *  The current battery charge
+   */
+  fileprivate var currentBatteryCharge: Int = 0
+  /**
+   *  Determines if the computer is on battery or AC power.
+   */
+  fileprivate var onBatteryPower: Bool = false
+  
   // --------------------------------------------
   // MARK: - Public Methods
   // --------------------------------------------
-
-  init() {
-    self.batteryMode = PowerSource.onBatteryPower;
+  
+  /**
+   *  Sets the battery level at which to deactivate Rocket Fuel.
+   *
+   *  - Parameter atBatteryLevel: The minimum battery level
+   */
+  func shouldDeactivate(atBatteryLevel batteryLevel: Int) {
+    self.shouldDeactivate(atBatteryLevel: batteryLevel, onBatteryMode: self.shouldStopOnBatteryMode)
+  }
+  /**
+   *  Toggles whether Rocket Fuel should deactivate when changing power source to battery.
+   *
+   *  - Parameter onBatteryMode: If true, Rocket Fuel will deactivate when power source changes to battery.
+   */
+  func shouldDeactivate(onBatteryMode value: Bool) {
+    self.shouldDeactivate(atBatteryLevel: self.minimumBatteryLevel, onBatteryMode: value)
+  }
+  /**
+   *  Set the battery level at which to deactivate Rocket Fuel, and whether it should deactivate when changing power source to battery.
+   *
+   *  - Parameter atBatteryLevel: The minimum battery level
+   *  - Parameter onBatteryMode:  If true, Rocket Fuel will deactivate when power source changes to battery.
+   */
+  func shouldDeactivate(atBatteryLevel batteryLevel: Int, onBatteryMode value: Bool) {
+    self.minimumBatteryLevel = batteryLevel
+    self.shouldStopOnBatteryMode = value
+    
+    if self.onBatteryPower && self.isActive {
+      self.didStopDuringBatteryMode = true
+    } else {
+      self.didStopDuringBatteryMode = false
+    }
+    
+    if self.isActive {
+      self.removeNotificationRunLoopSource()
+      self.beginMonitorBatteryLevel()
+    } else {
+      self.removeNotificationRunLoopSource()
+    }
   }
   
   // --------------------------------------------
-  // MARK: - Private Methods
+  // MARK: - Internal Methods
   // --------------------------------------------
   
   /**
    *  Begins monitoring battery level changes.
-   * 
+   *
    *  This method will create a Run Loop Source that notifies when a power source information change has been made.
    */
-  fileprivate func beginMonitorBatteryLevel() {
+  internal func beginMonitorBatteryLevel() {
     guard self.minimumBatteryLevel > 0 else { return }
-    
+
     let powerSourceCallback: IOPowerSourceCallbackType = { context in
       let this = Unmanaged<RocketFuel>.fromOpaque(UnsafeRawPointer(context)!).takeUnretainedValue()
-      this.checkBatteryLevel()
+      this.retrievePowerSourceInformation()
       this.checkPowerSource()
+      this.checkBatteryLevel()
     }
     // Get notifications on power source updates
     let this = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
@@ -135,33 +166,53 @@ class RocketFuel {
     CFRunLoopAddSource(CFRunLoopGetCurrent(), self.notificationRunLoopSource, CFRunLoopMode.defaultMode)
   }
   /**
-   *  Checks the battery level. If it is below the minimum level allowed, Rocket Fuel will stop.
-   */
-  fileprivate func checkBatteryLevel() {
-    // If on AC power the battery limit should not matter.
-    guard IOPSGetTimeRemainingEstimate() > -2 else { return }
-    
-    if PowerSource.currentCharge <= self.minimumBatteryLevel  {
-      self.stop()
-    }
-  }
-  
-  fileprivate func checkPowerSource() {
-    guard self.isActive || PowerSource.onBatteryPower else { return }
-    
-    if self.shouldStopAtBatteryMode && !self.batteryMode {
-      self.batteryMode = true;
-      self.stop()
-    }
-  }
-  /**
    *  Removes the IOPS Notification Run Loop Source.
    */
-  fileprivate func removeNotificationRunLoopSource() {
+  internal func removeNotificationRunLoopSource() {
     if let runLoopSource = self.notificationRunLoopSource {
       CFRunLoopRemoveSource(CFRunLoopGetCurrent(), runLoopSource, CFRunLoopMode.defaultMode)
       self.notificationRunLoopSource = nil
     }
   }
 
+  // --------------------------------------------
+  // MARK: - Private Methods
+  // --------------------------------------------
+
+  /**
+   *  Checks the battery level. If it is below the minimum level allowed, Rocket Fuel will stop.
+   */
+  fileprivate func checkBatteryLevel() {
+    // If on AC power the battery limit should not matter.
+    guard self.onBatteryPower else { return }
+
+    if self.currentBatteryCharge <= self.minimumBatteryLevel  {
+      self.deactivate()
+    }
+  }
+  /**
+   *  Checks the power source. If the power source is battery (and the application was not activated during battery mode) Rocket Fuel will stop.
+   */
+  fileprivate func checkPowerSource() {
+    guard self.isActive && self.onBatteryPower && !self.didStopDuringBatteryMode else { return }
+
+    if self.shouldStopOnBatteryMode {
+      self.didStopDuringBatteryMode = true
+      self.deactivate()
+    }
+  }
+  /**
+   *  Retrieves information on the power source.
+   */
+  fileprivate func retrievePowerSourceInformation() {
+    self.onBatteryPower = PowerSource.onBatteryPower
+
+    if self.onBatteryPower {
+      self.currentBatteryCharge = PowerSource.currentCharge ?? 0
+    } else {
+      self.currentBatteryCharge = 0
+      self.didStopDuringBatteryMode = false
+    }
+  }
+  
 }

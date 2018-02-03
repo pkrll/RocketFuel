@@ -52,7 +52,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     
     self.powerSourceButton = NSButton(frame: NSRect(x: 18, y: 120, width: 220, height: 34))
     self.powerSourceButton?.setButtonType(.switch)
-    self.powerSourceButton?.title = "Deactivate on battery mode"
+    self.powerSourceButton?.title = "Stop on battery mode"
     
     self.batteryLevelPopUpButton = NSPopUpButton(frame: NSRect(x: 18, y: 52, width: 160, height: 26))
     self.batteryLevelPopUpButton?.addItems(withTitles: ["Off", "5%", "10%", "15%", "20%"])
