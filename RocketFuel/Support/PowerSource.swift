@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct Battery {
+struct PowerSource {
   
   static var currentCharge: Int? {
     let blob = IOPSCopyPowerSourcesInfo().takeRetainedValue()
@@ -24,7 +24,7 @@ struct Battery {
     return nil
   }
   
-  static var onACPower: Bool {
+  static var onBatteryPower: Bool {
     let blob = IOPSCopyPowerSourcesInfo().takeRetainedValue()
     let sources = IOPSCopyPowerSourcesList(blob).takeRetainedValue() as Array
     
@@ -32,7 +32,7 @@ struct Battery {
       let description = IOPSGetPowerSourceDescription(blob, source).takeUnretainedValue() as NSDictionary
       
       if let powerSource = description[kIOPSPowerSourceStateKey] as? String {
-        return powerSource == kIOPSACPowerValue
+        return powerSource == kIOPSBatteryPowerValue
       }
     }
     

@@ -74,8 +74,6 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     batteryLevelLabel.textColor = NSColor.black
     batteryLevelLabel.backgroundColor = NSColor.controlColor
 
-    
-    
     generalBox.addSubview(self.shortcutRecorder!)
     generalBox.addSubview(shortcutLabel)
     generalBox.addSubview(self.batteryLevelPopUpButton!)
@@ -93,8 +91,12 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
  
   override func windowDidLoad() {
     self.window?.center()
-    let option = Preferences.value(forKey: .StopAtBatteryLevel) as? Int ?? 0
-    self.batteryLevelPopUpButton?.selectItem(withTag: option)
+    
+    let batteryLevel = Preferences.value(forKey: .StopAtBatteryLevel) as? Int ?? 0
+    self.batteryLevelPopUpButton?.selectItem(withTag: batteryLevel)
+    
+    let batteryMode = Preferences.value(forKey: .DisableOnBatteryMode) as? Bool ?? false
+    self.powerSourceButton?.state = (batteryMode) ? NSControl.StateValue.on : NSControl.StateValue.off
   }
   
   @objc func doneButtonTapped(_ sender: AnyObject?) {
