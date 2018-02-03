@@ -47,6 +47,7 @@ extension StatusItemController {
     if window == self.aboutWindowController?.window {
       self.aboutWindowController = nil
     } else if window == self.preferencesWindowController?.window {
+//      self.preferencesWindowController?.window?.delegate = nil
       self.preferencesWindowController = nil
     }
   }

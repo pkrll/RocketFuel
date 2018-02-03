@@ -25,9 +25,10 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+    
   func configureViews() {
     let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
+    
     let generalBox = NSBox(frame: NSRect(x: 17, y: 57, width: 204, height: 191))
     generalBox.title = "General"
 
@@ -88,11 +89,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     self.window?.contentView?.addSubview(generalBox)
     self.window?.contentView?.addSubview(doneButton)
   }
- 
-  deinit {
-    print("HEEJ")
-  }
-  
+
   override func windowDidLoad() {
     self.window?.center()
     
@@ -101,8 +98,6 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     
     let batteryMode = Preferences.value(forKey: .DisableOnBatteryMode) as? Bool ?? false
     self.powerSourceButton?.state = (batteryMode) ? NSControl.StateValue.on : NSControl.StateValue.off
-    
-    self.window?.isReleasedWhenClosed = true
   }
   
   @objc func doneButtonTapped(_ sender: AnyObject?) {
@@ -118,7 +113,9 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
       let state = (buttonState == NSControl.StateValue.on) ? true : false
       appDelegate.applicationShouldDeactivate(onBatteryMode: state)
     }
-
+    
+    self.shortcutRecorder?.removeFromSuperview()
+    
     self.close()
   }
   

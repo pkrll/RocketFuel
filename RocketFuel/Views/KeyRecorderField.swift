@@ -13,7 +13,7 @@ class KeyRecorderField: NSSearchField {
   let placeholderStringForCaptureMode = "Type Shortcut…"
   let placeholderStringForNormalMode = "Click To Set Shortcut…"
   
-  var recorderDelegate: RecorderDelegate?
+  weak var recorderDelegate: RecorderDelegate?
   
   var keyCode: Int = -1
   var modifierFlags: Int = 0
