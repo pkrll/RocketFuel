@@ -96,6 +96,21 @@ class RocketFuel {
    *  Defines the minimum battery level.
    */
   fileprivate var minimumBatteryLevel: Int = 0
+  /**
+   *  If set, the computer is on battery mode.
+   *
+   *  This is used to prevent Rocket Fuel from deactivating if the user turns on
+   *  the app while in battery mode.
+   */
+  fileprivate var batteryMode: Bool = false;
+
+  // --------------------------------------------
+  // MARK: - Public Methods
+  // --------------------------------------------
+
+  init() {
+    self.batteryMode = PowerSource.onBatteryPower;
+  }
   
   // --------------------------------------------
   // MARK: - Private Methods
@@ -132,9 +147,10 @@ class RocketFuel {
   }
   
   fileprivate func checkPowerSource() {
-    guard self.isActive else { return }
+    guard self.isActive || PowerSource.onBatteryPower else { return }
     
-    if self.shouldStopAtBatteryMode && PowerSource.onBatteryPower {
+    if self.shouldStopAtBatteryMode && !self.batteryMode {
+      self.batteryMode = true;
       self.stop()
     }
   }

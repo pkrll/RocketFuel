@@ -51,7 +51,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     
     self.powerSourceButton = NSButton(frame: NSRect(x: 18, y: 120, width: 220, height: 34))
     self.powerSourceButton?.setButtonType(.switch)
-    self.powerSourceButton?.title = "Disable on battery mode"
+    self.powerSourceButton?.title = "Deactivate on battery mode"
     
     self.batteryLevelPopUpButton = NSPopUpButton(frame: NSRect(x: 18, y: 52, width: 160, height: 26))
     self.batteryLevelPopUpButton?.addItems(withTitles: ["Off", "5%", "10%", "15%", "20%"])
@@ -89,6 +89,10 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     self.window?.contentView?.addSubview(doneButton)
   }
  
+  deinit {
+    print("HEEJ")
+  }
+  
   override func windowDidLoad() {
     self.window?.center()
     
@@ -97,6 +101,8 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     
     let batteryMode = Preferences.value(forKey: .DisableOnBatteryMode) as? Bool ?? false
     self.powerSourceButton?.state = (batteryMode) ? NSControl.StateValue.on : NSControl.StateValue.off
+    
+    self.window?.isReleasedWhenClosed = true
   }
   
   @objc func doneButtonTapped(_ sender: AnyObject?) {
