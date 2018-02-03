@@ -1,0 +1,3 @@
+language: swift
+xcode_project: RocketFuel.xcodeproj
+xcode_scheme: RocketFuel
