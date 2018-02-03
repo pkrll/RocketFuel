@@ -36,4 +36,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     self.statusItemController.shouldDeactivateOnBatteryLevel = level
   }
   
+  func applicationShouldDeactivate(onBatteryMode value: Bool) {
+    Preferences.save(value as AnyObject, forKey: PreferencesType.DisableOnBatteryMode)
+    self.statusItemController.shouldDeactivateOnBatteryMode = value
+  }
+  
 }

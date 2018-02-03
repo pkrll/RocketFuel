@@ -12,6 +12,7 @@ enum PreferencesType: String {
   case LaunchAtLogin = "launchAtLogin"
   case LeftClickActivation = "leftClickActivation"
   case StopAtBatteryLevel = "stopAtBatteryLevel"
+  case DisableOnBatteryMode = "disableOnBatteryMode"
   case ActivationHotKey = "activationHotKey"
   
 }

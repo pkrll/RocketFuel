@@ -64,6 +64,17 @@ class StatusItemController: NSObject, MenuDelegate, RocketFuelDelegate, NSWindow
       self.rocketFuel.shouldStopAtBatteryLevel = level
     }
   }
+  /**
+   *  Determines if the application should deactivate when the power source changes to battery.
+   */
+  var shouldDeactivateOnBatteryMode: Bool {
+    get {
+      return self.rocketFuel.shouldStopAtBatteryMode
+    }
+    set (mode) {
+      self.rocketFuel.shouldStopAtBatteryMode = mode
+    }
+  }
   
   // --------------------------------------------
   // MARK: - Initialization

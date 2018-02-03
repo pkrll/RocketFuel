@@ -9,11 +9,12 @@ import Cocoa
 
 class PreferencesWindowController: NSWindowController, RecorderDelegate {
   
+  var powerSourceButton: NSButton?
   var batteryLevelPopUpButton: NSPopUpButton?
   var shortcutRecorder: KeyRecorderField?
   
   init() {
-    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 220), styleMask: [.titled, .closable], backing: NSWindow.BackingStoreType.buffered, defer: false)
+    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 260), styleMask: [.titled, .closable], backing: NSWindow.BackingStoreType.buffered, defer: false)
     window.isReleasedWhenClosed = true
     window.isOneShot = true
     super.init(window: window)
@@ -27,7 +28,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
   
   func configureViews() {
     let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
-    let generalBox = NSBox(frame: NSRect(x: 17, y: 57, width: 204, height: 151))
+    let generalBox = NSBox(frame: NSRect(x: 17, y: 57, width: 204, height: 191))
     generalBox.title = "General"
 
     self.shortcutRecorder = KeyRecorderField(frame: NSRect(x: 18, y: 8, width: 160, height: 23))
@@ -47,6 +48,10 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     shortcutLabel.isBordered = false
     shortcutLabel.textColor = NSColor.black
     shortcutLabel.backgroundColor = NSColor.controlColor
+    
+    self.powerSourceButton = NSButton(frame: NSRect(x: 18, y: 120, width: 220, height: 34))
+    self.powerSourceButton?.setButtonType(.switch)
+    self.powerSourceButton?.title = "Disable on battery mode"
     
     self.batteryLevelPopUpButton = NSPopUpButton(frame: NSRect(x: 18, y: 52, width: 160, height: 26))
     self.batteryLevelPopUpButton?.addItems(withTitles: ["Off", "5%", "10%", "15%", "20%"])
@@ -69,11 +74,14 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     batteryLevelLabel.textColor = NSColor.black
     batteryLevelLabel.backgroundColor = NSColor.controlColor
 
+    
+    
     generalBox.addSubview(self.shortcutRecorder!)
     generalBox.addSubview(shortcutLabel)
     generalBox.addSubview(self.batteryLevelPopUpButton!)
     generalBox.addSubview(batteryLevelLabel)
-
+    generalBox.addSubview(self.powerSourceButton!)
+    
     let doneButton = NSButton(frame: NSRect(x: 152, y: 13, width: 72, height: 32))
     doneButton.bezelStyle = .rounded
     doneButton.title = "Done"
@@ -97,6 +105,11 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     
     appDelegate.applicationShouldDeactivate(atBatteryLevel: level)
     appDelegate.applicationShouldRegisterHotKey(hotKey)
+    
+    if let buttonState = self.powerSourceButton?.state {
+      let state = (buttonState == NSControl.StateValue.on) ? true : false
+      appDelegate.applicationShouldDeactivate(onBatteryMode: state)
+    }
 
     self.close()
   }

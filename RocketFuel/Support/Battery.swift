@@ -24,4 +24,19 @@ struct Battery {
     return nil
   }
   
+  static var onACPower: Bool {
+    let blob = IOPSCopyPowerSourcesInfo().takeRetainedValue()
+    let sources = IOPSCopyPowerSourcesList(blob).takeRetainedValue() as Array
+    
+    for source in sources {
+      let description = IOPSGetPowerSourceDescription(blob, source).takeUnretainedValue() as NSDictionary
+      
+      if let powerSource = description[kIOPSPowerSourceStateKey] as? String {
+        return powerSource == kIOPSACPowerValue
+      }
+    }
+    
+    return false
+  }
+  
 }

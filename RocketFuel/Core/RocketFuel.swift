@@ -84,6 +84,15 @@ class RocketFuel {
       self.beginMonitorBatteryLevel()
     }
   }
+  /**
+   *  If set Rocket Fuel will stop when the on battery mode.
+   */
+  var shouldStopAtBatteryMode: Bool = false {
+    didSet {
+      self.removeNotificationRunLoopSource()
+      self.beginMonitorBatteryLevel()
+    }
+  }
   
   // --------------------------------------------
   // MARK: - Private Properties
@@ -105,10 +114,14 @@ class RocketFuel {
    */
   fileprivate func beginMonitorBatteryLevel() {
     guard self.minimumBatteryLevel > 0 else { return }
-
+    
     let powerSourceCallback: IOPowerSourceCallbackType = { context in
       let this = Unmanaged<RocketFuel>.fromOpaque(UnsafeRawPointer(context)!).takeUnretainedValue()
       this.checkBatteryLevel()
+      
+      if (this.shouldStopAtBatteryMode) {
+        this.checkPowerSource()
+      }
     }
     // Get notifications on power source updates
     let this = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
@@ -123,6 +136,12 @@ class RocketFuel {
     guard IOPSGetTimeRemainingEstimate() > -2 else { return }
     
     if Battery.currentCharge <= self.minimumBatteryLevel  {
+      self.stop()
+    }
+  }
+  
+  fileprivate func checkPowerSource() {
+    if (Battery.onACPower == false) {
       self.stop()
     }
   }
