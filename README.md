@@ -1,4 +1,5 @@
 # Rocket Fuel
+[![GitHub version](https://badge.fury.io/gh/Saturn-Five%2FRocketFuel.svg)](https://badge.fury.io/gh/Saturn-Five%2FRocketFuel)
 [![CI Status](https://api.travis-ci.org/Saturn-Five/RocketFuel.svg?branch=master)](https://travis-ci.org/Saturn-Five/RocketFuel)
 [![Last Updated](https://img.shields.io/github/last-commit/Saturn-Five/RocketFuel.svg)](https://github.com/Saturn-Five/RocketFuel/commits/master)
  [![Issues](https://img.shields.io/github/issues/Saturn-Five/rocketfuel.svg)](https://github.com/Saturn-Five/RocketFuel/issues)
