@@ -32,6 +32,7 @@
 		6A82B0661D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82B0651D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift */; };
 		6A82B06A1D359C6E0095FE3A /* RecorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82B0691D359C6E0095FE3A /* RecorderDelegate.swift */; };
 		6A8AAB35218246E90011FDEF /* RocketFuel+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AAB34218246E90011FDEF /* RocketFuel+Notifications.swift */; };
+		6A8AAB3D218250230011FDEF /* RocketFuelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AAB3C218250230011FDEF /* RocketFuelTests.swift */; };
 		6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A97FC971C29FA2E00362EBF /* AppDelegate.swift */; };
 		6A97FC9A1C29FA2E00362EBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC991C29FA2E00362EBF /* Assets.xcassets */; };
 		6A97FC9D1C29FA2E00362EBF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */; };
@@ -53,6 +54,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 6A7CD5EB1CE8AC71008B91A4;
 			remoteInfo = RocketFuelHelper;
+		};
+		6A8AAB3F218250230011FDEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A97FC8C1C29FA2E00362EBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A97FC931C29FA2E00362EBF;
+			remoteInfo = RocketFuel;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -97,6 +105,9 @@
 		6A82B0651D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PreferencesWindowController+Recorder.swift"; path = "Controllers/PreferencesWindowController+Recorder.swift"; sourceTree = "<group>"; };
 		6A82B0691D359C6E0095FE3A /* RecorderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecorderDelegate.swift; path = Support/Delegates/RecorderDelegate.swift; sourceTree = "<group>"; };
 		6A8AAB34218246E90011FDEF /* RocketFuel+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RocketFuel+Notifications.swift"; path = "Core/RocketFuel+Notifications.swift"; sourceTree = "<group>"; };
+		6A8AAB3A218250230011FDEF /* RocketFuelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RocketFuelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A8AAB3C218250230011FDEF /* RocketFuelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketFuelTests.swift; sourceTree = "<group>"; };
+		6A8AAB3E218250230011FDEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A97FC941C29FA2E00362EBF /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A97FC971C29FA2E00362EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A97FC991C29FA2E00362EBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -114,6 +125,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6A8AAB37218250230011FDEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A97FC911C29FA2E00362EBF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,11 +238,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6A8AAB3B218250230011FDEF /* RocketFuelTests */ = {
+			isa = PBXGroup;
+			children = (
+				6A8AAB3C218250230011FDEF /* RocketFuelTests.swift */,
+				6A8AAB3E218250230011FDEF /* Info.plist */,
+			);
+			path = RocketFuelTests;
+			sourceTree = "<group>";
+		};
 		6A97FC8B1C29FA2E00362EBF = {
 			isa = PBXGroup;
 			children = (
 				6A7CD5FB1CE8AC7E008B91A4 /* RocketFuelHelper.xcodeproj */,
 				6A97FC961C29FA2E00362EBF /* RocketFuel */,
+				6A8AAB3B218250230011FDEF /* RocketFuelTests */,
 				6A97FC951C29FA2E00362EBF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -233,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				6A97FC941C29FA2E00362EBF /* RocketFuel.app */,
+				6A8AAB3A218250230011FDEF /* RocketFuelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -270,6 +299,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6A8AAB39218250230011FDEF /* RocketFuelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A8AAB41218250230011FDEF /* Build configuration list for PBXNativeTarget "RocketFuelTests" */;
+			buildPhases = (
+				6A8AAB36218250230011FDEF /* Sources */,
+				6A8AAB37218250230011FDEF /* Frameworks */,
+				6A8AAB38218250230011FDEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A8AAB40218250230011FDEF /* PBXTargetDependency */,
+			);
+			name = RocketFuelTests;
+			productName = RocketFuelTests;
+			productReference = 6A8AAB3A218250230011FDEF /* RocketFuelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6A97FC931C29FA2E00362EBF /* RocketFuel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A97FCA11C29FA2E00362EBF /* Build configuration list for PBXNativeTarget "RocketFuel" */;
@@ -295,10 +342,16 @@
 		6A97FC8C1C29FA2E00362EBF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Ardalan Samimi";
 				TargetAttributes = {
+					6A8AAB39218250230011FDEF = {
+						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = ZHSKC28PQ8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6A97FC931C29FA2E00362EBF;
+					};
 					6A97FC931C29FA2E00362EBF = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = ZHSKC28PQ8;
@@ -331,6 +384,7 @@
 			projectRoot = "";
 			targets = (
 				6A97FC931C29FA2E00362EBF /* RocketFuel */,
+				6A8AAB39218250230011FDEF /* RocketFuelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -346,6 +400,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6A8AAB38218250230011FDEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A97FC921C29FA2E00362EBF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -376,6 +437,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6A8AAB36218250230011FDEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A8AAB3D218250230011FDEF /* RocketFuelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A97FC901C29FA2E00362EBF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -417,6 +486,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6A8AAB40218250230011FDEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A97FC931C29FA2E00362EBF /* RocketFuel */;
+			targetProxy = 6A8AAB3F218250230011FDEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
@@ -429,6 +506,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6A8AAB42218250230011FDEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = ZHSKC28PQ8;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = RocketFuelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RocketFuel.app/Contents/MacOS/RocketFuel";
+			};
+			name = Debug;
+		};
+		6A8AAB43218250230011FDEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = ZHSKC28PQ8;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = RocketFuelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RocketFuel.app/Contents/MacOS/RocketFuel";
+			};
+			name = Release;
+		};
 		6A97FC9F1C29FA2E00362EBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -576,6 +707,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6A8AAB41218250230011FDEF /* Build configuration list for PBXNativeTarget "RocketFuelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A8AAB42218250230011FDEF /* Debug */,
+				6A8AAB43218250230011FDEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6A97FC8F1C29FA2E00362EBF /* Build configuration list for PBXProject "RocketFuel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
