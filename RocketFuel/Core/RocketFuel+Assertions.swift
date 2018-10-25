@@ -6,6 +6,7 @@
 //  Copyright © 2016 Ardalan Samimi. All rights reserved.
 //
 import Foundation
+import UserNotifications
 
 extension RocketFuel {
 
@@ -74,7 +75,7 @@ extension RocketFuel {
         assertionType = kIOPMAssertPreventUserIdleDisplaySleep as CFString
     }
 
-    self.assertion = IOPMAssertionCreateWithDescription(assertionType, "Rocket Fuel" as CFString!, nil, nil, nil, duration, kIOPMAssertionTimeoutActionRelease as CFString!, &self.assertionID)
+    self.assertion = IOPMAssertionCreateWithDescription(assertionType, "Rocket Fuel" as CFString, nil, nil, nil, duration, kIOPMAssertionTimeoutActionRelease as CFString, &self.assertionID)
 
     return self.assertion == kIOReturnSuccess
   }
