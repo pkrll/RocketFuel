@@ -31,6 +31,7 @@
 		6A7CD6011CE8AC8A008B91A4 /* RocketFuelHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A7CD6001CE8AC7E008B91A4 /* RocketFuelHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6A82B0661D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82B0651D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift */; };
 		6A82B06A1D359C6E0095FE3A /* RecorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82B0691D359C6E0095FE3A /* RecorderDelegate.swift */; };
+		6A8AAB35218246E90011FDEF /* RocketFuel+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AAB34218246E90011FDEF /* RocketFuel+Notifications.swift */; };
 		6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A97FC971C29FA2E00362EBF /* AppDelegate.swift */; };
 		6A97FC9A1C29FA2E00362EBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC991C29FA2E00362EBF /* Assets.xcassets */; };
 		6A97FC9D1C29FA2E00362EBF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A97FC9B1C29FA2E00362EBF /* MainMenu.xib */; };
@@ -95,6 +96,7 @@
 		6A7CD5FB1CE8AC7E008B91A4 /* RocketFuelHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RocketFuelHelper.xcodeproj; path = RocketFuelHelper/RocketFuelHelper.xcodeproj; sourceTree = "<group>"; };
 		6A82B0651D359C0B0095FE3A /* PreferencesWindowController+Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PreferencesWindowController+Recorder.swift"; path = "Controllers/PreferencesWindowController+Recorder.swift"; sourceTree = "<group>"; };
 		6A82B0691D359C6E0095FE3A /* RecorderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecorderDelegate.swift; path = Support/Delegates/RecorderDelegate.swift; sourceTree = "<group>"; };
+		6A8AAB34218246E90011FDEF /* RocketFuel+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RocketFuel+Notifications.swift"; path = "Core/RocketFuel+Notifications.swift"; sourceTree = "<group>"; };
 		6A97FC941C29FA2E00362EBF /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A97FC971C29FA2E00362EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A97FC991C29FA2E00362EBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				6A710DC81D26FD2A008ADC76 /* RocketFuel.swift */,
 				6A710DD81D290859008ADC76 /* RocketFuel+Assertions.swift */,
+				6A8AAB34218246E90011FDEF /* RocketFuel+Notifications.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				6A710DDB1D290985008ADC76 /* PowerSource.swift in Sources */,
 				6A0DB74E1D2C0CDF00C59453 /* StatusItemController+Window.swift in Sources */,
 				6A387EB11D3BDDD4004520BD /* HotKey.swift in Sources */,
+				6A8AAB35218246E90011FDEF /* RocketFuel+Notifications.swift in Sources */,
 				6A97FC981C29FA2E00362EBF /* AppDelegate.swift in Sources */,
 				6A387EB41D3BDDF6004520BD /* HotKeyCenter.swift in Sources */,
 				6AFF17521D32B01500902F90 /* Preferences.swift in Sources */,

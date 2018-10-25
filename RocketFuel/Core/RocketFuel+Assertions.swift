@@ -28,7 +28,7 @@ extension RocketFuel {
     guard self.createAssertion(ofType: assertionType, withDuration: duration) else { return false }
 
     if duration > 0 {
-      self.durationTimer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(self.deactivate), userInfo: nil, repeats: false)
+      self.durationTimer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(self.timerDidExpire), userInfo: nil, repeats: false)
     }
 
     self.shouldDeactivate(atBatteryLevel: stopAtBatteryLevel, onBatteryMode: stopOnBatteryMode)
@@ -37,6 +37,20 @@ extension RocketFuel {
 
     return true
   }
+  
+  @objc func timerDidExpire() {
+    let title   = "Saturn Five is no longer running"
+    var message = "Saturn Five has deactivated"
+    
+    if self.timeout > 0 {
+      let timeout = Int(self.timeout / 60)
+      message += " after \(timeout) minutes"
+    }
+
+    self.showNotification(withTitle: title, andMessage: message)
+    self.deactivate()
+  }
+  
   /**
    *  Deactivate Rocket Fuel.
    */
