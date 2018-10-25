@@ -1,3 +1,4 @@
 language: swift
 xcode_project: RocketFuel.xcodeproj
 xcode_scheme: RocketFuel
+script: set -o pipefail && xcodebuild -project RocketFuel.xcodeproj -scheme RocketFuel build | xcpretty
