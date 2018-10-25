@@ -1,30 +1,37 @@
-# Rocket Fuel
-[![GitHub version](https://badge.fury.io/gh/Saturn-Five%2FRocketFuel.svg)](https://badge.fury.io/gh/Saturn-Five%2FRocketFuel)
-[![CI Status](https://api.travis-ci.org/Saturn-Five/RocketFuel.svg?branch=master)](https://travis-ci.org/Saturn-Five/RocketFuel)
-[![Last Updated](https://img.shields.io/github/last-commit/Saturn-Five/RocketFuel.svg)](https://github.com/Saturn-Five/RocketFuel/commits/master)
- [![Issues](https://img.shields.io/github/issues/Saturn-Five/rocketfuel.svg)](https://github.com/Saturn-Five/RocketFuel/issues)
-[![Language](https://img.shields.io/badge/Swift-4.0-%23fff.svg)](https://github.com/Saturn-Five/RocketFuel)
+<p align="center">
+  <img src="logo.png" data-canonical-src="logo.png" width="65%"/>
+</p>
+
+<p align="center">
+  <a href="https://badge.fury.io/gh/Saturn-Five%2FRocketFuel"><img src="https://badge.fury.io/gh/Saturn-Five%2FRocketFuel.svg"></a>
+<a href="https://travis-ci.org/Saturn-Five/RocketFuel"><img src="https://api.travis-ci.org/Saturn-Five/RocketFuel.svg?branch=master"></a>
+<a href="https://github.com/Saturn-Five/RocketFuel/commits/master"><img src="https://img.shields.io/github/last-commit/Saturn-Five/RocketFuel.svg"></a>
+<a href="https://github.com/Saturn-Five/RocketFuel/issues"><img src="https://img.shields.io/github/issues/Saturn-Five/rocketfuel.svg"></a>
+<a href="https://github.com/Saturn-Five/RocketFuel"><img src="https://img.shields.io/badge/Swift-4.0-%23fff.svg"></a>
+</p>
+
+**Rocket Fuel** is a small and easy to use ``macOS`` application that sits discreetly in your menu bar awaiting for command. One simple click prevents your Mac to sleep or dimming its display.
+
+**Features:**
+- [x] 🖱️ One click-activation
+- [x] 🚀 Auto launch on startup
+- [ ] 🤖 Automatic deactivation based on:
+  - [x] 🔋 Battery level
+  - [x] 🔌 Power source
+  - [x] ⏲️ Preset time
+- [x] 🕶️ Works with dark mode
+- [x] 🍎 Support for AppleScript
 
 <img src="screenshot_rocketfuel.png">
 
+#### Installation
 
-[Download on the App Store](https://itunes.apple.com/se/app/rocket-fuel/id1114196460?l=en&mt=12)
-
-#### Summary
-
-**Rocket Fuel** is a small, easy to use app that sits discreetly in your menu bar awaiting your command. One simple click prevents your Mac from going to sleep or dimming its display.
-
-**Features:**
-- One click-activation
-- Auto launch on startup
-- Automatic deactivation based on:
-  - Battery level
-  - Power source
-  - Preset time
-- Works with dark mode
-- Support for AppleScript
+RocketFuel is available for free on [the App Store](https://itunes.apple.com/se/app/rocket-fuel/id1114196460?l=en&mt=12).
 
 #### Changes
+
+**New in version 2.3:**
+- Added notifications for when Rocket Fuel deactivates.
 
 **New in version 2.2:**
 - Added option to automatically deactivate Rocket Fuel when going from AC to battery power.
