@@ -2,4 +2,4 @@ language: swift
 osx_image: xcode10
 xcode_project: RocketFuel.xcodeproj
 xcode_scheme: RocketFuel
-script: set -o pipefail && xcodebuild CODE_SIGNING_REQUIRED=NO -project RocketFuel.xcodeproj -scheme RocketFuel build | xcpretty
+script: set -o pipefail && xcodebuild CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -project RocketFuel.xcodeproj -scheme RocketFuel build | xcpretty
