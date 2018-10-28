@@ -26,6 +26,8 @@ class AboutWindowController: NSWindowController {
   }
   
   func loadSubviews() {
+    let year = Calendar.current.component(.year, from: Date())
+
     let imageView = NSImageView(frame: NSRect(x: 20, y: 43, width: 108, height: 94))
     imageView.image = NSImage(named: NSImage.Name(rawValue: "Rocket"))
     imageView.imageFrameStyle = .none
@@ -64,7 +66,7 @@ class AboutWindowController: NSWindowController {
     copyrightLabel.isSelectable = false
     copyrightLabel.textColor = NSColor.black
     copyrightLabel.backgroundColor = NSColor.controlColor
-    copyrightLabel.stringValue = "Copyright © 2016 Ardalan Samimi. All rights reserved."
+    copyrightLabel.stringValue = "Copyright © \(year) Ardalan Samimi. All rights reserved."
     copyrightLabel.font = NSFont(name: "HelveticaNeue", size: 11)
     copyrightLabel.alignment = .center
     
