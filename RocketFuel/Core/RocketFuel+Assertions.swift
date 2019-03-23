@@ -39,8 +39,8 @@ extension RocketFuel {
   }
   
   @objc func timerDidExpire() {
-    let title   = "Saturn Five is no longer running"
-    var message = "Saturn Five has deactivated"
+    let title   = "Rocket Fuel is no longer running"
+    var message = "Rocket Fuel has deactivated"
     
     if self.timeout > 0 {
       let timeout = Int(self.timeout / 60)
