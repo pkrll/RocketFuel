@@ -26,7 +26,7 @@
 
 #### Installation
 
-RocketFuel is available for free on [the App Store](https://itunes.apple.com/se/app/rocket-fuel/id1114196460?l=en&mt=12).
+RocketFuel is available on [the App Store](https://itunes.apple.com/se/app/rocket-fuel/id1114196460?l=en&mt=12).
 
 #### Changes
 
