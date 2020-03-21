@@ -14,7 +14,9 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
   var shortcutRecorder: KeyRecorderField?
   
   init() {
-    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 260), styleMask: [.titled, .closable], backing: NSWindow.BackingStoreType.buffered, defer: false)
+    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 238, height: 260),
+                          styleMask: [.titled, .closable],
+                          backing: NSWindow.BackingStoreType.buffered, defer: false)
     window.isReleasedWhenClosed = true
     window.isOneShot = true
     super.init(window: window)
@@ -47,7 +49,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     shortcutLabel.isSelectable = false
     shortcutLabel.stringValue = "Activate/Deactivate:"
     shortcutLabel.isBordered = false
-    shortcutLabel.textColor = NSColor.black
+    shortcutLabel.textColor = .labelColor
     shortcutLabel.backgroundColor = NSColor.controlColor
     
     self.powerSourceButton = NSButton(frame: NSRect(x: 18, y: 120, width: 220, height: 34))
@@ -72,7 +74,7 @@ class PreferencesWindowController: NSWindowController, RecorderDelegate {
     batteryLevelLabel.isSelectable = false
     batteryLevelLabel.stringValue = "Deactivate when battery level is below:"
     batteryLevelLabel.isBordered = false
-    batteryLevelLabel.textColor = NSColor.black
+    batteryLevelLabel.textColor = .labelColor
     batteryLevelLabel.backgroundColor = NSColor.controlColor
 
     generalBox.addSubview(self.shortcutRecorder!)

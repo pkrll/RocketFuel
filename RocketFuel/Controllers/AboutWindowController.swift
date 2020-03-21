@@ -9,10 +9,12 @@ import Cocoa
 
 class AboutWindowController: NSWindowController {
   
-  fileprivate var applicationVersion: String = "Version \(Constants.bundleVersion) (\(Constants.bundleBuild))"
+  fileprivate var applicationVersion: String = "Version \(Constants.bundleVersion)"
   
   init() {
-    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 344, height: 157), styleMask: [.titled, .closable], backing: NSWindow.BackingStoreType.buffered, defer: false)
+    let window = NSWindow(contentRect: NSRect(x: 478, y: 364, width: 344, height: 157),
+                          styleMask: [.titled, .closable],
+                          backing: NSWindow.BackingStoreType.buffered, defer: false)
     window.isReleasedWhenClosed = true
     window.isOneShot = true
     super.init(window: window)
@@ -37,8 +39,8 @@ class AboutWindowController: NSWindowController {
     titleLabel.isBordered = false
     titleLabel.isEditable = false
     titleLabel.isSelectable = false
-    titleLabel.textColor = NSColor.black
-    titleLabel.backgroundColor = NSColor.controlColor
+    titleLabel.textColor = .labelColor
+    titleLabel.backgroundColor = .controlColor
     titleLabel.stringValue = Constants.applicationName
     titleLabel.font = NSFont(name: "HelveticaNeue-Thin", size: 32)
     
@@ -46,8 +48,8 @@ class AboutWindowController: NSWindowController {
     versionLabel.isBordered = false
     versionLabel.isEditable = false
     versionLabel.isSelectable = false
-    versionLabel.textColor = NSColor.black
-    versionLabel.backgroundColor = NSColor.controlColor
+    versionLabel.textColor = .labelColor
+    versionLabel.backgroundColor = .controlColor
     versionLabel.stringValue = self.applicationVersion
     versionLabel.font = NSFont(name: "HelveticaNeue-Light", size: 15)
 
@@ -55,8 +57,8 @@ class AboutWindowController: NSWindowController {
     authorLabel.isBordered = false
     authorLabel.isEditable = false
     authorLabel.isSelectable = false
-    authorLabel.textColor = NSColor.black
-    authorLabel.backgroundColor = NSColor.controlColor
+    authorLabel.textColor = .labelColor
+    authorLabel.backgroundColor = .controlColor
     authorLabel.stringValue = "Created by Ardalan Samimi"
     authorLabel.font = NSFont(name: "HelveticaNeue", size: 11)
 
@@ -64,8 +66,8 @@ class AboutWindowController: NSWindowController {
     copyrightLabel.isBordered = false
     copyrightLabel.isEditable = false
     copyrightLabel.isSelectable = false
-    copyrightLabel.textColor = NSColor.black
-    copyrightLabel.backgroundColor = NSColor.controlColor
+    copyrightLabel.textColor = .labelColor
+    copyrightLabel.backgroundColor = .controlColor
     copyrightLabel.stringValue = "Copyright © \(year) Ardalan Samimi. All rights reserved."
     copyrightLabel.font = NSFont(name: "HelveticaNeue", size: 11)
     copyrightLabel.alignment = .center
