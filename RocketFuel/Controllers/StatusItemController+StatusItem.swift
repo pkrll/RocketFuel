@@ -41,10 +41,10 @@ extension StatusItemController {
    */
   func imageForStatusIcon(forState state: Bool = true) -> NSImage? {
     if self.rocketFuel.isActive && state == true {
-      return NSImage(named: NSImage.Name(rawValue: StatusItemImage.StatusItemActive.rawValue))
+      return NSImage(named: StatusItemImage.StatusItemActive.rawValue)
     }
     
-    return NSImage(named: NSImage.Name(rawValue: StatusItemImage.StatusItemIdle.rawValue))
+    return NSImage(named: StatusItemImage.StatusItemIdle.rawValue)
   }
   
 }

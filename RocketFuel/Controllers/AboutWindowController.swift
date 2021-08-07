@@ -31,7 +31,7 @@ class AboutWindowController: NSWindowController {
     let year = Calendar.current.component(.year, from: Date())
 
     let imageView = NSImageView(frame: NSRect(x: 20, y: 43, width: 108, height: 94))
-    imageView.image = NSImage(named: NSImage.Name(rawValue: "Rocket"))
+    imageView.image = NSImage(named: "Rocket")
     imageView.imageFrameStyle = .none
     imageView.imageScaling = .scaleProportionallyDown
     
