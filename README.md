@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://badge.fury.io/gh/Saturn-Five%2FRocketFuel"><img src="https://badge.fury.io/gh/Saturn-Five%2FRocketFuel.svg"></a>
-<a href="https://travis-ci.org/pkrll/RocketFuel"><img src="https://api.travis-ci.org/pkrll/RocketFuel.svg?branch=master"></a>
+  <img src="https://travis-ci.com/pkrll/RocketFuel.svg?branch=master">
 <a href="https://github.com/Saturn-Five/RocketFuel/commits/master"><img src="https://img.shields.io/github/last-commit/Saturn-Five/RocketFuel.svg"></a>
 <a href="https://github.com/Saturn-Five/RocketFuel/issues"><img src="https://img.shields.io/github/issues/Saturn-Five/rocketfuel.svg"></a>
 <a href="https://github.com/Saturn-Five/RocketFuel"><img src="https://img.shields.io/badge/Swift-5.4-%23fff.svg"></a>
