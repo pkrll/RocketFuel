@@ -7,7 +7,7 @@
 <a href="https://travis-ci.org/Saturn-Five/RocketFuel"><img src="https://api.travis-ci.org/Saturn-Five/RocketFuel.svg?branch=master"></a>
 <a href="https://github.com/Saturn-Five/RocketFuel/commits/master"><img src="https://img.shields.io/github/last-commit/Saturn-Five/RocketFuel.svg"></a>
 <a href="https://github.com/Saturn-Five/RocketFuel/issues"><img src="https://img.shields.io/github/issues/Saturn-Five/rocketfuel.svg"></a>
-<a href="https://github.com/Saturn-Five/RocketFuel"><img src="https://img.shields.io/badge/Swift-4.0-%23fff.svg"></a>
+<a href="https://github.com/Saturn-Five/RocketFuel"><img src="https://img.shields.io/badge/Swift-5.4-%23fff.svg"></a>
 </p>
 
 **Rocket Fuel** is a small and easy to use ``macOS`` application that sits discreetly in your menu bar awaiting for command. One simple click prevents your Mac to sleep or dimming its display.
@@ -29,6 +29,12 @@
 RocketFuel is available on [the App Store](https://itunes.apple.com/se/app/rocket-fuel/id1114196460?l=en&mt=12).
 
 #### Changes
+
+**New in version 2.3.2:**
+- Compiled for the new Apple Silicon architecture.
+
+**New in version 2.3.1:**
+- Minor UI fixes.
 
 **New in version 2.3:**
 - Added notifications for when Rocket Fuel deactivates.
