@@ -312,10 +312,9 @@
 			};
 			buildConfigurationList = 6A97FC8F1C29FA2E00362EBF /* Build configuration list for PBXProject "RocketFuel" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
