@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A12CB71294BC1DD00F46406 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 6A12CB70294BC1DD00F46406 /* Core */; };
 		6AAFFF1E2944AB2100730941 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAFFF1D2944AB2100730941 /* Main.swift */; };
 		6AAFFF222944AB2300730941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF212944AB2300730941 /* Assets.xcassets */; };
 		6AAFFF252944AB2300730941 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF242944AB2300730941 /* Preview Assets.xcassets */; };
@@ -15,6 +16,8 @@
 /* Begin PBXFileReference section */
 		6A12CB6C294BB9B100F46406 /* MenuBarExtras */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MenuBarExtras; sourceTree = "<group>"; };
 		6A12CB6D294BBD7400F46406 /* HotKeys */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HotKeys; sourceTree = "<group>"; };
+		6A12CB6E294BC0AF00F46406 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
+		6A12CB72294BCAE400F46406 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Resources; sourceTree = "<group>"; };
 		6AAFFF1A2944AB2100730941 /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AAFFF1D2944AB2100730941 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		6AAFFF212944AB2300730941 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -27,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A12CB71294BC1DD00F46406 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,10 +40,19 @@
 		6A12CB6A294BB61800F46406 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				6A12CB6E294BC0AF00F46406 /* Core */,
 				6A12CB6D294BBD7400F46406 /* HotKeys */,
 				6A12CB6C294BB9B100F46406 /* MenuBarExtras */,
+				6A12CB72294BCAE400F46406 /* Resources */,
 			);
 			path = Packages;
+			sourceTree = "<group>";
+		};
+		6A12CB6F294BC1DD00F46406 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6AAFFF112944AB2100730941 = {
@@ -47,6 +60,7 @@
 			children = (
 				6AAFFF1C2944AB2100730941 /* RocketFuel */,
 				6AAFFF1B2944AB2100730941 /* Products */,
+				6A12CB6F294BC1DD00F46406 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +116,9 @@
 			dependencies = (
 			);
 			name = RocketFuel;
+			packageProductDependencies = (
+				6A12CB70294BC1DD00F46406 /* Core */,
+			);
 			productName = RocketFuel;
 			productReference = 6AAFFF1A2944AB2100730941 /* RocketFuel.app */;
 			productType = "com.apple.product-type.application";
@@ -301,6 +318,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.4;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-concurrency -Xfrontend -enable-actor-data-race-checks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -334,6 +352,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.4;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-concurrency -Xfrontend -enable-actor-data-race-checks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -365,6 +384,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6A12CB70294BC1DD00F46406 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6AAFFF122944AB2100730941 /* Project object */;
 }

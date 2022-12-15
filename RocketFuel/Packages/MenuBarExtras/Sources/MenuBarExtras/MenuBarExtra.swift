@@ -54,7 +54,6 @@ public final class MenuBarExtra {
     public func show(menu: NSMenu) {
         statusItem.menu = menu
         statusItem.button?.performClick(nil)
-        statusItem.menu = nil
     }
     
     public func set(image: NSImage?) {

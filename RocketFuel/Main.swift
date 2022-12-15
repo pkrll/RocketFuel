@@ -3,10 +3,15 @@
 //
 
 import SwiftUI
+import Core
 
 @main
 struct Main: App {
+    
+    @NSApplicationDelegateAdaptor
+    private var rocketFuel: RocketFuel
+    
     var body: some Scene {
-        WindowGroup {}
+        Settings {}
     }
 }

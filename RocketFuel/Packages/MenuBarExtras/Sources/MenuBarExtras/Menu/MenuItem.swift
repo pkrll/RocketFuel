@@ -11,7 +11,7 @@ extension Menu {
             selected: Bool = false,
             keyEquivalent: String = "",
             children: [Self]? = nil,
-            action: (() -> Void)? = nil
+            action: (() async -> Void)? = nil
         )
         case separator
     }

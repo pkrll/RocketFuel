@@ -46,7 +46,9 @@ public final class Menu: NSMenu {
         let option = options[sender.tag]
         switch option {
         case .button(_, _, _, _, let action):
-            action?()
+            Task { @MainActor in
+                await action?()
+            }
         case .separator:
             break
         }
