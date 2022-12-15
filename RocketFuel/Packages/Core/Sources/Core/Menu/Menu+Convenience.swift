@@ -13,8 +13,8 @@ extension Menu {
 }
 
 extension Menu.Item {
-    static func toggle(action: @escaping () async -> Void) -> Self {
-        .button(title: "Activate", keyEquivalent: "t", action: action)
+    static func toggle(isActive: Bool, action: @escaping () async -> Void) -> Self {
+        .button(title: isActive ? "Deactivate" : "Activate", keyEquivalent: "t", action: action)
     }
     
     static func launchOnLogin(selected: Bool, action: @escaping () async -> Void) -> Self {

@@ -13,6 +13,7 @@ let package = Package(
         .package(path: "../HotKeys"),
         .package(path: "../MenuBarExtras"),
         .package(path: "../Resources"),
+        .package(path: "../SleepControl"),
     ],
     targets: [
         .target(
@@ -21,6 +22,7 @@ let package = Package(
                 "MenuBarExtras",
                 "HotKeys",
                 "Resources",
+                "SleepControl",
             ]
         )
     ]

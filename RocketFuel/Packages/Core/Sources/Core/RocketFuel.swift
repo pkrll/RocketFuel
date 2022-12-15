@@ -5,11 +5,13 @@
 import Cocoa
 import MenuBarExtras
 import Resources
+import SleepControl
 
 public final class RocketFuel: NSObject, NSApplicationDelegate {
     
     private let appState = AppState.shared
     private let appTitle = "Rocket Fuel"
+    private let sleepControl: SleepControl = SleepControl()
     private var menuBarExtra: MenuBarExtra?
     
     public func applicationDidFinishLaunching(_ notification: Notification) {
@@ -50,7 +52,13 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     }
     
     private func toggle() async {
-        let isActive = await appState.toggleActiveState()
+        if sleepControl.isActive {
+            sleepControl.disable()
+        } else {
+            sleepControl.enable()
+        }
+        
+        let isActive = sleepControl.isActive
         await updateUI(isActive: isActive)
     }
     
@@ -59,7 +67,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         let leftClickActivation = await appState.leftClickActivation
         
         let menu = Menu(title: appTitle) {
-            Menu.Item.toggle {
+            Menu.Item.toggle(isActive: sleepControl.isActive) {
                 await self.toggle()
             }
             
@@ -101,6 +109,14 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
             }
         }
         
+        menu.delegate = self
+        
         return menu
+    }
+}
+// MARK: - NSMenuDelegate
+extension RocketFuel: NSMenuDelegate {
+    public func menuDidClose(_ menu: NSMenu) {
+        menuBarExtra?.closeMenu()
     }
 }
