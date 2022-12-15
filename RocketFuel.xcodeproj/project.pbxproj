@@ -14,6 +14,7 @@
 
 /* Begin PBXFileReference section */
 		6A12CB6C294BB9B100F46406 /* MenuBarExtras */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MenuBarExtras; sourceTree = "<group>"; };
+		6A12CB6D294BBD7400F46406 /* HotKeys */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HotKeys; sourceTree = "<group>"; };
 		6AAFFF1A2944AB2100730941 /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AAFFF1D2944AB2100730941 /* RocketFuel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketFuel.swift; sourceTree = "<group>"; };
 		6AAFFF212944AB2300730941 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,6 +36,7 @@
 		6A12CB6A294BB61800F46406 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				6A12CB6D294BBD7400F46406 /* HotKeys */,
 				6A12CB6C294BB9B100F46406 /* MenuBarExtras */,
 			);
 			path = Packages;
