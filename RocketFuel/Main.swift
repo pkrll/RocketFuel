@@ -5,7 +5,7 @@
 import SwiftUI
 
 @main
-struct RocketFuel: App {
+struct Main: App {
     var body: some Scene {
         WindowGroup {}
     }
