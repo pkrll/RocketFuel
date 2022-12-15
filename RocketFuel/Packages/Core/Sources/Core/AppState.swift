@@ -3,30 +3,53 @@
 //
 
 import Foundation
+import HotKeys
 
 actor AppState {
-
-    static let shared = AppState()
     
-    var isActive: Bool = false
-    var leftClickActivation: Bool = false
-    var disableOnBatteryMode: Bool = true
-    var stopAtBatteryLevel: Int = 0
+    private(set) var registeredHotKey: HotKey?
+    private(set) var isActive: Bool = false
+    private(set) var leftClickActivation: Bool
+    private(set) var disableOnBatteryMode: Bool
+    private(set) var disableAtBatteryLevel: Int
     
-    func toggleActiveState() async -> Bool {
-        isActive.toggle()
-        return isActive
+    private let userDefaults: UserDefaults = .standard
+    
+    init() {
+        registeredHotKey = userDefaults.object(forKey: .registeredHotKey) as? HotKey
+        leftClickActivation = userDefaults.bool(forKey: .leftClickActivation)
+        disableOnBatteryMode = userDefaults.bool(forKey: .disableOnBatteryMode)
+        disableAtBatteryLevel = userDefaults.integer(forKey: .disableAtBatteryLevel)
+    }
+    
+    func setRegisteredHotKey(to value: HotKey?) {
+        registeredHotKey = value
+        set(value, forKey: .registeredHotKey)
     }
     
     func setLeftClickActivation(to value: Bool) async {
         leftClickActivation = value
+        set(value, forKey: .leftClickActivation)
     }
     
     func setDisableOnBatteryMode(to value: Bool) async {
         disableOnBatteryMode = value
+        set(value, forKey: .disableOnBatteryMode)
     }
     
-    func setStopAtBatteryLevel(to value: Int) async {
-        stopAtBatteryLevel = value
+    func setDisableAtBatteryLevel(to value: Int) async {
+        disableAtBatteryLevel = value
+        set(value, forKey: .disableAtBatteryLevel)
     }
+    
+    private func set<V: Codable>(_ value: V, forKey key: String) {
+        userDefaults.set(value, forKey: key)
+    }
+}
+
+private extension String {
+    static let registeredHotKey = "activationHotKey"
+    static let leftClickActivation = "leftClickActivation"
+    static let disableOnBatteryMode = "disableOnBatteryMode"
+    static let disableAtBatteryLevel = "stopAtBatteryLevel"
 }
