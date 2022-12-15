@@ -13,6 +13,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     private let appTitle = "Rocket Fuel"
     private let sleepControl: SleepControl = SleepControl()
     private var menuBarExtra: MenuBarExtra?
+    private var activationDuration: TimeInterval = 0
     
     public func applicationDidFinishLaunching(_ notification: Notification) {
         menuBarExtra = MenuBarExtra(
@@ -52,10 +53,16 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     }
     
     private func toggle() async {
-        if sleepControl.isActive {
-            sleepControl.disable()
+        await setSleepControl(to: !sleepControl.isActive, duration: activationDuration)
+    }
+    
+    private func setSleepControl(to shouldEnable: Bool, duration: TimeInterval = 0) async {
+        activationDuration = duration
+        
+        if shouldEnable {
+            sleepControl.enable(duration: duration)
         } else {
-            sleepControl.enable()
+            sleepControl.disable()
         }
         
         let isActive = sleepControl.isActive
@@ -63,11 +70,11 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     }
     
     private func createMenu() async -> NSMenu {
-        
+        let isActive = sleepControl.isActive
         let leftClickActivation = await appState.leftClickActivation
         
         let menu = Menu(title: appTitle) {
-            Menu.Item.toggle(isActive: sleepControl.isActive) {
+            Menu.Item.toggle(isActive: isActive) {
                 await self.toggle()
             }
             
@@ -80,12 +87,28 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
             }
             
             Menu.Item.deactivateAfter {
-                Menu.Item.button(title: "5 Minutes", selected: false, keyEquivalent: "1") {}
-                Menu.Item.button(title: "15 Minutes", selected: false, keyEquivalent: "2") {}
-                Menu.Item.button(title: "30 Minutes", selected: false, keyEquivalent: "3") {}
-                Menu.Item.button(title: "Never", selected: false, keyEquivalent: "0") {}
+                let durationIsFiveMinutes = activationDuration == 300
+                Menu.Item.button(title: "5 Minutes", selected: durationIsFiveMinutes, keyEquivalent: "1") {
+                    await self.setSleepControl(to: isActive, duration: 300)
+                }
+                
+                let durationIsFifteenMinutes = activationDuration == 900
+                Menu.Item.button(title: "15 Minutes", selected: durationIsFifteenMinutes, keyEquivalent: "2") {
+                    await self.setSleepControl(to: isActive, duration: 900)
+                }
+                
+                let durationIsThirtyMinutes = activationDuration == 1800
+                Menu.Item.button(title: "30 Minutes", selected: durationIsThirtyMinutes, keyEquivalent: "3") {
+                    await self.setSleepControl(to: isActive, duration: 1800)
+                }
+                
+                let durationIsZero = activationDuration == 0
+                Menu.Item.button(title: "Never", selected: durationIsZero, keyEquivalent: "0") {
+                    await self.setSleepControl(to: isActive, duration: 0)
+                }
+                
                 Menu.Item.separator
-                Menu.Item.button(title: "Custom", keyEquivalent: "c") {}
+                Menu.Item.button(title: "Custom", keyEquivalent: "c")
             }
             
             Menu.Item.separator
