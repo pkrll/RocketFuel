@@ -6,13 +6,67 @@ import Cocoa
 import MenuBarExtras
 
 extension Menu {
-    convenience init(title: String, @ResultBuilder<Item> builder: () -> [Item]) {
+    static func create(
+        title: String,
+        isActive: Bool,
+        launchOnLogin: Bool,
+        leftClickActivation: Bool,
+        activationDuration: TimeInterval,
+        toggleAction: @escaping () async -> Void,
+        launchOnLoginAction: @escaping () async -> Void,
+        leftClickActivationAction: @escaping () async -> Void,
+        deactivateAfterAction: @escaping (TimeInterval) async -> Void,
+        preferencesAction: @escaping () async -> Void,
+        aboutAction: @escaping () async -> Void,
+        quitAction: @escaping () async -> Void
+    ) -> NSMenu {
+        Menu(title: title) {
+            Menu.Item.toggle(isActive: isActive, action: toggleAction)
+            Menu.Item.separator
+            
+            Menu.Item.launchOnLogin(selected: launchOnLogin, action: launchOnLoginAction)
+            Menu.Item.leftClickActivation(selected: leftClickActivation, action: leftClickActivationAction)
+            Menu.Item.deactivateAfter {
+                let durationIsFiveMinutes = activationDuration == 300
+                Menu.Item.button(title: "5 Minutes", selected: durationIsFiveMinutes, keyEquivalent: "1") {
+                    await deactivateAfterAction(300)
+                }
+                
+                let durationIsFifteenMinutes = activationDuration == 900
+                Menu.Item.button(title: "15 Minutes", selected: durationIsFifteenMinutes, keyEquivalent: "2") {
+                    await deactivateAfterAction(900)
+                }
+                
+                let durationIsThirtyMinutes = activationDuration == 1800
+                Menu.Item.button(title: "30 Minutes", selected: durationIsThirtyMinutes, keyEquivalent: "3") {
+                    await deactivateAfterAction(1800)
+                }
+                
+                let durationIsZero = activationDuration == 0
+                Menu.Item.button(title: "Never", selected: durationIsZero, keyEquivalent: "0") {
+                    await deactivateAfterAction(0)
+                }
+                
+                Menu.Item.separator
+                Menu.Item.button(title: "Custom", keyEquivalent: "c")
+            }
+            
+            Menu.Item.separator
+            Menu.Item.preferences(action: preferencesAction)
+            Menu.Item.about(action: aboutAction)
+            
+            Menu.Item.separator
+            Menu.Item.quit(action: quitAction)
+        }
+    }
+    
+    private convenience init(title: String, @ResultBuilder<Item> builder: () -> [Item]) {
         let items = builder()
         self.init(title: title, items: items)
     }
 }
 
-extension Menu.Item {
+private extension Menu.Item {
     static func toggle(isActive: Bool, action: @escaping () async -> Void) -> Self {
         .button(title: isActive ? "Deactivate" : "Activate", keyEquivalent: "t", action: action)
     }

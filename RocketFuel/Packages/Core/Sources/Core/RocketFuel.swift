@@ -60,7 +60,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
             await toggle()
         }
     }
-        
+    
     private func stateDidChange(_ event: AppState.Event) {
         guard case .change(let key) = event,
               [.disableAtBatteryLevel, .disableOnBatteryMode].contains(key),
@@ -139,63 +139,30 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         let isActive = sleepControl.isActive
         let leftClickActivation = await appState.leftClickActivation
         
-        let menu = Menu(title: appTitle) {
-            Menu.Item.toggle(isActive: isActive) {
-                await self.toggle()
+        let menu = Menu.create(
+            title: appTitle,
+            isActive: isActive,
+            launchOnLogin: false,
+            leftClickActivation: leftClickActivation,
+            activationDuration: activationDuration
+        ) {
+            await self.toggle()
+        } launchOnLoginAction: {
+            // Launch on login
+        } leftClickActivationAction: {
+            await self.appState.setLeftClickActivation(to: !leftClickActivation)
+        } deactivateAfterAction: { duration in
+            await self.setSleepControl(to: isActive, duration: duration)
+        } preferencesAction: {
+            if #available(macOS 13, *) {
+                await NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+            } else {
+                await NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
             }
-            
-            Menu.Item.separator
-            
-            Menu.Item.launchOnLogin(selected: false) {}
-            
-            Menu.Item.leftClickActivation(selected: leftClickActivation) {
-                await self.appState.setLeftClickActivation(to: !leftClickActivation)
-            }
-            
-            Menu.Item.deactivateAfter {
-                let durationIsFiveMinutes = activationDuration == 300
-                Menu.Item.button(title: "5 Minutes", selected: durationIsFiveMinutes, keyEquivalent: "1") {
-                    await self.setSleepControl(to: isActive, duration: 300)
-                }
-                
-                let durationIsFifteenMinutes = activationDuration == 900
-                Menu.Item.button(title: "15 Minutes", selected: durationIsFifteenMinutes, keyEquivalent: "2") {
-                    await self.setSleepControl(to: isActive, duration: 900)
-                }
-                
-                let durationIsThirtyMinutes = activationDuration == 1800
-                Menu.Item.button(title: "30 Minutes", selected: durationIsThirtyMinutes, keyEquivalent: "3") {
-                    await self.setSleepControl(to: isActive, duration: 1800)
-                }
-                
-                let durationIsZero = activationDuration == 0
-                Menu.Item.button(title: "Never", selected: durationIsZero, keyEquivalent: "0") {
-                    await self.setSleepControl(to: isActive, duration: 0)
-                }
-                
-                Menu.Item.separator
-                Menu.Item.button(title: "Custom", keyEquivalent: "c")
-            }
-            
-            Menu.Item.separator
-            
-            Menu.Item.preferences {
-                if #available(macOS 13, *) {
-                    await NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-                } else {
-                    await NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-                }
-            }
-            
-            Menu.Item.about {
-                
-            }
-            
-            Menu.Item.separator
-            
-            Menu.Item.quit {
-                await NSApp.terminate(self)
-            }
+        } aboutAction: {
+            // Show about
+        } quitAction: {
+            await NSApp.terminate(self)
         }
         
         menu.delegate = self
