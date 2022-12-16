@@ -2,4 +2,5 @@ xcuserdata/
 .DS_Store
 *.xcuserstate
 build/*
+.build/*
 RocketFuelHelper/build/*
