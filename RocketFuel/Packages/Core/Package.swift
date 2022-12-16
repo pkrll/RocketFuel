@@ -23,6 +23,7 @@ let package = Package(
             name: "Core",
             dependencies: [
                 "Analytics",
+                .product(name: "CrashReporting", package: "Analytics"),
                 "HotKeys",
                 "LoginItem",
                 "MenuBarExtras",

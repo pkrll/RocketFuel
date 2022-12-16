@@ -5,6 +5,7 @@
 import Analytics
 import Cocoa
 import Combine
+import CrashReporting
 import HotKeys
 import LoginItem
 import MenuBarExtras
@@ -20,11 +21,13 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     private var menuBarExtra: MenuBarExtra?
     private let hotKeysCentral: HotKeysCentral = .standard
     private let analytics: Analytics
+    private let crashReporter: CrashReporter
     private var activationDuration: TimeInterval = 0
     private var subscriptions: Set<AnyCancellable> = []
     
     override init() {
-        analytics = Analytics(configuration: .standard)
+        analytics = .standard
+        crashReporter = CrashReporter(configuration: .standard)
         super.init()
         
         sleepControl.$isActive
@@ -49,7 +52,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     
     public func applicationDidFinishLaunching(_ notification: Notification) {
         analytics.configure()
-        
+        crashReporter.configure()
         // Workaround for not showing About scene on launch.
         if let window = NSApplication.shared.windows.first {
             window.close()
@@ -127,6 +130,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     
     private func toggle() async {
         await setSleepControl(to: !sleepControl.isActive, duration: activationDuration)
+        analytics.track(.toggle(status: sleepControl.isActive, duration: activationDuration))
     }
     
     private func setSleepControl(to shouldEnable: Bool, duration: TimeInterval = 0) async {
@@ -173,11 +177,11 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
             await NSApp.terminate(self)
         }
 #if DEBUG
-        if analytics.isEnabled {
+        if crashReporter.isEnabled {
             menu.insertDeveloperSettingsMenu {
-                self.analytics.crash()
+                self.crashReporter.crash()
             } log: {
-                self.analytics.log(message: "Pulse.")
+                // Log?
             }
         }
 #endif

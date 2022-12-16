@@ -2,12 +2,13 @@
 //  Copyright © 2022 Ardalan Samimi. All rights reserved.
 //
 
-import Analytics
+import CrashReporting
 import Foundation
 
-extension Configuration {
-    static var standard: Configuration? {
-        nil
+
+extension CrashReporter {
+    static var standard: CrashReporter {
+        CrashReporter(configuration: nil)
     }
 }
 

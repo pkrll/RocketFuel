@@ -3,59 +3,27 @@
 //
 
 import Foundation
-import Sentry
+import Mixpanel
 
 public struct Analytics {
-    
-    public var isEnabled: Bool { SentrySDK.isEnabled }
-    
-    private let configuration: Configuration?
-    
-    public init(configuration: Configuration?) {
-        self.configuration = configuration
+    private let token: String?
+    public init(token: String?) {
+        self.token = token
     }
     
     public func configure() {
-        guard let configuration else {
+        guard let token else {
             return
         }
         
-        SentrySDK.start { options in
-            options.dsn = configuration.url.absoluteString
-            options.releaseName = configuration.version
-#if DEBUG
-            options.debug = true
-            options.diagnosticLevel = .debug
-            options.environment = "Debug"
-#else
-            options.environment = "Release"
-#endif
-        }
+        Mixpanel.initialize(token: token, flushInterval: 15)
     }
     
-    public func log(message: String) {
-        guard isEnabled else {
+    public func track(_ event: Event) {
+        guard token != nil else {
             return
         }
         
-        SentrySDK.capture(message: message)
+        Mixpanel.mainInstance().track(event: event.name, properties: event.properties)
     }
-    
-    public func log(error: Error) {
-        guard isEnabled else {
-            return
-        }
-        
-        SentrySDK.capture(error: error)
-    }
-    
-#if DEBUG
-    public func crash() {
-        guard SentrySDK.isEnabled else {
-            return
-        }
-        
-        SentrySDK.crash()
-    }
-#endif
 }
