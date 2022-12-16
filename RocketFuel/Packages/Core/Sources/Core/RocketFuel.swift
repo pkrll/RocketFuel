@@ -10,7 +10,8 @@ import SleepControl
 
 public final class RocketFuel: NSObject, NSApplicationDelegate {
     
-    private let appState = AppState()
+    public let appState = AppState()
+    
     private let appTitle = "Rocket Fuel"
     private let sleepControl: SleepControl = SleepControl()
     private var menuBarExtra: MenuBarExtra?

@@ -2,8 +2,9 @@
 //  Copyright © 2022 Ardalan Samimi. All rights reserved.
 //
 
-import SwiftUI
 import Core
+import SwiftUI
+import UserInterfaces
 
 @main
 struct Main: App {
@@ -12,6 +13,8 @@ struct Main: App {
     private var rocketFuel: RocketFuel
     
     var body: some Scene {
-        Settings {}
+        Settings {
+            SettingsContainerView(settings: rocketFuel.appState)
+        }
     }
 }

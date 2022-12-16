@@ -24,6 +24,7 @@
 		6AAFFF242944AB2300730941 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AAFFF262944AB2300730941 /* RocketFuel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RocketFuel.entitlements; sourceTree = "<group>"; };
 		6AC874E1294BD65C002E519D /* SleepControl */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SleepControl; sourceTree = "<group>"; };
+		6AC874E2294BE721002E519D /* UserInterfaces */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserInterfaces; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +47,7 @@
 				6A12CB6C294BB9B100F46406 /* MenuBarExtras */,
 				6A12CB72294BCAE400F46406 /* Resources */,
 				6AC874E1294BD65C002E519D /* SleepControl */,
+				6AC874E2294BE721002E519D /* UserInterfaces */,
 			);
 			path = Packages;
 			sourceTree = "<group>";
