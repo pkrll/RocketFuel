@@ -308,7 +308,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1644;
+				CURRENT_PROJECT_VERSION = 1645;
 				DEVELOPMENT_ASSET_PATHS = "\"RocketFuel/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = ZHSKC28PQ8;
@@ -345,7 +345,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution: Ardalan Samimi (ZHSKC28PQ8)";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1644;
+				CURRENT_PROJECT_VERSION = 1645;
 				DEVELOPMENT_ASSET_PATHS = "\"RocketFuel/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = ZHSKC28PQ8;
