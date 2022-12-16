@@ -19,11 +19,15 @@ public struct Analytics {
         Mixpanel.initialize(token: token, flushInterval: 15)
     }
     
-    public func track(_ event: Event) {
+    public func track(_ event: Event, sendImmediately: Bool = false) {
         guard token != nil else {
             return
         }
         
         Mixpanel.mainInstance().track(event: event.name, properties: event.properties)
+        
+        if sendImmediately {
+            Mixpanel.mainInstance().flush()
+        }
     }
 }

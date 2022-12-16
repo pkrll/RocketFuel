@@ -50,6 +50,10 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         }
     }
     
+    public func applicationWillTerminate(_ notification: Notification) {
+        analytics.track(.terminate, sendImmediately: true)
+    }
+    
     public func applicationDidFinishLaunching(_ notification: Notification) {
         analytics.configure()
         crashReporter.configure()
@@ -77,9 +81,14 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     }
     
     private func stateDidChange(_ event: AppState.Event) {
-        guard case .change(let key) = event,
-              [.disableAtBatteryLevel, .disableOnBatteryMode].contains(key),
-              sleepControl.isActive
+        guard case .change(let key, let value) = event else {
+            return
+        }
+        
+        analytics.track(.update(setting: key.rawValue, value: "\(value)"))
+        
+        guard sleepControl.isActive,
+              [.disableAtBatteryLevel, .disableOnBatteryMode].contains(key)
         else {
             return
         }
@@ -130,7 +139,6 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     
     private func toggle() async {
         await setSleepControl(to: !sleepControl.isActive, duration: activationDuration)
-        analytics.track(.toggle(status: sleepControl.isActive, duration: activationDuration))
     }
     
     private func setSleepControl(to shouldEnable: Bool, duration: TimeInterval = 0) async {
@@ -148,6 +156,8 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         } else {
             sleepControl.disable()
         }
+        
+        analytics.track(.toggle(status: sleepControl.isActive, duration: activationDuration))
     }
     
     private func createMenu() async -> NSMenu {
@@ -201,6 +211,8 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         } else {
             await NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
         }
+        
+        analytics.track(.showPreferences)
     }
     
     private func showAboutWindow() {
@@ -209,6 +221,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         }
         
         NSWorkspace.shared.open(url)
+        analytics.track(.showAbout)
     }
 }
 // MARK: - NSMenuDelegate

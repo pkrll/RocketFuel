@@ -11,7 +11,7 @@ public actor AppState: Settings {
     
     enum Event {
         case launch
-        case change(Key)
+        case change(Key, newValue: Codable)
     }
     
     enum Key: String {
@@ -94,6 +94,6 @@ public actor AppState: Settings {
     
     private func set<V: Codable>(_ value: V, forKey key: Key) {
         userDefaults.set(value, forKey: key.rawValue)
-        onChangePublisher = .change(key)
+        onChangePublisher = .change(key, newValue: value)
     }
 }
