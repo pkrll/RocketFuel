@@ -30,6 +30,16 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
                 self?.hotKeyWasTriggered()
             }
             .store(in: &subscriptions)
+        
+        Task {
+            await appState.$onChangePublisher
+                .dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { [weak self] value in
+                    self?.stateDidChange(value)
+                }
+                .store(in: &subscriptions)
+        }
     }
     
     public func applicationDidFinishLaunching(_ notification: Notification) {
@@ -48,6 +58,19 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     private func hotKeyWasTriggered() {
         Task {
             await toggle()
+        }
+    }
+        
+    private func stateDidChange(_ event: AppState.Event) {
+        guard case .change(let key) = event,
+              [.disableAtBatteryLevel, .disableOnBatteryMode].contains(key),
+              sleepControl.isActive
+        else {
+            return
+        }
+        
+        Task {
+            await setSleepControl(to: true, duration: activationDuration)
         }
     }
     
@@ -96,7 +119,14 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         activationDuration = duration
         
         if shouldEnable {
-            sleepControl.enable(duration: duration)
+            let shouldStopOnBatteryMode = await appState.disableOnBatteryMode
+            let minimumBatteryLevel = await appState.disableAtBatteryLevel
+            
+            sleepControl.enable(
+                duration: duration,
+                shouldStopOnBatteryMode: shouldStopOnBatteryMode,
+                minimumBatteryLevel: minimumBatteryLevel
+            )
         } else {
             sleepControl.disable()
         }

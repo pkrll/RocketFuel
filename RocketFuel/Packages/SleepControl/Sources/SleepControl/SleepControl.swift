@@ -3,25 +3,42 @@
 //
 
 import Foundation
+import IOKit.pwr_mgt
 
 public final class SleepControl {
     
     @Published public private(set) var isActive = false
     
     private let assertionManager: AssertionManager
+    private let batteryMonitor: BatteryMonitor
+    private var shouldStopOnBatteryMode = false
+    private var minimumBatteryLevel = 0
     private var timer: Timer?
     
     public convenience init() {
-        self.init(assertionManager: AssertionManager())
+        self.init(assertionManager: AssertionManager(), batteryMonitor: BatteryMonitor())
     }
     
-    init(assertionManager: AssertionManager) {
+    init(assertionManager: AssertionManager, batteryMonitor: BatteryMonitor) {
         self.assertionManager = assertionManager
+        self.batteryMonitor = batteryMonitor
     }
     /// Enable sleep prevention.
     @discardableResult
-    public func enable(duration: TimeInterval = 0) -> Bool {
+    public func enable(
+        duration: TimeInterval = 0,
+        shouldStopOnBatteryMode: Bool,
+        minimumBatteryLevel: Int
+    ) -> Bool {
+        // Ignore shouldStopOnBatteryMode parameter if activated while on battery mode
+        self.shouldStopOnBatteryMode = shouldStopOnBatteryMode && !PowerSource.onBatteryPower
+        self.minimumBatteryLevel = minimumBatteryLevel
+        
         isActive = assertionManager.create(.preventIdleDisplaySleep, timeout: duration as CFTimeInterval)
+        
+        if self.shouldStopOnBatteryMode || minimumBatteryLevel > 0 {
+            beginMonitoringBattery()
+        }
         
         guard isActive, duration > 0 else {
             return false
@@ -31,12 +48,41 @@ public final class SleepControl {
             guard let self else { return }
             self.isActive = false
         }
-
+        
         return isActive
     }
     /// Disable sleep prevention.
     public func disable() {
         assertionManager.clear()
         isActive = false
+    }
+    
+    private func beginMonitoringBattery() {
+        batteryMonitor.stop()
+        batteryMonitor.start { context in
+            let this = Unmanaged<SleepControl>.fromOpaque(UnsafeRawPointer(context)!).takeUnretainedValue()
+            this.disableIfNeeded()
+        }
+    }
+    
+    private func disableIfNeeded() {
+        guard isActive else {
+            batteryMonitor.stop()
+            return
+        }
+        
+        do {
+            let hasSwitchedToBattery = shouldStopOnBatteryMode && PowerSource.onBatteryPower
+            let batteryLevelIsBelowLimit = try PowerSource.currentCharge < minimumBatteryLevel
+            
+            guard batteryLevelIsBelowLimit || hasSwitchedToBattery else {
+                return
+            }
+        } catch {
+            print("Unexpected error. Power sources not available: \(error.localizedDescription)")
+        }
+        
+        disable()
+        batteryMonitor.stop()
     }
 }
