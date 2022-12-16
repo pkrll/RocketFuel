@@ -3,6 +3,7 @@
 //
 
 import Cocoa
+import Combine
 import HotKeys
 import MenuBarExtras
 import Resources
@@ -17,6 +18,19 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     private var menuBarExtra: MenuBarExtra?
     private let hotKeysCentral: HotKeysCentral = .standard
     private var activationDuration: TimeInterval = 0
+    private var subscriptions: Set<AnyCancellable> = []
+    
+    override init() {
+        super.init()
+        
+        hotKeysCentral.$hotKeyPublisher
+            .dropFirst()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] value in
+                self?.hotKeyWasTriggered()
+            }
+            .store(in: &subscriptions)
+    }
     
     public func applicationDidFinishLaunching(_ notification: Notification) {
         menuBarExtra = MenuBarExtra(
@@ -31,16 +45,18 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         }
     }
     
+    private func hotKeyWasTriggered() {
+        Task {
+            await toggle()
+        }
+    }
+    
     private func loadRegisteredHotKey() async {
         guard let hotKey = await appState.registeredHotKey else {
             return
         }
-
+        
         do {
-            let hotKey = HotKey(from: hotKey) {
-                await self.toggle()
-            }
-            
             try hotKeysCentral.register(hotKey)
         } catch {
             print("An error occurred. Unable to register hot key: \(error).")
@@ -161,15 +177,5 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
 extension RocketFuel: NSMenuDelegate {
     public func menuDidClose(_ menu: NSMenu) {
         menuBarExtra?.closeMenu()
-    }
-}
-
-private extension HotKey {
-    init(from hotKey: HotKey, action: @escaping () async -> Void) {
-        self.init(keyCode: hotKey.keyCode, modifier: hotKey.modifier, readable: hotKey.readable) {
-            Task {
-                await action()
-            }
-        }
     }
 }

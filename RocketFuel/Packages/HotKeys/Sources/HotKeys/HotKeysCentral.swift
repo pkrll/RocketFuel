@@ -5,14 +5,13 @@
 import Carbon
 
 public final class HotKeysCentral {
+    
+    @Published public private(set) var hotKeyPublisher: HotKey?
+    
     public static let standard = HotKeysCentral()
     private var registeredHotKeys: [Int: HotKey] = [:]
     
     init() {
-        configure()
-    }
-    
-    private func configure() {
         var eventType = EventTypeSpec()
         eventType.eventClass = OSType(kEventClassKeyboard)
         eventType.eventKind = OSType(kEventHotKeyPressed)
@@ -52,7 +51,7 @@ public final class HotKeysCentral {
             return -1
         }
         
-        hotKey.action?()
+        hotKeyPublisher = hotKey
         return status
     }
     

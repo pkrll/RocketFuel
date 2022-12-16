@@ -49,7 +49,6 @@ extension HotKey: Codable {
         keyCode = try values.decode(Int.self, forKey: .keyCode)
         modifier = try values.decode(Int.self, forKey: .modifier)
         readable = try values.decode(String.self, forKey: .readable)
-        action = nil
     }
     
     public func encode(to encoder: Encoder) throws {

@@ -93,7 +93,7 @@ struct KeyRecorderView: View {
         }
         
         do {
-            let hotKey = HotKey(keyCode: keyCode, modifier: modifier, readable: character, action: nil)
+            let hotKey = HotKey(keyCode: keyCode, modifier: modifier, readable: character)
             try HotKeysCentral.standard.register(hotKey)
             state = .recorded(hotKey: hotKey)
             
