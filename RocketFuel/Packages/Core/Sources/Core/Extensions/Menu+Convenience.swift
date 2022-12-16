@@ -19,7 +19,7 @@ extension Menu {
         preferencesAction: @escaping () async -> Void,
         aboutAction: @escaping () async -> Void,
         quitAction: @escaping () async -> Void
-    ) -> NSMenu {
+    ) -> Menu {
         Menu(title: title) {
             Menu.Item.toggle(isActive: isActive, action: toggleAction)
             Menu.Item.separator
@@ -59,6 +59,22 @@ extension Menu {
             Menu.Item.quit(action: quitAction)
         }
     }
+    
+#if DEBUG
+    func insertDeveloperSettingsMenu(crash: @escaping () -> Void, log: @escaping () -> Void) {
+        let title = "Developer Settings"
+        let menu = Menu(title: title) {
+            Menu.Item.button(title: "Log Pulse", action: log)
+            Menu.Item.button(title: "Crash", action: crash)
+        }
+        
+        let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
+        item.submenu = menu
+        
+        let lastIndex = items.count - 1
+        insertItem(item, at: lastIndex)
+    }
+#endif
     
     private convenience init(title: String, @ResultBuilder<Item> builder: () -> [Item]) {
         let items = builder()

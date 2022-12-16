@@ -46,6 +46,7 @@
 		6ABF0446294CCC530075015E /* Launcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Launcher.entitlements; sourceTree = "<group>"; };
 		6ABF0451294CE4A60075015E /* Launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launcher.swift; sourceTree = "<group>"; };
 		6ABF0453294CE5050075015E /* LoginItem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LoginItem; sourceTree = "<group>"; };
+		6ABF0454294CFA2D0075015E /* Analytics */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Analytics; sourceTree = "<group>"; };
 		6AC874E1294BD65C002E519D /* SleepControl */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SleepControl; sourceTree = "<group>"; };
 		6AC874E2294BE721002E519D /* UserInterfaces */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserInterfaces; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +74,7 @@
 		6A12CB6A294BB61800F46406 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				6ABF0454294CFA2D0075015E /* Analytics */,
 				6A12CB6E294BC0AF00F46406 /* Core */,
 				6A12CB6D294BBD7400F46406 /* HotKeys */,
 				6ABF0453294CE5050075015E /* LoginItem */,

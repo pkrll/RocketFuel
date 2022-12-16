@@ -10,6 +10,7 @@ let package = Package(
         .library(name: "Core", targets: ["Core"]),
     ],
     dependencies: [
+        .package(path: "../Analytics"),
         .package(path: "../HotKeys"),
         .package(path: "../LoginItem"),
         .package(path: "../MenuBarExtras"),
@@ -21,9 +22,10 @@ let package = Package(
         .target(
             name: "Core",
             dependencies: [
-                "MenuBarExtras",
+                "Analytics",
                 "HotKeys",
                 "LoginItem",
+                "MenuBarExtras",
                 "Resources",
                 "SleepControl",
                 "UserInterfaces",

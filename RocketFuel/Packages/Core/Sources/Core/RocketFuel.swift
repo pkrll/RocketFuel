@@ -2,6 +2,7 @@
 //  Copyright © 2022 Ardalan Samimi. All rights reserved.
 //
 
+import Analytics
 import Cocoa
 import Combine
 import HotKeys
@@ -18,10 +19,12 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     private let sleepControl: SleepControl = SleepControl()
     private var menuBarExtra: MenuBarExtra?
     private let hotKeysCentral: HotKeysCentral = .standard
+    private let analytics: Analytics
     private var activationDuration: TimeInterval = 0
     private var subscriptions: Set<AnyCancellable> = []
     
     override init() {
+        analytics = Analytics(configuration: .standard)
         super.init()
         
         sleepControl.$isActive
@@ -45,6 +48,8 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     }
     
     public func applicationDidFinishLaunching(_ notification: Notification) {
+        analytics.configure()
+        
         // Workaround for not showing About scene on launch.
         if let window = NSApplication.shared.windows.first {
             window.close()
@@ -167,7 +172,15 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         } quitAction: {
             await NSApp.terminate(self)
         }
-        
+#if DEBUG
+        if analytics.isEnabled {
+            menu.insertDeveloperSettingsMenu {
+                self.analytics.crash()
+            } log: {
+                self.analytics.log(message: "Pulse.")
+            }
+        }
+#endif
         menu.delegate = self
         
         return menu
