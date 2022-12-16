@@ -1,3 +1,3 @@
 # Resources
 
-A description of this package.
+This package contains images and other resources. 

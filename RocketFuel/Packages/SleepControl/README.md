@@ -1,3 +1,3 @@
 # SleepControl
 
-A description of this package.
+This package contains classes relating to power management.
