@@ -5,6 +5,7 @@
 import Cocoa
 import Combine
 import HotKeys
+import LoginItem
 import MenuBarExtras
 import Resources
 import SleepControl
@@ -143,33 +144,26 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     private func createMenu() async -> NSMenu {
         let isActive = sleepControl.isActive
         let leftClickActivation = await appState.leftClickActivation
+        let launchOnLogin = await appState.autoLaunchOnLogin
         
         let menu = Menu.create(
             title: appTitle,
             isActive: isActive,
-            launchOnLogin: false,
+            launchOnLogin: launchOnLogin,
             leftClickActivation: leftClickActivation,
             activationDuration: activationDuration
         ) {
             await self.toggle()
         } launchOnLoginAction: {
-            // Launch on login
+            await self.toggleLaunchOnLogin()
         } leftClickActivationAction: {
             await self.appState.setLeftClickActivation(to: !leftClickActivation)
         } deactivateAfterAction: { duration in
             await self.setSleepControl(to: isActive, duration: duration)
         } preferencesAction: {
-            if #available(macOS 13, *) {
-                await NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-            } else {
-                await NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-            }
+            await self.showPreferencesWindow()
         } aboutAction: {
-            guard let url = URL(string: "rocketfuel://about") else {
-                return
-            }
-            
-            NSWorkspace.shared.open(url)
+            self.showAboutWindow()
         } quitAction: {
             await NSApp.terminate(self)
         }
@@ -177,6 +171,27 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         menu.delegate = self
         
         return menu
+    }
+    
+    private func toggleLaunchOnLogin() async {
+        let launchOnLogin = await appState.autoLaunchOnLogin
+        await appState.setAutoLaunchOnLogin(to: !launchOnLogin)
+    }
+    
+    private func showPreferencesWindow() async {
+        if #available(macOS 13, *) {
+            await NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+        } else {
+            await NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+        }
+    }
+    
+    private func showAboutWindow() {
+        guard let url = URL(string: "rocketfuel://about") else {
+            return
+        }
+        
+        NSWorkspace.shared.open(url)
     }
 }
 // MARK: - NSMenuDelegate

@@ -12,7 +12,23 @@
 		6AAFFF222944AB2300730941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF212944AB2300730941 /* Assets.xcassets */; };
 		6AAFFF252944AB2300730941 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF242944AB2300730941 /* Preview Assets.xcassets */; };
 		6ABF0435294CAAE80075015E /* UserInterfaces in Frameworks */ = {isa = PBXBuildFile; productRef = 6ABF0434294CAAE80075015E /* UserInterfaces */; };
+		6ABF043E294CCC510075015E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF043D294CCC510075015E /* main.swift */; };
+		6ABF044B294CD3990075015E /* Launcher.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6ABF043B294CCC510075015E /* Launcher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6ABF0452294CE4A60075015E /* Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF0451294CE4A60075015E /* Launcher.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6ABF044A294CD3810075015E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				6ABF044B294CD3990075015E /* Launcher.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6A12CB6C294BB9B100F46406 /* MenuBarExtras */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MenuBarExtras; sourceTree = "<group>"; };
@@ -25,6 +41,11 @@
 		6AAFFF212944AB2300730941 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AAFFF242944AB2300730941 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AAFFF262944AB2300730941 /* RocketFuel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RocketFuel.entitlements; sourceTree = "<group>"; };
+		6ABF043B294CCC510075015E /* Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Launcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ABF043D294CCC510075015E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		6ABF0446294CCC530075015E /* Launcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Launcher.entitlements; sourceTree = "<group>"; };
+		6ABF0451294CE4A60075015E /* Launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launcher.swift; sourceTree = "<group>"; };
+		6ABF0453294CE5050075015E /* LoginItem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LoginItem; sourceTree = "<group>"; };
 		6AC874E1294BD65C002E519D /* SleepControl */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SleepControl; sourceTree = "<group>"; };
 		6AC874E2294BE721002E519D /* UserInterfaces */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserInterfaces; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -39,6 +60,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6ABF0438294CCC510075015E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -47,6 +75,7 @@
 			children = (
 				6A12CB6E294BC0AF00F46406 /* Core */,
 				6A12CB6D294BBD7400F46406 /* HotKeys */,
+				6ABF0453294CE5050075015E /* LoginItem */,
 				6A12CB6C294BB9B100F46406 /* MenuBarExtras */,
 				6A12CB72294BCAE400F46406 /* Resources */,
 				6AC874E1294BD65C002E519D /* SleepControl */,
@@ -66,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				6AAFFF1C2944AB2100730941 /* RocketFuel */,
+				6ABF043C294CCC510075015E /* Launcher */,
 				6AAFFF1B2944AB2100730941 /* Products */,
 				6A12CB6F294BC1DD00F46406 /* Frameworks */,
 			);
@@ -75,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				6AAFFF1A2944AB2100730941 /* RocketFuel.app */,
+				6ABF043B294CCC510075015E /* Launcher.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +139,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		6ABF043C294CCC510075015E /* Launcher */ = {
+			isa = PBXGroup;
+			children = (
+				6ABF043D294CCC510075015E /* main.swift */,
+				6ABF0451294CE4A60075015E /* Launcher.swift */,
+				6ABF0446294CCC530075015E /* Launcher.entitlements */,
+			);
+			path = Launcher;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,6 +159,7 @@
 				6AAFFF162944AB2100730941 /* Sources */,
 				6AAFFF172944AB2100730941 /* Frameworks */,
 				6AAFFF182944AB2100730941 /* Resources */,
+				6ABF044A294CD3810075015E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -132,18 +174,40 @@
 			productReference = 6AAFFF1A2944AB2100730941 /* RocketFuel.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6ABF043A294CCC510075015E /* Launcher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6ABF0447294CCC530075015E /* Build configuration list for PBXNativeTarget "Launcher" */;
+			buildPhases = (
+				6ABF0437294CCC510075015E /* Sources */,
+				6ABF0438294CCC510075015E /* Frameworks */,
+				6ABF0439294CCC510075015E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Launcher;
+			packageProductDependencies = (
+			);
+			productName = Launcher;
+			productReference = 6ABF043B294CCC510075015E /* Launcher.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		6AAFFF122944AB2100730941 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
 				ORGANIZATIONNAME = "Ardalan Samimi";
 				TargetAttributes = {
 					6AAFFF192944AB2100730941 = {
 						CreatedOnToolsVersion = 14.0;
+					};
+					6ABF043A294CCC510075015E = {
+						CreatedOnToolsVersion = 14.1;
 					};
 				};
 			};
@@ -161,6 +225,7 @@
 			projectRoot = "";
 			targets = (
 				6AAFFF192944AB2100730941 /* RocketFuel */,
+				6ABF043A294CCC510075015E /* Launcher */,
 			);
 		};
 /* End PBXProject section */
@@ -175,6 +240,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6ABF0439294CCC510075015E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -183,6 +255,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AAFFF1E2944AB2100730941 /* Main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ABF0437294CCC510075015E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ABF043E294CCC510075015E /* main.swift in Sources */,
+				6ABF0452294CE4A60075015E /* Launcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +303,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -282,6 +364,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -308,10 +391,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = RocketFuel/Resources/RocketFuel.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1645;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"RocketFuel/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = ZHSKC28PQ8;
@@ -349,6 +434,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1645;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"RocketFuel/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = ZHSKC28PQ8;
@@ -375,6 +461,65 @@
 			};
 			name = Release;
 		};
+		6ABF0448294CCC530075015E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Launcher/Launcher.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = ZHSKC28PQ8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSBackgroundOnly = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Ardalan Samimi. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel.Launcher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		6ABF0449294CCC530075015E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Launcher/Launcher.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = ZHSKC28PQ8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSBackgroundOnly = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Ardalan Samimi. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel.Launcher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -392,6 +537,15 @@
 			buildConfigurations = (
 				6AAFFF2A2944AB2300730941 /* Debug */,
 				6AAFFF2B2944AB2300730941 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6ABF0447294CCC530075015E /* Build configuration list for PBXNativeTarget "Launcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ABF0448294CCC530075015E /* Debug */,
+				6ABF0449294CCC530075015E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

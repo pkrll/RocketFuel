@@ -11,6 +11,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../HotKeys"),
+        .package(path: "../LoginItem"),
         .package(path: "../MenuBarExtras"),
         .package(path: "../Resources"),
         .package(path: "../SleepControl"),
@@ -22,6 +23,7 @@ let package = Package(
             dependencies: [
                 "MenuBarExtras",
                 "HotKeys",
+                "LoginItem",
                 "Resources",
                 "SleepControl",
                 "UserInterfaces",

@@ -4,6 +4,7 @@
 
 import Foundation
 import HotKeys
+import LoginItem
 import UserInterfaces
 
 public actor AppState: Settings {
@@ -15,6 +16,7 @@ public actor AppState: Settings {
     
     enum Key: String {
         case registeredHotKey = "activationHotKey"
+        case autoLaunchOnLogin = "launchAtLogin"
         case leftClickActivation = "leftClickActivation"
         case disableOnBatteryMode = "disableOnBatteryMode"
         case disableAtBatteryLevel = "stopAtBatteryLevel"
@@ -28,7 +30,16 @@ public actor AppState: Settings {
     public private(set) var disableOnBatteryMode: Bool
     public private(set) var disableAtBatteryLevel: Int
     
+    public var autoLaunchOnLogin: Bool {
+        if #available(macOS 13.0, *) {
+            return loginItem.isEnabled
+        } else {
+            return userDefaults.bool(forKey: Key.autoLaunchOnLogin.rawValue)
+        }
+    }
+    
     private let userDefaults: UserDefaults = .standard
+    private let loginItem: LoginItem
     
     init() {
         if let data = userDefaults.object(forKey: Key.registeredHotKey.rawValue) as? Data {
@@ -39,6 +50,9 @@ public actor AppState: Settings {
         leftClickActivation = userDefaults.bool(forKey: Key.leftClickActivation.rawValue)
         disableOnBatteryMode = userDefaults.bool(forKey: Key.disableOnBatteryMode.rawValue)
         disableAtBatteryLevel = userDefaults.integer(forKey: Key.disableAtBatteryLevel.rawValue)
+        
+        let bundleIdentifier = Bundle.main.bundleIdentifier?.appending(".Launcher") ?? ""
+        loginItem = LoginItem(bundleIdentifier: bundleIdentifier)
     }
     
     public func setRegisteredHotKey(to value: HotKey?) {
@@ -56,6 +70,11 @@ public actor AppState: Settings {
         } catch {
             print("Unexpected error. Could not set value (\(value)) for key \(Key.registeredHotKey)")
         }
+    }
+    
+    public func setAutoLaunchOnLogin(to value: Bool) async {
+        loginItem.enable(value)
+        set(value, forKey: .autoLaunchOnLogin)
     }
     
     public func setLeftClickActivation(to value: Bool) async {
