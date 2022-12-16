@@ -18,6 +18,21 @@ platform :mac do
       fail_on_name_taken: true,
       force: true
     )
+    
+    get_provisioning_profile(
+      team_id: ENV['TEAM_ID'],
+      provisioning_name: "Rocket Fuel Launcher",
+      app_identifier: ENV['HELPER_APP_IDENTIFIER'],
+      username: ENV['FASTLANE_USER'],
+      filename: "RocketFuelLauncher.mobileprovision",
+      output_path: "./.build/",
+      platform: "macos",
+      development: false,
+      ignore_profiles_with_different_name: true,
+      skip_certificate_verification: true,
+      fail_on_name_taken: true,
+      force: true
+    )
 
     increment_build_number(xcodeproj: "RocketFuel.xcodeproj")
     build_app(
