@@ -1,18 +1,28 @@
 default_platform(:mac)
+xcode_select("/Applications/Xcode.app")
 
 platform :mac do
   desc "Push a new beta build to TestFlight"
   lane :beta do
+    get_provisioning_profile(
+      team_id: ENV['TEAM_ID'],
+      provisioning_name: "Rocket Fuel",
+      app_identifier: ENV['APP_IDENTIFIER'],
+      username: ENV['FASTLANE_USER'],
+      filename: "RocketFuel.mobileprovision",
+      output_path: "./.build/",
+      platform: "macos",
+      development: false,
+      ignore_profiles_with_different_name: true,
+      skip_certificate_verification: true,
+      fail_on_name_taken: true,
+      force: true
+    )
+
     increment_build_number(xcodeproj: "RocketFuel.xcodeproj")
     build_app(
       scheme: "RocketFuel",
-      output_directory: "./.build/",
-      export_options: {
-        provisioningProfiles: { 
-          "com.ardalansamimi.RocketFuel" => "Rocket Fuel"
-        }
-      },
-      installer_cert_name: "3rd Party Mac Developer Installer: Ardalan Samimi (ZHSKC28PQ8)"
+      output_directory: "./.build/"
     )
     upload_to_testflight
   end
