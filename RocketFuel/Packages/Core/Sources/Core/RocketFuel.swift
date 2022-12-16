@@ -23,21 +23,22 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     override init() {
         super.init()
         
+        sleepControl.$isActive
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: updateUI(isActive:))
+            .store(in: &subscriptions)
+        
         hotKeysCentral.$hotKeyPublisher
             .dropFirst()
             .receive(on: RunLoop.main)
-            .sink { [weak self] value in
-                self?.hotKeyWasTriggered()
-            }
+            .sink(receiveValue: hotKeyWasTriggered(_:))
             .store(in: &subscriptions)
         
         Task {
             await appState.$onChangePublisher
                 .dropFirst()
                 .receive(on: RunLoop.main)
-                .sink { [weak self] value in
-                    self?.stateDidChange(value)
-                }
+                .sink(receiveValue: stateDidChange(_:))
                 .store(in: &subscriptions)
         }
     }
@@ -51,11 +52,11 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         
         Task { @MainActor in
             await loadRegisteredHotKey()
-            await updateUI(isActive: false)
+            updateUI(isActive: false)
         }
     }
     
-    private func hotKeyWasTriggered() {
+    private func hotKeyWasTriggered(_ hotKey: HotKey?) {
         Task {
             await toggle()
         }
@@ -74,6 +75,13 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         }
     }
     
+    private func updateUI(isActive: Bool) {
+        Task { @MainActor in
+            let image: NSImage = isActive ? .statusItemActive : .statusItemIdle
+            menuBarExtra?.set(image: image)
+        }
+    }
+    
     private func loadRegisteredHotKey() async {
         guard let hotKey = await appState.registeredHotKey else {
             return
@@ -84,11 +92,6 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         } catch {
             print("An error occurred. Unable to register hot key: \(error).")
         }
-    }
-    
-    private func updateUI(isActive: Bool) async {
-        let image: NSImage = isActive ? .statusItemActive : .statusItemIdle
-        await menuBarExtra?.set(image: image)
     }
     
     private func leftClickEvent(_ flags: NSEvent.ModifierFlags) async throws {
@@ -130,9 +133,6 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         } else {
             sleepControl.disable()
         }
-        
-        let isActive = sleepControl.isActive
-        await updateUI(isActive: isActive)
     }
     
     private func createMenu() async -> NSMenu {

@@ -22,6 +22,7 @@ public final class SleepControl {
     init(assertionManager: AssertionManager, batteryMonitor: BatteryMonitor) {
         self.assertionManager = assertionManager
         self.batteryMonitor = batteryMonitor
+        batteryMonitor.start(onChange: disableIfNeeded)
     }
     /// Enable sleep prevention.
     @discardableResult
@@ -35,10 +36,6 @@ public final class SleepControl {
         self.minimumBatteryLevel = minimumBatteryLevel
         
         isActive = assertionManager.create(.preventIdleDisplaySleep, timeout: duration as CFTimeInterval)
-        
-        if self.shouldStopOnBatteryMode || minimumBatteryLevel > 0 {
-            beginMonitoringBattery()
-        }
         
         guard isActive, duration > 0 else {
             return false
@@ -57,17 +54,8 @@ public final class SleepControl {
         isActive = false
     }
     
-    private func beginMonitoringBattery() {
-        batteryMonitor.stop()
-        batteryMonitor.start { context in
-            let this = Unmanaged<SleepControl>.fromOpaque(UnsafeRawPointer(context)!).takeUnretainedValue()
-            this.disableIfNeeded()
-        }
-    }
-    
     private func disableIfNeeded() {
         guard isActive else {
-            batteryMonitor.stop()
             return
         }
         
@@ -83,6 +71,5 @@ public final class SleepControl {
         }
         
         disable()
-        batteryMonitor.stop()
     }
 }

@@ -7,9 +7,21 @@ import IOKit.ps
 
 final class BatteryMonitor {
     
+    private var onChange: (() -> Void)?
     private var runLoopSource: CFRunLoopSource?
     
-    func start(callback: IOPowerSourceCallbackType) {
+    func start(onChange: @escaping () -> Void) {
+        if runLoopSource != nil {
+            stop()
+        }
+        
+        self.onChange = onChange
+        
+        let callback: IOPowerSourceCallbackType = { context in
+            let this = Unmanaged<BatteryMonitor>.fromOpaque(UnsafeRawPointer(context)!).takeUnretainedValue()
+            this.onChange?()
+        }
+        
         let pointerToSelf = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
         runLoopSource = IOPSNotificationCreateRunLoopSource(callback, pointerToSelf).takeUnretainedValue()
         CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .defaultMode)
@@ -22,5 +34,6 @@ final class BatteryMonitor {
         
         CFRunLoopRemoveSource(CFRunLoopGetCurrent(), runLoopSource, .defaultMode)
         self.runLoopSource = nil
+        onChange = nil
     }
 }
