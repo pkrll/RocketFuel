@@ -44,6 +44,11 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     }
     
     public func applicationDidFinishLaunching(_ notification: Notification) {
+        // Workaround for not showing About scene on launch.
+        if let window = NSApplication.shared.windows.first {
+            window.close()
+        }
+        
         menuBarExtra = MenuBarExtra(
             toolTip: appTitle,
             leftClickEvent: leftClickEvent(_:),
@@ -160,7 +165,11 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
                 await NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
             }
         } aboutAction: {
-            // Show about
+            guard let url = URL(string: "rocketfuel://about") else {
+                return
+            }
+            
+            NSWorkspace.shared.open(url)
         } quitAction: {
             await NSApp.terminate(self)
         }

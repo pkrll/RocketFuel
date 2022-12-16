@@ -11,6 +11,7 @@
 		6AAFFF1E2944AB2100730941 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAFFF1D2944AB2100730941 /* Main.swift */; };
 		6AAFFF222944AB2300730941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF212944AB2300730941 /* Assets.xcassets */; };
 		6AAFFF252944AB2300730941 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF242944AB2300730941 /* Preview Assets.xcassets */; };
+		6ABF0435294CAAE80075015E /* UserInterfaces in Frameworks */ = {isa = PBXBuildFile; productRef = 6ABF0434294CAAE80075015E /* UserInterfaces */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A12CB71294BC1DD00F46406 /* Core in Frameworks */,
+				6ABF0435294CAAE80075015E /* UserInterfaces in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +126,7 @@
 			name = RocketFuel;
 			packageProductDependencies = (
 				6A12CB70294BC1DD00F46406 /* Core */,
+				6ABF0434294CAAE80075015E /* UserInterfaces */,
 			);
 			productName = RocketFuel;
 			productReference = 6AAFFF1A2944AB2100730941 /* RocketFuel.app */;
@@ -399,6 +402,10 @@
 		6A12CB70294BC1DD00F46406 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
+		};
+		6ABF0434294CAAE80075015E /* UserInterfaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UserInterfaces;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
