@@ -185,15 +185,13 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         } quitAction: {
             await NSApp.terminate(self)
         }
-#if DEBUG
-        if crashReporter.isEnabled {
-            menu.insertDeveloperSettingsMenu {
-                self.crashReporter.crash()
-            } log: {
-                // Log?
-            }
+        
+        menu.insertDeveloperSettingsMenuIfPossible {
+            self.crashReporter.crash()
+        } log: {
+            // Log?
         }
-#endif
+        
         menu.delegate = self
         
         return menu

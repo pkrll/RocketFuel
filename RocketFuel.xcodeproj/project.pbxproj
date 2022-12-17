@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6A12CB71294BC1DD00F46406 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 6A12CB70294BC1DD00F46406 /* Core */; };
+		6A34FBCB294E880D00110A7C /* Leaf.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6A34FBCA294E880D00110A7C /* Leaf.cer */; };
 		6A4036DD294E1FDD0065CDA6 /* RocketFuel.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 6A4036DC294E1FDD0065CDA6 /* RocketFuel.sdef */; };
 		6AAFFF1E2944AB2100730941 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAFFF1D2944AB2100730941 /* Main.swift */; };
 		6AAFFF222944AB2300730941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF212944AB2300730941 /* Assets.xcassets */; };
@@ -37,6 +38,8 @@
 		6A12CB6E294BC0AF00F46406 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		6A12CB72294BCAE400F46406 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Resources; sourceTree = "<group>"; };
 		6A1CA18D294C6F9B00A7B3A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A34FBCA294E880D00110A7C /* Leaf.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = Leaf.cer; sourceTree = "<group>"; };
+		6A34FBCC294E883A00110A7C /* Root.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = Root.cer; sourceTree = "<group>"; };
 		6A4036DC294E1FDD0065CDA6 /* RocketFuel.sdef */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RocketFuel.sdef; sourceTree = "<group>"; };
 		6AAFFF1A2944AB2100730941 /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AAFFF1D2944AB2100730941 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -95,6 +98,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6A34FBCD294E887B00110A7C /* Certificates */ = {
+			isa = PBXGroup;
+			children = (
+				6A34FBCA294E880D00110A7C /* Leaf.cer */,
+				6A34FBCC294E883A00110A7C /* Root.cer */,
+			);
+			path = Certificates;
+			sourceTree = "<group>";
+		};
 		6AAFFF112944AB2100730941 = {
 			isa = PBXGroup;
 			children = (
@@ -137,9 +149,10 @@
 			children = (
 				6AAFFF212944AB2300730941 /* Assets.xcassets */,
 				6A1CA18D294C6F9B00A7B3A5 /* Info.plist */,
-				6AAFFF232944AB2300730941 /* Preview Content */,
 				6AAFFF262944AB2300730941 /* RocketFuel.entitlements */,
 				6A4036DC294E1FDD0065CDA6 /* RocketFuel.sdef */,
+				6A34FBCD294E887B00110A7C /* Certificates */,
+				6AAFFF232944AB2300730941 /* Preview Content */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -242,6 +255,7 @@
 			files = (
 				6A4036DD294E1FDD0065CDA6 /* RocketFuel.sdef in Resources */,
 				6AAFFF252944AB2300730941 /* Preview Assets.xcassets in Resources */,
+				6A34FBCB294E880D00110A7C /* Leaf.cer in Resources */,
 				6AAFFF222944AB2300730941 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

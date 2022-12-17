@@ -60,8 +60,16 @@ extension Menu {
         }
     }
     
-#if DEBUG
-    func insertDeveloperSettingsMenu(crash: @escaping () -> Void, log: @escaping () -> Void) {
+    func insertDeveloperSettingsMenuIfPossible(crash: @escaping () -> Void, log: @escaping () -> Void) {
+        var shouldDisplayDeveloperSettings = ConfigurationProfile._isInstalled
+        #if DEBUG
+        shouldDisplayDeveloperSettings = true
+        #endif
+        
+        guard shouldDisplayDeveloperSettings else {
+            return
+        }
+        
         let title = "Developer Settings"
         let menu = Menu(title: title) {
             Menu.Item.button(title: "Log Pulse", action: log)
@@ -74,7 +82,6 @@ extension Menu {
         let lastIndex = items.count - 1
         insertItem(item, at: lastIndex)
     }
-#endif
     
     private convenience init(title: String, @ResultBuilder<Item> builder: () -> [Item]) {
         let items = builder()
