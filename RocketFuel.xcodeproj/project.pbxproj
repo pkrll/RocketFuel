@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6A12CB71294BC1DD00F46406 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 6A12CB70294BC1DD00F46406 /* Core */; };
+		6A4036DD294E1FDD0065CDA6 /* RocketFuel.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 6A4036DC294E1FDD0065CDA6 /* RocketFuel.sdef */; };
 		6AAFFF1E2944AB2100730941 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAFFF1D2944AB2100730941 /* Main.swift */; };
 		6AAFFF222944AB2300730941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF212944AB2300730941 /* Assets.xcassets */; };
 		6AAFFF252944AB2300730941 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF242944AB2300730941 /* Preview Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		6A12CB6E294BC0AF00F46406 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		6A12CB72294BCAE400F46406 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Resources; sourceTree = "<group>"; };
 		6A1CA18D294C6F9B00A7B3A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A4036DC294E1FDD0065CDA6 /* RocketFuel.sdef */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RocketFuel.sdef; sourceTree = "<group>"; };
 		6AAFFF1A2944AB2100730941 /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AAFFF1D2944AB2100730941 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		6AAFFF212944AB2300730941 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,10 +135,11 @@
 		6AAFFF332944B3A700730941 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6AAFFF262944AB2300730941 /* RocketFuel.entitlements */,
-				6A1CA18D294C6F9B00A7B3A5 /* Info.plist */,
 				6AAFFF212944AB2300730941 /* Assets.xcassets */,
+				6A1CA18D294C6F9B00A7B3A5 /* Info.plist */,
 				6AAFFF232944AB2300730941 /* Preview Content */,
+				6AAFFF262944AB2300730941 /* RocketFuel.entitlements */,
+				6A4036DC294E1FDD0065CDA6 /* RocketFuel.sdef */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A4036DD294E1FDD0065CDA6 /* RocketFuel.sdef in Resources */,
 				6AAFFF252944AB2300730941 /* Preview Assets.xcassets in Resources */,
 				6AAFFF222944AB2300730941 /* Assets.xcassets in Resources */,
 			);

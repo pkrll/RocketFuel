@@ -6,6 +6,11 @@ import Foundation
 import IOKit.pwr_mgt
 
 public final class SleepControl {
+    /// The shared SleepControl object.
+    ///
+    /// Note: When invoking this app via an AppleScript, the running instance
+    /// will not react on any changes. Shared state must be global.
+    public static let standard = SleepControl()
     
     @Published public private(set) var isActive = false
     

@@ -18,7 +18,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     public let appState = AppState()
     
     private let appTitle = Constants.applicationDisplayName
-    private let sleepControl: SleepControl = SleepControl()
+    private let sleepControl: SleepControl = .standard
     private var menuBarExtra: MenuBarExtra?
     private let hotKeysCentral: HotKeysCentral = .standard
     private let analytics: Analytics = .standard
@@ -227,5 +227,68 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
 extension RocketFuel: NSMenuDelegate {
     public func menuDidClose(_ menu: NSMenu) {
         menuBarExtra?.closeMenu()
+    }
+}
+// MARK: - AppleScript
+extension RocketFuel {
+    @objc(AppleScript)
+    public final class AppleScript: NSScriptCommand {
+        private var rocketFuel: RocketFuel { AppDelegate.instance }
+        var active: Bool { rocketFuel.sleepControl.isActive }
+        
+        @objc
+        func Toggle() {
+            Task {
+                await rocketFuel.toggle()
+            }
+        }
+        
+        @objc
+        func Duration() {
+            // The duration is expressed in minutes in AppleScript, but seconds in the app,
+            // so it needs to be translated to seconds to work correctly.
+            let input: Double = (directParameter as AnyObject).doubleValue ?? 0
+            let duration = input * 60
+            
+            Task {
+                await rocketFuel.setSleepControl(to: true, duration: duration)
+            }
+        }
+        
+        @objc
+        func BatteryLevel() {
+            let level = directParameter as? Int ?? 0
+            Task {
+                await rocketFuel.appState.setDisableAtBatteryLevel(to: level)
+            }
+        }
+        
+        @objc
+        func BatteryMode() {
+            let mode: Bool = directParameter as? Bool ?? false
+            Task {
+                await rocketFuel.appState.setDisableOnBatteryMode(to: mode)
+            }
+        }
+        
+        override public func performDefaultImplementation() -> Any? {
+            let command = commandDescription
+                .commandName
+                .components(separatedBy: " ")
+                .map(\.capitalized)
+                .joined()
+            let commandFunc = NSSelectorFromString(command)
+            
+            guard responds(to: commandFunc) else {
+                return false
+            }
+            
+            typealias function = @convention(c) (AnyObject, Selector) -> Void
+            let imp: IMP = method(for: commandFunc)
+            let curriedImplementation = unsafeBitCast(imp, to: function.self)
+            curriedImplementation(self, commandFunc)
+            
+            return true
+        }
     }
 }

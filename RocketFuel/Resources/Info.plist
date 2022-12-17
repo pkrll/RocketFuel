@@ -17,5 +17,9 @@
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSAppleScriptEnabled</key>
+	<true/>
+	<key>OSAScriptingDefinition</key>
+	<string>RocketFuel.sdef</string>
 </dict>
 </plist>
