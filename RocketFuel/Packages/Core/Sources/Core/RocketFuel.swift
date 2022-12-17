@@ -16,18 +16,16 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     
     public let appState = AppState()
     
-    private let appTitle = "Rocket Fuel"
+    private let appTitle = Bundle.main.displayName
     private let sleepControl: SleepControl = SleepControl()
     private var menuBarExtra: MenuBarExtra?
     private let hotKeysCentral: HotKeysCentral = .standard
-    private let analytics: Analytics
-    private let crashReporter: CrashReporter
+    private let analytics: Analytics = .standard
+    private let crashReporter: CrashReporter = .standard
     private var activationDuration: TimeInterval = 0
     private var subscriptions: Set<AnyCancellable> = []
     
     override init() {
-        analytics = .standard
-        crashReporter = CrashReporter(configuration: .standard)
         super.init()
         
         sleepControl.$isActive
@@ -228,5 +226,15 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
 extension RocketFuel: NSMenuDelegate {
     public func menuDidClose(_ menu: NSMenu) {
         menuBarExtra?.closeMenu()
+    }
+}
+
+private extension Bundle {
+    var displayName: String {
+        guard let name = object(forInfoDictionaryKey: "CFBundleDisplayName") as? String else {
+            return "Rocket Fuel"
+        }
+        
+        return name
     }
 }

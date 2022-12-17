@@ -5,10 +5,21 @@
 import CrashReporting
 import Foundation
 
-
 extension CrashReporter {
     static var standard: CrashReporter {
-        CrashReporter(configuration: nil)
+        let configuration: Configuration?
+        #if DEBUG
+        configuration = nil
+        #else
+        let version = Bundle.shortVersionString ?? "Unknown"
+        
+        configuration = Configuration(
+            url: URL(string: "")!,
+            version: version
+        )
+        #endif
+        
+        return CrashReporter(configuration: configuration)
     }
 }
 
