@@ -5,7 +5,7 @@
 import Foundation
 import Resources
 
-public enum Constants {
+public enum Application {
     public static var applicationDisplayName: String {
         Bundle.main.displayName ?? "Rocket Fuel"
     }

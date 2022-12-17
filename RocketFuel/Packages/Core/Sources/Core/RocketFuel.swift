@@ -17,7 +17,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     
     public let appState: AppState = .shared
     
-    private let appTitle = Constants.applicationDisplayName
+    private let appTitle = Application.applicationDisplayName
     private let sleepControl: SleepControl = .standard
     private var menuBarExtra: MenuBarExtra?
     private let hotKeysCentral: HotKeysCentral = .standard
@@ -213,7 +213,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     }
     
     private func showAboutWindow() {
-        guard let url = URL(string: "\(Constants.appScheme)://about") else {
+        guard let url = URL(string: "\(Application.appScheme)://about") else {
             return
         }
         

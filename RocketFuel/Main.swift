@@ -21,9 +21,9 @@ struct Main: App {
         
         About(
             image: Image(nsImage: .rocketIcon),
-            title: Constants.applicationDisplayName,
-            subtitle: "Version \(Constants.versionString)",
-            copyright: Constants.copyrightText,
+            title: Application.applicationDisplayName,
+            subtitle: "Version \(Application.versionString)",
+            copyright: Application.copyrightText,
             width: 240,
             height: 200
         )
