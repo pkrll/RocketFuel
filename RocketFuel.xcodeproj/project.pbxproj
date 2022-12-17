@@ -406,7 +406,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RocketFuel/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Fuel";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Fuel Debug";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -416,7 +416,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.4;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-concurrency -Xfrontend -enable-actor-data-race-checks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Rocket Fuel Development";
@@ -485,7 +485,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel.Launcher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel.debug.Launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
