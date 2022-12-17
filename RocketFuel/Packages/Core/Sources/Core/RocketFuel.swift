@@ -15,7 +15,7 @@ import SleepControl
 
 public final class RocketFuel: NSObject, NSApplicationDelegate {
     
-    public let appState = AppState()
+    public let appState: AppState = .shared
     
     private let appTitle = Constants.applicationDisplayName
     private let sleepControl: SleepControl = .standard

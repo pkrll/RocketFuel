@@ -8,6 +8,7 @@ struct GeneralSettingsView: View {
     
     @State var disableOnBatteryMode: Bool = false
     @State var disableAtBatteryLevel: Int = 0
+    @ObservedObject private var observer = ForegroundObserver()
     
     let settings: Settings
     
@@ -30,7 +31,7 @@ struct GeneralSettingsView: View {
                 await settings.setDisableAtBatteryLevel(to: newValue)
             }
         }
-        .onAppear {
+        .onReceive(self.observer.$enteredForeground) { _ in
             Task {
                 disableOnBatteryMode = await settings.disableOnBatteryMode
                 disableAtBatteryLevel = await settings.disableAtBatteryLevel
@@ -53,12 +54,22 @@ struct GeneralSettingsView: View {
         Text("Disable Rocket Fuel when battery level reaches:")
             .font(.body)
         Picker("", selection: $disableAtBatteryLevel) {
-            let levels = Array(stride(from: 0, to: 20, by: 5))
+            let levels = possibleBatteryLevels()
             
             ForEach(levels, id: \.self) { level in
                 Text("\(level)%")
             }
         }
+    }
+    
+    private func possibleBatteryLevels() -> [Int] {
+        var levels = Array(stride(from: 0, to: 20, by: 5))
+        
+        if !levels.contains(disableAtBatteryLevel) {
+            levels.append(disableAtBatteryLevel)
+        }
+
+        return levels
     }
     
     @ViewBuilder

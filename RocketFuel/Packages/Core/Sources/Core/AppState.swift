@@ -22,6 +22,8 @@ public actor AppState: Settings {
         case disableAtBatteryLevel = "stopAtBatteryLevel"
     }
     
+    nonisolated static let shared = AppState()
+    
     @Published var onChangePublisher: Event = .launch
     
     public private(set) var registeredHotKey: HotKey?
