@@ -6,6 +6,7 @@ import Core
 import Resources
 import SwiftUI
 import UserInterfaces
+import Constants
 
 @main
 struct Main: App {
@@ -21,9 +22,9 @@ struct Main: App {
         WindowGroup("") {
             AboutView(
                 image: Image(nsImage: .rocketIcon),
-                title: "Rocket Fuel",
-                subtitle: "Version 2.4",
-                copyright: "Copyright © 2022 Ardalan Samimi. All rights reserved.",
+                title: Constants.applicationDisplayName,
+                subtitle: "Version \(Constants.versionString)",
+                copyright: Constants.copyrightText,
                 width: 240,
                 height: 200
             )

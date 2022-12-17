@@ -422,6 +422,7 @@
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Rocket Fuel Development";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				URLSCHEME = "rocketfuel-debug";
 			};
 			name = Debug;
 		};
@@ -444,7 +445,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RocketFuel/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Fuel";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Fuel Debug";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -460,6 +461,7 @@
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				URLSCHEME = rocketfuel;
 			};
 			name = Release;
 		};

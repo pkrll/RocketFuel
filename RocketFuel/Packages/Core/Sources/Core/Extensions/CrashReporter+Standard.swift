@@ -11,7 +11,7 @@ extension CrashReporter {
         #if DEBUG
         configuration = nil
         #else
-        let version = Bundle.shortVersionString ?? "Unknown"
+        let version = Bundle.main.shortVersionString ?? "Unknown"
         
         configuration = Configuration(
             url: URL(string: "")!,
@@ -20,11 +20,5 @@ extension CrashReporter {
         #endif
         
         return CrashReporter(configuration: configuration)
-    }
-}
-
-private extension Bundle {
-    static var shortVersionString: String? {
-        main.infoDictionary?["CFBundleShortVersionString"] as? String
     }
 }

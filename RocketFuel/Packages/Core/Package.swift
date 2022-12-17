@@ -8,6 +8,7 @@ let package = Package(
     platforms: [.macOS(.v11)],
     products: [
         .library(name: "Core", targets: ["Core"]),
+        .library(name: "Constants", targets: ["Constants"]),
     ],
     dependencies: [
         .package(path: "../Analytics"),
@@ -23,6 +24,7 @@ let package = Package(
             name: "Core",
             dependencies: [
                 "Analytics",
+                "Constants",
                 .product(name: "CrashReporting", package: "Analytics"),
                 "HotKeys",
                 "LoginItem",
@@ -31,6 +33,12 @@ let package = Package(
                 "SleepControl",
                 "UserInterfaces",
             ]
-        )
+        ),
+        .target(
+            name: "Constants",
+            dependencies: [
+                "Resources",
+            ]
+        ),
     ]
 )

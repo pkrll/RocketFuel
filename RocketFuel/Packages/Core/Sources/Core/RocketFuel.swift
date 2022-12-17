@@ -5,6 +5,7 @@
 import Analytics
 import Cocoa
 import Combine
+import Constants
 import CrashReporting
 import HotKeys
 import LoginItem
@@ -16,7 +17,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     
     public let appState = AppState()
     
-    private let appTitle = Bundle.main.displayName
+    private let appTitle = Constants.applicationDisplayName
     private let sleepControl: SleepControl = SleepControl()
     private var menuBarExtra: MenuBarExtra?
     private let hotKeysCentral: HotKeysCentral = .standard
@@ -214,7 +215,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     }
     
     private func showAboutWindow() {
-        guard let url = URL(string: "rocketfuel://about") else {
+        guard let url = URL(string: "\(Constants.appScheme)://about") else {
             return
         }
         
@@ -226,15 +227,5 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
 extension RocketFuel: NSMenuDelegate {
     public func menuDidClose(_ menu: NSMenu) {
         menuBarExtra?.closeMenu()
-    }
-}
-
-private extension Bundle {
-    var displayName: String {
-        guard let name = object(forInfoDictionaryKey: "CFBundleDisplayName") as? String else {
-            return "Rocket Fuel"
-        }
-        
-        return name
     }
 }
