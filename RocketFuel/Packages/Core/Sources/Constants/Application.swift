@@ -14,10 +14,17 @@ public enum Application {
     }
     public static let copyrightText = "Copyright © 2022 Ardalan Samimi. All rights reserved."
     public static var appScheme: String {
-        #if DEBUG
+#if DEBUG
         return "rocketfuel-debug"
-        #else
+#else
         return "rocketfuel"
-        #endif
+#endif
+    }
+    public static var hasDeveloperSettings: Bool {
+#if DEBUG
+        return true
+#else
+        return ConfigurationProfile._isInstalled
+#endif
     }
 }

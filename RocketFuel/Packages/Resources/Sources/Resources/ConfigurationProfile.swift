@@ -4,18 +4,9 @@
 
 import Foundation
 
-struct ConfigurationProfile {
+public struct ConfigurationProfile {
     
-    static var isInstalled: Bool {
-        get async {
-            await withCheckedContinuation { continuation in
-                let isInstalled = _isInstalled
-                continuation.resume(returning: isInstalled)
-            }
-        }
-    }
-    
-    static var _isInstalled: Bool {
+    public static var isInstalled: Bool {
         guard let path = Bundle.main.url(forResource: "Leaf", withExtension: "cer"),
               let data = try? Data(contentsOf: path),
               let cert = SecCertificateCreateWithData(nil, data as CFData)

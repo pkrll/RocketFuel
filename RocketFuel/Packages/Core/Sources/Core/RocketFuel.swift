@@ -186,10 +186,12 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
             await NSApp.terminate(self)
         }
         
-        menu.insertDeveloperSettingsMenuIfPossible {
-            self.crashReporter.crash()
-        } log: {
-            // Log?
+        if Application.hasDeveloperSettings {
+            menu.insertDeveloperSettingsMenu {
+                self.crashReporter.crash()
+            } log: {
+                // Log?
+            }
         }
         
         menu.delegate = self

@@ -60,16 +60,7 @@ extension Menu {
         }
     }
     
-    func insertDeveloperSettingsMenuIfPossible(crash: @escaping () -> Void, log: @escaping () -> Void) {
-        var shouldDisplayDeveloperSettings = ConfigurationProfile._isInstalled
-        #if DEBUG
-        shouldDisplayDeveloperSettings = true
-        #endif
-        
-        guard shouldDisplayDeveloperSettings else {
-            return
-        }
-        
+    func insertDeveloperSettingsMenu(crash: @escaping () -> Void, log: @escaping () -> Void) {
         let title = "Developer Settings"
         let menu = Menu(title: title) {
             Menu.Item.button(title: "Log Pulse", action: log)
