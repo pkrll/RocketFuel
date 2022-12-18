@@ -15,9 +15,10 @@ struct Keychain {
     
     @discardableResult
     static func set(_ value: Data) throws -> Data? {
+        let service = Bundle.main.bundleIdentifier ?? ""
         let attributes = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrService: "Rocket Fuel",
+            kSecAttrService: service,
             kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
             kSecValueData: value,
         ] as [String: Any]
@@ -31,9 +32,10 @@ struct Keychain {
     }
     
     static func get() throws -> Data {
+        let service = Bundle.main.bundleIdentifier ?? ""
         let attributes = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrService: "Rocket Fuel",
+            kSecAttrService: service,
             kSecReturnData: true
         ] as [String: Any]
         
