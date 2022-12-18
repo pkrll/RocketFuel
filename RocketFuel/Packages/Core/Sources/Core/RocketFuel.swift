@@ -73,14 +73,8 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         }
         
         Task {
-            analytics.setUserSettings([
-                "hotKey": await appState.registeredHotKey?.rawValue ?? "None",
-                "launchAtLogin": await appState.autoLaunchOnLogin,
-                "leftClickActivation": await appState.leftClickActivation,
-                "disableOnBatteryMode": await appState.disableOnBatteryMode,
-                "disableAtBatteryLevel": await appState.disableAtBatteryLevel
-            ])
-            
+            let settings = await appState.analyticsValue
+            analytics.setUserSettings(settings)
             analytics.track(.applicationDidLaunch)
         }
     }
