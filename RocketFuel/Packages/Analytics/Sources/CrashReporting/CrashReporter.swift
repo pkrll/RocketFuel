@@ -43,7 +43,6 @@ public struct CrashReporter {
         }
     }
     
-#if DEBUG
     public func crash() {
         guard SentrySDK.isEnabled else {
             return
@@ -51,5 +50,4 @@ public struct CrashReporter {
         
         SentrySDK.crash()
     }
-#endif
 }

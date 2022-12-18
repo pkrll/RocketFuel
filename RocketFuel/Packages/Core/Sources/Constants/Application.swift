@@ -24,7 +24,7 @@ public enum Application {
 #if DEBUG
         return true
 #else
-        return ConfigurationProfile._isInstalled
+        return ConfigurationProfile.isInstalled
 #endif
     }
 }
