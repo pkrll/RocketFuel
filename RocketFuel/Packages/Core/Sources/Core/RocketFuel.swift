@@ -50,7 +50,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
     }
     
     public func applicationWillTerminate(_ notification: Notification) {
-        analytics.track(.terminate, sendImmediately: true)
+        analytics.track(.applicationWillTerminate, sendImmediately: true)
     }
     
     public func applicationDidFinishLaunching(_ notification: Notification) {
@@ -70,6 +70,18 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         Task { @MainActor in
             await loadRegisteredHotKey()
             updateUI(isActive: false)
+        }
+        
+        Task {
+            analytics.setUserSettings([
+                "hotKey": await appState.registeredHotKey?.rawValue ?? "None",
+                "launchAtLogin": await appState.autoLaunchOnLogin,
+                "leftClickActivation": await appState.leftClickActivation,
+                "disableOnBatteryMode": await appState.disableOnBatteryMode,
+                "disableAtBatteryLevel": await appState.disableAtBatteryLevel
+            ])
+            
+            analytics.track(.applicationDidLaunch)
         }
     }
     
@@ -211,7 +223,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
             await NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
         }
         
-        analytics.track(.showPreferences)
+        analytics.track(.showSettings)
     }
     
     private func showAboutWindow() {

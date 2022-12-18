@@ -5,8 +5,39 @@
 import Foundation
 import Mixpanel
 
-public struct Analytics {
+public final class Analytics {
     private let token: String?
+    private var mixpanel: MixpanelInstance?
+    
+    private lazy var distinctId: String? = {
+        do {
+            let data = try Keychain.get()
+            let distinctId = String(data: data, encoding: .utf8)
+            
+            return distinctId
+        } catch {
+            track(.error(error))
+            debugPrint(error)
+        }
+        
+        do {
+            let distinctId = UUID().uuidString
+            
+            guard let data = distinctId.data(using: .utf8) else {
+                return nil
+            }
+            
+            try Keychain.set(data)
+            
+            return distinctId
+        } catch {
+            track(.error(error))
+            debugPrint(error)
+        }
+        
+        return nil
+    }()
+    
     public init(token: String?) {
         self.token = token
     }
@@ -16,18 +47,30 @@ public struct Analytics {
             return
         }
         
-        Mixpanel.initialize(token: token, flushInterval: 15)
+        mixpanel = Mixpanel.initialize(token: token, flushInterval: 15)
+        
+        if let distinctId {
+            mixpanel?.identify(distinctId: distinctId, usePeople: true)
+        }
     }
     
-    public func track(_ event: Event, sendImmediately: Bool = false) {
-        guard token != nil else {
+    public func setUserSettings(_ properties: Properties) {
+        guard let mixpanel, distinctId != nil else {
             return
         }
         
-        Mixpanel.mainInstance().track(event: event.name, properties: event.properties)
+        mixpanel.people.set(properties: properties)
+    }
+    
+    public func track(_ event: Event, sendImmediately: Bool = false) {
+        guard let mixpanel else {
+            return
+        }
+        
+        mixpanel.track(event: event.name, properties: event.properties)
         
         if sendImmediately {
-            Mixpanel.mainInstance().flush()
+            mixpanel.flush()
         }
     }
 }

@@ -6,35 +6,47 @@ import Foundation
 import Mixpanel
 
 public enum Event {
+    case applicationDidLaunch
+    case applicationWillTerminate
+    case error(Error)
     case showAbout
-    case showPreferences
+    case showSettings
     case toggle(status: Bool, duration: TimeInterval)
     case update(setting: String, value: CustomStringConvertible)
-    case terminate
     
     var name: String {
         switch self {
+        case .applicationDidLaunch:
+            return "launch"
+        case .applicationWillTerminate:
+            return "terminate"
+        case .error:
+            return "error"
         case .showAbout:
-            return "about"
-        case .showPreferences:
-            return "settings"
+            return "show about"
+        case .showSettings:
+            return "show settings"
         case .toggle:
             return "toggle"
         case .update:
-            return "update"
-        case .terminate:
-            return "terminate"
+            return "update setting"
         }
     }
     
     var properties: Properties? {
+        let properties: Properties
+        
         switch self {
+        case .error(let error):
+            properties = ["error": error.localizedDescription]
         case .toggle(let status, let duration):
-            return ["status": status, "duration": duration]
+            properties = ["status": status, "duration": duration]
         case .update(let setting, let value):
-            return ["setting": setting, "value": value.description]
+            properties = ["setting": setting, "value": value.description]
         default:
             return nil
         }
+        
+        return properties
     }
 }
