@@ -13,6 +13,7 @@ public enum Event {
     case showSettings
     case toggle(status: Bool, duration: TimeInterval)
     case update(setting: String, value: CustomStringConvertible)
+    case developerSettingsTest
     
     var name: String {
         switch self {
@@ -30,6 +31,8 @@ public enum Event {
             return "toggle"
         case .update:
             return "update setting"
+        case .developerSettingsTest:
+            return "developer settings test"
         }
     }
     
