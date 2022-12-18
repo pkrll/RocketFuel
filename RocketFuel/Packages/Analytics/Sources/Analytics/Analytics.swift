@@ -49,8 +49,13 @@ public final class Analytics {
         
         mixpanel = Mixpanel.initialize(token: token, flushInterval: 15)
         
-        if let distinctId {
-            mixpanel?.identify(distinctId: distinctId, usePeople: true)
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let distinctId = self.distinctId else {
+                return
+                
+            }
+            
+            self.mixpanel?.identify(distinctId: distinctId, usePeople: true)
         }
     }
     
