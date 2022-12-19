@@ -9,7 +9,17 @@ public enum Application {
         Bundle.main.displayName ?? "Rocket Fuel"
     }
     public static var versionString: String {
-        Bundle.main.shortVersionString ?? "2"
+        guard let version = Bundle.main.shortVersionString else {
+            return "2"
+        }
+        
+        guard hasDeveloperSettings,
+              let buildNumber = Bundle.main.buildNumber
+        else {
+            return version
+        }
+        
+        return "\(version) (\(buildNumber))"
     }
     public static var appScheme: String {
 #if DEBUG
