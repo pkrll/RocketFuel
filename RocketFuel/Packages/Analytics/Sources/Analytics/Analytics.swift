@@ -8,8 +8,9 @@ import Mixpanel
 public final class Analytics {
     private let token: String?
     private var mixpanel: MixpanelInstance?
+    private var shouldTrackEvents = true
     
-    private lazy var distinctId: String? = {
+    public private(set) lazy var distinctId: String? = {
         do {
             let data = try Keychain.get()
             let distinctId = String(data: data, encoding: .utf8)
@@ -43,7 +44,7 @@ public final class Analytics {
     }
     
     public func configure() {
-        guard let token else {
+        guard shouldTrackEvents, let token else {
             return
         }
         
@@ -60,7 +61,7 @@ public final class Analytics {
     }
     
     public func setUserSettings(_ properties: Properties) {
-        guard let mixpanel, distinctId != nil else {
+        guard shouldTrackEvents, let mixpanel, distinctId != nil else {
             return
         }
         
@@ -68,7 +69,7 @@ public final class Analytics {
     }
     
     public func track(_ event: Event, sendImmediately: Bool = false) {
-        guard let mixpanel else {
+        guard shouldTrackEvents, let mixpanel else {
             return
         }
         
@@ -77,5 +78,9 @@ public final class Analytics {
         if sendImmediately {
             mixpanel.flush()
         }
+    }
+    
+    public func enableEventsTracking(_ shouldTrackEvents: Bool) {
+        self.shouldTrackEvents = shouldTrackEvents
     }
 }
