@@ -2,47 +2,28 @@
 //  Copyright © 2022 Ardalan Samimi. All rights reserved.
 //
 
+import Resources
 import SwiftUI
 
 public struct About: Scene {
     
-    let image: Image
-    let title: String
-    let subtitle: String
-    let copyright: String
-    let width: CGFloat
-    let height: CGFloat
-    
     public var body: some Scene {
         WindowGroup("") {
             AboutView(
-                image: image,
-                title: title,
-                subtitle: subtitle,
-                copyright: copyright,
-                width: width,
-                height: height
+                image: Image(nsImage: .rocketIcon),
+                title: Application.applicationDisplayName,
+                subtitle: .localized(key: "about_version_format", arguments: Application.versionString),
+                copyright: .localized(key: "about_copyright_text_label"),
+                width: 240,
+                height: 200
+                
             )
         }
         .windowResizabilityContentSize()
         .handlesExternalEvents(matching: ["about"])
     }
     
-    public init(
-        image: Image,
-        title: String,
-        subtitle: String,
-        copyright: String,
-        width: CGFloat,
-        height: CGFloat
-    ) {
-        self.image = image
-        self.title = title
-        self.subtitle = subtitle
-        self.copyright = copyright
-        self.width = width
-        self.height = height
-    }
+    public init() {}
 }
 
 private extension Scene {

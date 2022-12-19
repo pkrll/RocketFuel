@@ -5,7 +5,6 @@
 import Analytics
 import Cocoa
 import Combine
-import Constants
 import CrashReporting
 import HotKeys
 import LoginItem

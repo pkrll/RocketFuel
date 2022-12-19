@@ -3,10 +3,8 @@
 //
 
 import Core
-import Resources
 import SwiftUI
 import UserInterfaces
-import Constants
 
 @main
 struct Main: App {
@@ -19,13 +17,6 @@ struct Main: App {
             SettingsContainerView(settings: rocketFuel.appState)
         }
         
-        About(
-            image: Image(nsImage: .rocketIcon),
-            title: Application.applicationDisplayName,
-            subtitle: "Version \(Application.versionString)",
-            copyright: Application.copyrightText,
-            width: 240,
-            height: 200
-        )
+        About()
     }
 }

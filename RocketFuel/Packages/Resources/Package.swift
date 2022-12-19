@@ -9,6 +9,12 @@ let package = Package(
         .library(name: "Resources", targets: ["Resources"]),
     ],
     targets: [
-        .target(name: "Resources", dependencies: []),
+        .target(
+            name: "Resources",
+            dependencies: [],
+            resources: [
+                .process("Localizable.strings")
+            ]
+        ),
     ]
 )
