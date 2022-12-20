@@ -15,9 +15,6 @@ extension Menu {
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
         
-        var launchOnLoginMacOS13 = "-"
-        var launchOnLogin = UserDefaults.standard
-        
         let menu = Menu(title: title) {
             Menu.Item.button(title: "Analytics", children: [
                 .button(title: "Mixpanel User ID", children: [
@@ -30,14 +27,8 @@ extension Menu {
                     analytics.enableEventsTracking(!loggingIsEnabled)
                 },
                 .button(title: "Log Developer Test Event") {
-                    analytics.track(.developerSettingsTest)
+                    analytics.track(.developerSettingsTest, sendImmediately: true)
                 }
-            ])
-            
-            
-            
-            Menu.Item.button(title: "Storage", children: [
-                .button(title: "Launch on Login: \(launchOnLogin)")
             ])
             
             Menu.Item.separator
