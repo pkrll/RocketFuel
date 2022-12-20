@@ -75,6 +75,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
             let settings = await appState.analyticsValue
             analytics.setUserSettings(settings)
             analytics.track(.applicationDidLaunch)
+            await performUpgradeTasks()
         }
     }
     
@@ -119,6 +120,24 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         } catch {
             print("An error occurred. Unable to register hot key: \(error).")
         }
+    }
+    
+    private func performUpgradeTasks() async {
+        if let lastInstalledVersion = await appState.lastInstalledVersion {
+            let storedVersion = Application.Version(string: lastInstalledVersion)
+            let currentVersion = Application.Version.current
+            
+            if currentVersion.lessOrEqual(to: storedVersion) {
+                return
+            }
+        }
+        // This fixes an issue with launch on login being disabled when upgrading.
+        let launchOnLogin = UserDefaults.standard.bool(forKey: "launchAtLogin")
+        if launchOnLogin {
+            await appState.setAutoLaunchOnLogin(to: launchOnLogin)
+        }
+        
+        await appState.setLastInstalledVersion(to: Application.versionString)
     }
     
     private func leftClickEvent(_ flags: NSEvent.ModifierFlags) async throws {
@@ -192,7 +211,7 @@ public final class RocketFuel: NSObject, NSApplicationDelegate {
         }
         
         if Application.hasDeveloperSettings {
-            menu.insertDeveloperSettingsMenu(appState: appState, analytics: analytics, crashReporter: crashReporter)
+            await menu.insertDeveloperSettingsMenu(appState: appState, analytics: analytics, crashReporter: crashReporter)
         }
         
         menu.delegate = self

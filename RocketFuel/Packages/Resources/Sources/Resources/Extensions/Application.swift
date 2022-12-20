@@ -36,3 +36,37 @@ public enum Application {
 #endif
     }
 }
+
+extension Application {
+    public struct Version {
+        public static let current = Self(string: Application.versionString)
+        private static let delimiter = "."
+        private let components: [Int]
+        
+        public init(string: String) {
+            components = string.components(separatedBy: Self.delimiter).compactMap(Int.init)
+        }
+        
+        public func lessOrEqual(to other: Version) -> Bool {
+            lessOrEqual(components, other.components)
+        }
+        
+        private func lessOrEqual(_ lhs: [Int], _ rhs: [Int]) -> Bool {
+            if lhs.count == 0 && rhs.count == 0 {
+                return true
+            }
+            
+            let lhsComparision = lhs.first ?? 0
+            let rhsComparision = rhs.first ?? 0
+            
+            guard lhsComparision == rhsComparision else {
+                return lhsComparision <= rhsComparision
+            }
+            
+            let version = Array(lhs.dropFirst())
+            let otherVersion = Array(rhs.dropFirst())
+            
+            return lessOrEqual(version, otherVersion)
+        }
+    }
+}

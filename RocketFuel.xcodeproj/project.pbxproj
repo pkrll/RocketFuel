@@ -415,7 +415,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1662;
+				CURRENT_PROJECT_VERSION = 1663;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"RocketFuel/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -454,7 +454,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution: Ardalan Samimi (ZHSKC28PQ8)";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1662;
+				CURRENT_PROJECT_VERSION = 1663;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"RocketFuel/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -463,7 +463,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RocketFuel/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Fuel Debug";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Fuel";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

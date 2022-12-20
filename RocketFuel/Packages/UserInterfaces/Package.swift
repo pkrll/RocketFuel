@@ -11,12 +11,14 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../HotKeys"),
+        .package(path: "../Resources"),
     ],
     targets: [
         .target(
             name: "UserInterfaces",
             dependencies: [
                 "HotKeys",
+                "Resources",
             ]
         ),
     ]

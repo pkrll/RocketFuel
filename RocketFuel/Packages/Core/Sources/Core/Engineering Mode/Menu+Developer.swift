@@ -8,12 +8,15 @@ import CrashReporting
 import MenuBarExtras
 
 extension Menu {
-    func insertDeveloperSettingsMenu(appState: AppState, analytics: Analytics, crashReporter: CrashReporter) {
+    func insertDeveloperSettingsMenu(appState: AppState, analytics: Analytics, crashReporter: CrashReporter) async {
         let title = "Developer Settings"
         let userId = analytics.distinctId ?? "-"
         let loggingIsEnabled = appState._shouldTrackEvents
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
+        
+        var launchOnLoginMacOS13 = "-"
+        var launchOnLogin = UserDefaults.standard
         
         let menu = Menu(title: title) {
             Menu.Item.button(title: "Analytics", children: [
@@ -30,6 +33,13 @@ extension Menu {
                     analytics.track(.developerSettingsTest)
                 }
             ])
+            
+            
+            
+            Menu.Item.button(title: "Storage", children: [
+                .button(title: "Launch on Login: \(launchOnLogin)")
+            ])
+            
             Menu.Item.separator
             Menu.Item.button(title: "Crash") {
                 crashReporter.crash()

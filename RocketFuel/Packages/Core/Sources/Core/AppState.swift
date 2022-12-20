@@ -20,6 +20,7 @@ public actor AppState: Settings {
         case leftClickActivation = "leftClickActivation"
         case disableOnBatteryMode = "disableOnBatteryMode"
         case disableAtBatteryLevel = "stopAtBatteryLevel"
+        case lastInstalledVersion
     }
     
     nonisolated static let shared = AppState()
@@ -31,6 +32,7 @@ public actor AppState: Settings {
     public private(set) var leftClickActivation: Bool
     public private(set) var disableOnBatteryMode: Bool
     public private(set) var disableAtBatteryLevel: Int
+    public private(set) var lastInstalledVersion: String?
     
     public var autoLaunchOnLogin: Bool {
         if #available(macOS 13.0, *) {
@@ -52,6 +54,7 @@ public actor AppState: Settings {
         leftClickActivation = userDefaults.bool(forKey: Key.leftClickActivation.rawValue)
         disableOnBatteryMode = userDefaults.bool(forKey: Key.disableOnBatteryMode.rawValue)
         disableAtBatteryLevel = userDefaults.integer(forKey: Key.disableAtBatteryLevel.rawValue)
+        lastInstalledVersion = userDefaults.string(forKey: Key.lastInstalledVersion.rawValue)
         
         let bundleIdentifier = Bundle.main.bundleIdentifier?.appending(".Launcher") ?? ""
         loginItem = LoginItem(bundleIdentifier: bundleIdentifier)
@@ -75,7 +78,10 @@ public actor AppState: Settings {
     }
     
     public func setAutoLaunchOnLogin(to value: Bool) async {
-        loginItem.enable(value)
+        guard loginItem.enable(value) else {
+            return
+        }
+        
         set(value, forKey: .autoLaunchOnLogin)
     }
     
@@ -92,6 +98,11 @@ public actor AppState: Settings {
     public func setDisableAtBatteryLevel(to value: Int) async {
         disableAtBatteryLevel = value
         set(value, forKey: .disableAtBatteryLevel)
+    }
+    
+    public func setLastInstalledVersion(to value: String) async {
+        lastInstalledVersion = value
+        set(value, forKey: .lastInstalledVersion)
     }
     
     private func set<V: Codable>(_ value: V, forKey key: Key) {
