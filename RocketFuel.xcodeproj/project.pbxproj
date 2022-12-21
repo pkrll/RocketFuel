@@ -10,6 +10,8 @@
 		6A12CB71294BC1DD00F46406 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 6A12CB70294BC1DD00F46406 /* Core */; };
 		6A34FBCB294E880D00110A7C /* Leaf.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6A34FBCA294E880D00110A7C /* Leaf.cer */; };
 		6A4036DD294E1FDD0065CDA6 /* RocketFuel.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 6A4036DC294E1FDD0065CDA6 /* RocketFuel.sdef */; };
+		6AA534FC295271E200D811AB /* Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA534FB295271E200D811AB /* Toggle.swift */; };
+		6AA534FE2953A49A00D811AB /* ToggleShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA534FD2953A49A00D811AB /* ToggleShortcuts.swift */; };
 		6AAFFF1E2944AB2100730941 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAFFF1D2944AB2100730941 /* Main.swift */; };
 		6AAFFF222944AB2300730941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF212944AB2300730941 /* Assets.xcassets */; };
 		6AAFFF252944AB2300730941 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAFFF242944AB2300730941 /* Preview Assets.xcassets */; };
@@ -41,6 +43,8 @@
 		6A34FBCA294E880D00110A7C /* Leaf.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = Leaf.cer; sourceTree = "<group>"; };
 		6A34FBCC294E883A00110A7C /* Root.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = Root.cer; sourceTree = "<group>"; };
 		6A4036DC294E1FDD0065CDA6 /* RocketFuel.sdef */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RocketFuel.sdef; sourceTree = "<group>"; };
+		6AA534FB295271E200D811AB /* Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toggle.swift; sourceTree = "<group>"; };
+		6AA534FD2953A49A00D811AB /* ToggleShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleShortcuts.swift; sourceTree = "<group>"; };
 		6AAFFF1A2944AB2100730941 /* RocketFuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketFuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AAFFF1D2944AB2100730941 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		6AAFFF212944AB2300730941 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +111,15 @@
 			path = Certificates;
 			sourceTree = "<group>";
 		};
+		6AA534FA295271D300D811AB /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				6AA534FB295271E200D811AB /* Toggle.swift */,
+				6AA534FD2953A49A00D811AB /* ToggleShortcuts.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
 		6AAFFF112944AB2100730941 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				6AAFFF1D2944AB2100730941 /* Main.swift */,
+				6AA534FA295271D300D811AB /* Intents */,
 				6A12CB6A294BB61800F46406 /* Packages */,
 				6AAFFF332944B3A700730941 /* Resources */,
 			);
@@ -275,6 +289,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AAFFF1E2944AB2100730941 /* Main.swift in Sources */,
+				6AA534FE2953A49A00D811AB /* ToggleShortcuts.swift in Sources */,
+				6AA534FC295271E200D811AB /* Toggle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
