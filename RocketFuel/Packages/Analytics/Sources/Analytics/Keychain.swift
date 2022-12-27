@@ -8,20 +8,26 @@ import Security
 struct Keychain {
     
     enum Error: Swift.Error {
+        case failedToDelete(status: Int32)
         case failedToRead(status: Int32)
         case failedToWrite(status: Int32)
         case foundNoRecords
     }
     
-    @discardableResult
-    static func set(_ value: Data) throws -> Data? {
+    private static var attributes: [CFString: Any] {
         let service = Bundle.main.bundleIdentifier ?? ""
         let attributes = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
-            kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
-            kSecValueData: value,
-        ] as [String: Any]
+        ] as [CFString: Any]
+        
+        return attributes
+    }
+    
+    @discardableResult
+    static func set(_ value: Data) throws -> Data? {
+        var attributes = Self.attributes
+        attributes[kSecValueData] = value
         
         let status = SecItemAdd(attributes as CFDictionary, nil)
         guard status == errSecSuccess else {
@@ -32,12 +38,8 @@ struct Keychain {
     }
     
     static func get() throws -> Data {
-        let service = Bundle.main.bundleIdentifier ?? ""
-        let attributes = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: service,
-            kSecReturnData: true
-        ] as [String: Any]
+        var attributes = Self.attributes
+        attributes[kSecReturnData] = true
         
         var result: AnyObject?
         let status = SecItemCopyMatching(attributes as CFDictionary, &result)
@@ -50,5 +52,18 @@ struct Keychain {
         }
         
         return data
+    }
+    
+    static func delete() throws {
+        var attributes = Self.attributes
+        attributes[kSecReturnData] = true
+        
+        let status = SecItemDelete(attributes as CFDictionary)
+        switch status {
+        case errSecSuccess, errSecItemNotFound:
+            break
+        default:
+            throw Error.failedToDelete(status: status)
+        }
     }
 }
