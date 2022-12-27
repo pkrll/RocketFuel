@@ -5,11 +5,11 @@
 import AppIntents
 import SleepControl
 
-@available(macOS 13, *)
+@available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *)
 struct Toggle: AppIntent {
     
-    static var title: LocalizedStringResource = "Toggle"
-    static var description = IntentDescription("Activate or deactivate Rocket Fuel.")
+    static var title: LocalizedStringResource = "Activate/Deactivate"
+    static var description = IntentDescription("Activates or deactivates Rocket Fuel.")
     static var openAppWhenRun: Bool = true
     
     @Parameter(title: "Stop on Battery Mode")
@@ -36,7 +36,6 @@ struct Toggle: AppIntent {
             )
         }
         
-        let state = toggleValue ? "on" : "off"
-        return .result(value: toggleValue, dialog: "Rocket Fuel is now \(state).")
+        return .result(value: toggleValue)
     }
 }

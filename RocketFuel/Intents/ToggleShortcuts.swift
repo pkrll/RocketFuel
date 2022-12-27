@@ -10,7 +10,9 @@ struct ToggleShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: Toggle(),
-            phrases: ["Toggle Rocket Fuel", "Keep my screen turned on"]
+            phrases: ["Toggle \(.applicationName)", "Keep my screen turned on"],
+            shortTitle: "Toggle Rocket Fuel",
+            systemImageName: "fuelpump.circle.fill"
         )
     }
 }
