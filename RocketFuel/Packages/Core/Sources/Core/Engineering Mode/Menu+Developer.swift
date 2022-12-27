@@ -10,25 +10,18 @@ import MenuBarExtras
 extension Menu {
     func insertDeveloperSettingsMenu(appState: AppState, analytics: Analytics, crashReporter: CrashReporter) async {
         let title = "Developer Settings"
-        let userId = analytics.distinctId ?? "-"
         let loggingIsEnabled = appState._shouldTrackEvents
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([.string], owner: nil)
         
         let menu = Menu(title: title) {
             Menu.Item.button(title: "Analytics", children: [
-                .button(title: "Mixpanel User ID", children: [
-                    .button(title: userId) {
-                        pasteboard.setString(userId, forType: .string)
-                    }
-                ]),
-                .separator,
                 .button(title: "\(loggingIsEnabled ? "Disable" : "Enable") Logging") {
                     analytics.enableEventsTracking(!loggingIsEnabled)
                 },
                 .button(title: "Log Developer Test Event") {
                     analytics.track(.developerSettingsTest, sendImmediately: true)
-                }
+                },
             ])
             
             Menu.Item.separator
