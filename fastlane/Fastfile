@@ -34,7 +34,6 @@ platform :mac do
       force: true
     )
 
-    increment_build_number(xcodeproj: "RocketFuel.xcodeproj")
     build_app(
       scheme: "RocketFuel",
       output_directory: "./.build/"
