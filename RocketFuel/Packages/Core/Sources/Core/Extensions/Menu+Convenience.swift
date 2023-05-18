@@ -47,8 +47,8 @@ extension Menu {
                     await deactivateAfterAction(0)
                 }
                 
-                Menu.Item.separator
-                Menu.Item.button(title: "Custom", keyEquivalent: "c")
+//                Menu.Item.separator
+//                Menu.Item.button(title: "Custom", keyEquivalent: "c")
             }
             
             Menu.Item.separator
