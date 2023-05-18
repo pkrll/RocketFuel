@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "SleepControl",
+    platforms: [.macOS(.v10_15)],
     products: [
         .library(name: "SleepControl", targets: ["SleepControl"]),
     ],
