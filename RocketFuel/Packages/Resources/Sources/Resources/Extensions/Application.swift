@@ -44,6 +44,7 @@ extension Application {
         private let components: [Int]
         
         public init(string: String) {
+            let string = string.components(separatedBy: " ").first ?? ""
             components = string.components(separatedBy: Self.delimiter).compactMap(Int.init)
         }
         
