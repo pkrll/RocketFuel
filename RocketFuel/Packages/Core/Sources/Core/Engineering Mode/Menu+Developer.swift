@@ -22,6 +22,13 @@ extension Menu {
                 .button(title: "Log Developer Test Event") {
                     analytics.track(.developerSettingsTest, sendImmediately: true)
                 },
+                .button(title: "Copy Mixpanel ID to clipboard") {
+                    guard let distinctId = analytics.distinctId else {
+                        return
+                    }
+
+                    pasteboard.setString(distinctId, forType: .string)
+                },
             ])
             
             Menu.Item.separator

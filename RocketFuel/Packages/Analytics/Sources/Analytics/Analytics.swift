@@ -9,6 +9,10 @@ public final class Analytics {
     private let token: String?
     private var mixpanel: MixpanelInstance?
     private var shouldTrackEvents = true
+
+    public var distinctId: String? {
+        mixpanel?.distinctId
+    }
     
     public init(token: String?) {
         self.token = token
@@ -19,7 +23,9 @@ public final class Analytics {
             return
         }
         
-        mixpanel = Mixpanel.initialize(token: token, flushInterval: 15)
+        let mixpanel = Mixpanel.initialize(token: token, flushInterval: 15)
+        mixpanel.identify(distinctId: mixpanel.distinctId)
+        self.mixpanel = mixpanel
     }
     
     public func setUserSettings(_ properties: Properties) {
