@@ -33,6 +33,15 @@ lane :distribute do
     force: true
   )
 
+  buildNumberText = sh("curl --silent https://increment.build/rocketfuel-app")
+  buildNumber = buildNumberText.to_i
+  
+  if buildNumber <= 0 then
+    UI.user_error!("Could not get next build number. Output from curl '#{buildNumberText}'")
+  end
+
+  increment_build_number(build_number: buildNumber)
+
   build_app(
     scheme: "RocketFuel",
     output_directory: "./.build/"
