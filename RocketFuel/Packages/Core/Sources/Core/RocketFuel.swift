@@ -3,6 +3,7 @@
 //
 
 import Analytics
+import AppKit
 import Cocoa
 import Combine
 import CrashReporting
