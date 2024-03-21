@@ -41,7 +41,17 @@ extension Menu {
                 Menu.Item.button(title: "30 Minutes", selected: durationIsThirtyMinutes, keyEquivalent: "3") {
                     await deactivateAfterAction(1800)
                 }
-                
+
+                let durationIsSixtyMinutes = activationDuration == 3600
+                Menu.Item.button(title: "1 Hour", selected: durationIsSixtyMinutes, keyEquivalent: "4") {
+                    await deactivateAfterAction(3600)
+                }
+
+                let durationIsTwoHours = activationDuration == 7200
+                Menu.Item.button(title: "2 Hours", selected: durationIsTwoHours, keyEquivalent: "5") {
+                    await deactivateAfterAction(7200)
+                }
+
                 let durationIsZero = activationDuration == 0
                 Menu.Item.button(title: "Never", selected: durationIsZero, keyEquivalent: "0") {
                     await deactivateAfterAction(0)
