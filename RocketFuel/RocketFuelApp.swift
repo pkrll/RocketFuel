@@ -7,9 +7,10 @@ import SwiftUI
 @main
 struct RocketFuelApp: App {
     @State private var appState = AppState()
+    @State private var isMenuBarInserted = isRunningPreviews == false
 
     var body: some Scene {
-        MenuBarExtra {
+        MenuBarExtra(isInserted: $isMenuBarInserted) {
             MenuCommands()
                 .environment(appState)
         } label: {
@@ -35,4 +36,12 @@ struct RocketFuelApp: App {
         CrashReporter.configure()
         RocketFuelScriptBridge.shared.configure(with: appState)
     }
+}
+
+private var isRunningPreviews: Bool {
+#if DEBUG
+    ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+#else
+    return false
+#endif
 }
