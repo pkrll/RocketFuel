@@ -6,18 +6,28 @@ import Carbon
 import SwiftUI
 
 struct KeyRecorderView: View {
+
     @Environment(AppState.self) private var appState
     @State private var isRecording = false
+    @State private var error: String?
 
     var body: some View {
-        HStack {
-            ZStack {
-                recordingField
-                recordButton
+        VStack {
+            HStack {
+                ZStack {
+                    recordingField
+                    recordButton
+                }
+
+                if appState.hotKey != nil {
+                    clearButton
+                }
             }
 
-            if appState.hotKey != nil {
-                clearButton
+            if let error {
+                Text("Could not set hot key: \(error.localizedLowercase)")
+                    .font(.callout)
+                    .foregroundStyle(Color.red)
             }
         }
     }
@@ -60,7 +70,7 @@ struct KeyRecorderView: View {
 
     private var clearButton: some View {
         Button {
-            appState.setHotKey(nil)
+            setHotKey(nil)
         } label: {
             Image(systemName: "xmark.circle.fill")
                 .foregroundStyle(.secondary)
@@ -73,6 +83,14 @@ struct KeyRecorderView: View {
             return "Press shortcut..."
         }
         return appState.hotKey?.readable ?? "Record Shortcut"
+    }
+
+    private func setHotKey(_ hotKey: HotKey?) {
+        do {
+            try appState.setHotKey(hotKey)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     private func handleKeyEvent(_ event: NSEvent) {
@@ -114,7 +132,7 @@ struct KeyRecorderView: View {
         readable += character.uppercased()
 
         let hotKey = HotKey(keyCode: keyCode, modifier: modifier, readable: readable)
-        appState.setHotKey(hotKey)
+        setHotKey(hotKey)
     }
 }
 
@@ -202,6 +220,5 @@ private extension NSEvent {
 #Preview {
     KeyRecorderView()
         .environment(AppState())
-        .padding()
         .frame(width: 300)
 }
