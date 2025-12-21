@@ -52,6 +52,8 @@ final class AppState {
     private let batteryMonitor = BatteryMonitor()
     private let hotKeyManager = HotKeyManager()
 
+    private var timer: Timer?
+
     // MARK: - Initialization
 
     init() {
@@ -79,6 +81,8 @@ final class AppState {
     }
 
     func activate(for duration: Duration? = nil) {
+        clearTimer()
+
         activationDuration = duration
 
         let seconds: TimeInterval = if let duration {
@@ -89,9 +93,20 @@ final class AppState {
 
         sleepManager.enable(duration: seconds)
         isActive = true
+
+        guard seconds > 0 else {
+            return
+        }
+
+        timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { [weak self] _ in
+            Task { @MainActor in
+                self?.isActive = false
+            }
+        }
     }
 
     func deactivate() {
+        clearTimer()
         sleepManager.disable()
         isActive = false
         activationDuration = nil
@@ -110,6 +125,11 @@ final class AppState {
     }
 
     // MARK: - Private
+
+    private func clearTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
 
     private func setupBatteryMonitoring() {
         batteryMonitor.onChange = { [weak self] in
