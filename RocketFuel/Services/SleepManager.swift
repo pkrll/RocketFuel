@@ -9,20 +9,10 @@ final class SleepManager: @unchecked Sendable {
     private var assertionID: IOPMAssertionID = .zero
     private var isAssertionActive: Bool { assertionID != .zero }
 
-    private var shouldStopOnBatteryMode = false
-    private var minimumBatteryLevel = 0
-
-    func enable(
-        duration: TimeInterval = 0,
-        shouldStopOnBatteryMode: Bool,
-        minimumBatteryLevel: Int
-    ) {
+    func enable(duration: TimeInterval = 0) {
         if isAssertionActive {
             disable()
         }
-
-        self.shouldStopOnBatteryMode = shouldStopOnBatteryMode
-        self.minimumBatteryLevel = minimumBatteryLevel
 
         let type = kIOPMAssertPreventUserIdleDisplaySleep as CFString
         let name = "RocketFuel" as CFString

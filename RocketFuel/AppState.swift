@@ -87,22 +87,8 @@ final class AppState {
             0
         }
 
-        sleepManager.enable(
-            duration: seconds,
-            shouldStopOnBatteryMode: disableOnBattery && !batteryMonitor.isOnBattery,
-            minimumBatteryLevel: batteryThreshold
-        )
-
+        sleepManager.enable(duration: seconds)
         isActive = true
-
-        if let duration {
-            Task {
-                try? await Task.sleep(for: duration)
-                if isActive {
-                    deactivate()
-                }
-            }
-        }
     }
 
     func deactivate() {
@@ -129,8 +115,20 @@ final class AppState {
         batteryMonitor.onChange = { [weak self] in
             guard let self, isActive else { return }
 
-            let shouldDisable = (disableOnBattery && batteryMonitor.isOnBattery) ||
-                                (batteryThreshold > 0 && batteryMonitor.currentCharge < batteryThreshold)
+            let shouldDisable = {
+                guard self.disableOnBattery,
+                      self.batteryMonitor.isOnBattery
+                else {
+                    return false
+                }
+
+                guard self.batteryThreshold > 0 else {
+                    return true
+                }
+
+                let thresholdReached = self.batteryMonitor.currentCharge >= self.batteryThreshold
+                return thresholdReached
+            }()
 
             if shouldDisable {
                 deactivate()
