@@ -22,6 +22,13 @@ struct RocketFuelApp: App {
             SettingsView()
                 .environment(appState)
         }
+
+        Window("Custom Duration", id: "custom-duration") {
+            CustomDurationView()
+                .environment(appState)
+        }
+        .windowResizability(.contentSize)
+        .windowStyle(.hiddenTitleBar)
     }
 
     init() {

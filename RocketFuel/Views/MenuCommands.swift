@@ -6,8 +6,7 @@ import SwiftUI
 
 struct MenuCommands: View {
     @Environment(AppState.self) private var appState
-    @State private var showingCustomDuration = false
-    @State private var customMinutes = 60
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         toggleButton
@@ -49,7 +48,8 @@ struct MenuCommands: View {
             Divider()
 
             Button {
-                showingCustomDuration = true
+                openWindow(id: "custom-duration")
+                NSApp.activate(ignoringOtherApps: true)
             } label: {
                 HStack {
                     Text("Custom...")
@@ -74,12 +74,6 @@ struct MenuCommands: View {
                         Image(systemName: "checkmark")
                     }
                 }
-            }
-        }
-        .sheet(isPresented: $showingCustomDuration) {
-            CustomDurationView(minutes: $customMinutes) { minutes in
-                let duration = Duration.seconds(minutes * 60)
-                appState.activate(for: duration)
             }
         }
     }
@@ -115,9 +109,9 @@ struct MenuCommands: View {
 // MARK: - Custom Duration View
 
 struct CustomDurationView: View {
+    @Environment(AppState.self) private var appState
     @Environment(\.dismiss) private var dismiss
-    @Binding var minutes: Int
-    let onConfirm: (Int) -> Void
+    @State private var minutes = 60
 
     var body: some View {
         VStack(spacing: 20) {
@@ -140,7 +134,8 @@ struct CustomDurationView: View {
                 .keyboardShortcut(.cancelAction)
 
                 Button("Activate") {
-                    onConfirm(minutes)
+                    let duration = Duration.seconds(minutes * 60)
+                    appState.activate(for: duration)
                     dismiss()
                 }
                 .keyboardShortcut(.defaultAction)
@@ -148,7 +143,7 @@ struct CustomDurationView: View {
             }
         }
         .padding(24)
-        .frame(width: 240)
+        .fixedSize()
     }
 }
 
