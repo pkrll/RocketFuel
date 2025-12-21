@@ -288,10 +288,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1667;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = ZHSKC28PQ8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -299,6 +299,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RocketFuel/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Fuel Debug";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -306,9 +307,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 3.0.0;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-concurrency -Xfrontend -enable-actor-data-race-checks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -326,7 +326,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1667;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -336,7 +336,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RocketFuel/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Fuel";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Fuel Debug";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -344,9 +345,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 3.0.0;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-concurrency -Xfrontend -enable-actor-data-race-checks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.RocketFuel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
