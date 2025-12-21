@@ -29,13 +29,36 @@ struct SettingsView: View {
                 Text("Automatically deactivate when switching to battery power or when battery falls below threshold.")
             }
 
+            Section {
+                Toggle("Lock screen on inactivity", isOn: $state.lockOnInactivity)
+
+                if appState.lockOnInactivity {
+                    if let minutes = appState.displaySleepMinutes, minutes > 0 {
+                        LabeledContent("Locks after") {
+                            Text("\(minutes) minutes")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+
+                    if !appState.hasAccessibilityPermission {
+                        Button("Grant Accessibility Permission") {
+                            appState.requestAccessibilityPermission()
+                        }
+                    }
+                }
+            } header: {
+                Text("Security")
+            } footer: {
+                Text("Lock the screen after the same inactivity period as your display sleep setting. Requires Accessibility permission.")
+            }
+
             Section("Shortcut") {
                 KeyRecorderView()
                     .environment(appState)
             }
         }
         .formStyle(.grouped)
-        .frame(width: 350, height: 250)
+        .frame(width: 350, height: 450)
     }
 }
 

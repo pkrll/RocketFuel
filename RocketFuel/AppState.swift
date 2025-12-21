@@ -2,6 +2,7 @@
 //  Copyright © 2025 Ardalan Samimi. All rights reserved.
 //
 
+import AppKit
 import Foundation
 import ServiceManagement
 import SwiftUI
@@ -46,11 +47,35 @@ final class AppState {
         didSet { saveHotKey() }
     }
 
+    var lockOnInactivity: Bool {
+        didSet {
+            UserDefaults.standard.set(lockOnInactivity, forKey: Keys.lockOnInactivity)
+            if isActive {
+                if lockOnInactivity {
+                    startInactivityMonitoring()
+                } else {
+                    stopInactivityMonitoring()
+                }
+            }
+        }
+    }
+
+    // MARK: - Computed Properties
+
+    var displaySleepMinutes: Int? {
+        sleepManager.getDisplaySleepMinutes()
+    }
+
+    var hasAccessibilityPermission: Bool {
+        ScreenLocker.hasAccessibilityPermission
+    }
+
     // MARK: - Services
 
     private let sleepManager = SleepManager()
     private let batteryMonitor = BatteryMonitor()
     private let hotKeyManager = HotKeyManager()
+    private let inactivityMonitor = InactivityMonitor()
 
     private var timer: Timer?
 
@@ -60,10 +85,13 @@ final class AppState {
         leftClickActivation = UserDefaults.standard.bool(forKey: Keys.leftClickActivation)
         disableOnBattery = UserDefaults.standard.bool(forKey: Keys.disableOnBattery)
         batteryThreshold = UserDefaults.standard.integer(forKey: Keys.batteryThreshold)
+        lockOnInactivity = UserDefaults.standard.bool(forKey: Keys.lockOnInactivity)
         hotKey = loadHotKey()
 
         setupBatteryMonitoring()
         setupHotKeyHandler()
+        setupInactivityMonitor()
+        setupSessionObserver()
 
         if let hotKey {
             try? hotKeyManager.register(hotKey)
@@ -94,6 +122,10 @@ final class AppState {
         sleepManager.enable(duration: seconds)
         isActive = true
 
+        if lockOnInactivity {
+            startInactivityMonitoring()
+        }
+
         guard seconds > 0 else {
             return
         }
@@ -107,6 +139,7 @@ final class AppState {
 
     func deactivate() {
         clearTimer()
+        stopInactivityMonitoring()
         sleepManager.disable()
         isActive = false
         activationDuration = nil
@@ -122,6 +155,10 @@ final class AppState {
         }
 
         hotKey = newHotKey
+    }
+
+    func requestAccessibilityPermission() {
+        ScreenLocker.requestAccessibilityPermission()
     }
 
     // MARK: - Private
@@ -159,7 +196,6 @@ final class AppState {
     }
 
     private func setupHotKeyHandler() {
-        // Listen for hotkey notifications from the Carbon event handler
         NotificationCenter.default.addObserver(
             forName: .hotKeyPressed,
             object: nil,
@@ -175,6 +211,43 @@ final class AppState {
                 }
             }
         }
+    }
+
+    private func setupInactivityMonitor() {
+        inactivityMonitor.onInactivityThresholdReached = { [weak self] in
+            Task { @MainActor in
+                guard let self, self.isActive, self.lockOnInactivity else { return }
+                ScreenLocker.lock()
+            }
+        }
+    }
+
+    private func setupSessionObserver() {
+        NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.sessionDidBecomeActiveNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                guard let self, self.isActive, self.lockOnInactivity else { return }
+                self.startInactivityMonitoring()
+            }
+        }
+    }
+
+    private func startInactivityMonitoring() {
+        guard let minutes = displaySleepMinutes,
+              minutes > 0,
+              isActive
+        else {
+            return
+        }
+
+        inactivityMonitor.start(thresholdMinutes: minutes)
+    }
+
+    private func stopInactivityMonitoring() {
+        inactivityMonitor.stop()
     }
 
     private func loadHotKey() -> HotKey? {
@@ -199,6 +272,7 @@ extension AppState {
         static let disableOnBattery = "disableOnBatteryMode"
         static let batteryThreshold = "stopAtBatteryLevel"
         static let hotKey = "activationHotKey"
+        static let lockOnInactivity = "lockOnInactivity"
     }
 }
 
