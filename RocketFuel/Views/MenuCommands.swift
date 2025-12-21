@@ -56,10 +56,8 @@ struct MenuCommands: View {
                 NSApp.activate(ignoringOtherApps: true)
             } label: {
                 HStack {
-                    Text("Custom...")
-                    if let active = appState.activationDuration,
-                       !AppState.presetDurations.contains(active),
-                       appState.isActive {
+                    Text(customDurationLabel)
+                    if isCustomDurationActive {
                         Spacer()
                         Image(systemName: "checkmark")
                     }
@@ -80,6 +78,22 @@ struct MenuCommands: View {
                 }
             }
         }
+    }
+
+    private var isCustomDurationActive: Bool {
+        guard let active = appState.activationDuration, appState.isActive else {
+            return false
+        }
+        return !AppState.presetDurations.contains(active)
+    }
+
+    private var customDurationLabel: String {
+        if let active = appState.activationDuration,
+           appState.isActive,
+           !AppState.presetDurations.contains(active) {
+            return "Custom (\(active.formatted))"
+        }
+        return "Custom..."
     }
 
     private func durationButton(for duration: Duration) -> some View {
