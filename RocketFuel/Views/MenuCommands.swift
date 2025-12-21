@@ -7,6 +7,7 @@ import SwiftUI
 struct MenuCommands: View {
     @Environment(AppState.self) private var appState
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.openSettings) private var openSettings
 
     var body: some View {
         toggleButton
@@ -21,7 +22,10 @@ struct MenuCommands: View {
 
         Divider()
 
-        SettingsLink {
+        Button {
+            openSettings()
+            NSApp.activate(ignoringOtherApps: true)
+        } label: {
             Text("Settings...")
         }
         .keyboardShortcut(",", modifiers: .command)
