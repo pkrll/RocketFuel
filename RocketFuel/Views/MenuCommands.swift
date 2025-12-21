@@ -15,9 +15,6 @@ struct MenuCommands: View {
         Divider()
 
         deactivateAfterMenu
-
-        Divider()
-
         launchAtLoginToggle
 
         Divider()
