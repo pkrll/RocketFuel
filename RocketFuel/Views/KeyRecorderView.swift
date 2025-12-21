@@ -7,52 +7,60 @@ import SwiftUI
 
 struct KeyRecorderView: View {
     @Environment(AppState.self) private var appState
-    @State private var state: RecordingState = .idle
-    @FocusState private var isFocused: Bool
+    @State private var isRecording = false
 
     var body: some View {
         HStack {
-            recordButton
+            ZStack {
+                recordingField
+                recordButton
+            }
+
             if appState.hotKey != nil {
                 clearButton
             }
         }
-        .onAppear {
-            if appState.hotKey != nil {
-                state = .recorded
-            }
-        }
     }
 
+    @ViewBuilder
     private var recordButton: some View {
         Button {
-            state = .recording
-            isFocused = true
+            isRecording = true
         } label: {
             HStack {
                 Spacer()
-                Text(buttonText)
-                    .foregroundStyle(state == .recorded ? .primary : .secondary)
+                Text(buttonLabel)
+                    .foregroundStyle(appState.hotKey != nil ? .primary : .secondary)
                 Spacer()
             }
             .padding(.vertical, 6)
         }
         .buttonStyle(.bordered)
-        .focused($isFocused)
-        .onKeyPress { press in
-            handleKeyPress(press)
-        }
-        .onChange(of: isFocused) { _, newValue in
-            if !newValue && state == .recording {
-                state = appState.hotKey != nil ? .recorded : .idle
+        .opacity(isRecording ? 0 : 1)
+    }
+
+    @ViewBuilder
+    private var recordingField: some View {
+        if isRecording {
+            KeyEventView { event in
+                handleKeyEvent(event)
+            }
+            .frame(height: 28)
+            .background {
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(.background)
+                    .stroke(.blue, lineWidth: 2)
+            }
+            .overlay {
+                Text("Press shortcut...")
+                    .foregroundStyle(.secondary)
             }
         }
     }
 
     private var clearButton: some View {
         Button {
-            try? appState.setHotKey(nil)
-            state = .idle
+            appState.setHotKey(nil)
         } label: {
             Image(systemName: "xmark.circle.fill")
                 .foregroundStyle(.secondary)
@@ -60,82 +68,124 @@ struct KeyRecorderView: View {
         .buttonStyle(.plain)
     }
 
-    private var buttonText: String {
-        switch state {
-        case .idle:
-            return "Record Shortcut"
-        case .recording:
-            return "Press keys..."
-        case .recorded:
-            return appState.hotKey?.readable ?? "Record Shortcut"
-        case .error:
-            return "Try again..."
+    private var buttonLabel: String {
+        if isRecording {
+            return "Press shortcut..."
         }
+        return appState.hotKey?.readable ?? "Record Shortcut"
     }
 
-    private func handleKeyPress(_ press: KeyPress) -> KeyPress.Result {
-        guard state == .recording else { return .ignored }
+    private func handleKeyEvent(_ event: NSEvent) {
+        isRecording = false
 
-        // Require at least one modifier
-        guard !press.modifiers.isEmpty else { return .handled }
+        guard let character = event.readableCharacter else { return }
 
-        // Ignore modifier-only presses
-        let modifierOnlyKeys: Set<KeyEquivalent> = [
-            KeyEquivalent(Character(UnicodeScalar(0)!))
-        ]
-        if modifierOnlyKeys.contains(press.key) { return .handled }
+        // Require at least one modifier key
+        let hasModifier = event.modifierFlags.contains(.command) ||
+                          event.modifierFlags.contains(.option) ||
+                          event.modifierFlags.contains(.control) ||
+                          event.modifierFlags.contains(.shift)
 
-        let keyCode = Int(press.key.character.asciiValue ?? 0)
+        guard hasModifier else { return }
+
+        let keyCode = Int(event.keyCode)
         var modifier = 0
         var readable = ""
 
-        if press.modifiers.contains(.control) {
+        if event.modifierFlags.contains(.control) {
             readable += "^"
             modifier |= controlKey
         }
-        if press.modifiers.contains(.option) {
+        if event.modifierFlags.contains(.option) {
             readable += "⌥"
             modifier |= optionKey
         }
-        if press.modifiers.contains(.shift) {
+        if event.modifierFlags.contains(.shift) {
             readable += "⇧"
             modifier |= shiftKey
         }
-        if press.modifiers.contains(.command) {
+        if event.modifierFlags.contains(.command) {
             readable += "⌘"
             modifier |= cmdKey
         }
 
-        readable += String(press.key.character).uppercased()
+        readable += character.uppercased()
 
-        // We need the actual keyCode from the system, not ASCII
-        // For now, we'll use a simplified approach
-        let hotKey = HotKey(
-            keyCode: keyCode,
-            modifier: modifier,
-            readable: readable
-        )
-
-        do {
-            try appState.setHotKey(hotKey)
-            state = .recorded
-            isFocused = false
-        } catch {
-            state = .error
-        }
-
-        return .handled
+        let hotKey = HotKey(keyCode: keyCode, modifier: modifier, readable: readable)
+        appState.setHotKey(hotKey)
     }
 }
 
-// MARK: - Recording State
+// MARK: - Key Event Capturing View
 
-extension KeyRecorderView {
-    enum RecordingState {
-        case idle
-        case recording
-        case recorded
-        case error
+private struct KeyEventView: NSViewRepresentable {
+    let onKeyDown: (NSEvent) -> Void
+
+    func makeNSView(context: Context) -> KeyListenerView {
+        let view = KeyListenerView(onKeyDown: onKeyDown)
+        DispatchQueue.main.async {
+            view.window?.makeFirstResponder(view)
+        }
+        return view
+    }
+
+    func updateNSView(_ nsView: KeyListenerView, context: Context) {
+        DispatchQueue.main.async {
+            nsView.window?.makeFirstResponder(nsView)
+        }
+    }
+}
+
+private final class KeyListenerView: NSView {
+    private let onKeyDown: (NSEvent) -> Void
+
+    override var acceptsFirstResponder: Bool { true }
+
+    init(onKeyDown: @escaping (NSEvent) -> Void) {
+        self.onKeyDown = onKeyDown
+        super.init(frame: .zero)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func keyDown(with event: NSEvent) {
+        onKeyDown(event)
+    }
+}
+
+// MARK: - NSEvent Extension
+
+private extension NSEvent {
+    var readableCharacter: String? {
+        let code = Int(keyCode)
+
+        switch code {
+        case kVK_F1: return "F1"
+        case kVK_F2: return "F2"
+        case kVK_F3: return "F3"
+        case kVK_F4: return "F4"
+        case kVK_F5: return "F5"
+        case kVK_F6: return "F6"
+        case kVK_F7: return "F7"
+        case kVK_F8: return "F8"
+        case kVK_F9: return "F9"
+        case kVK_F10: return "F10"
+        case kVK_F11: return "F11"
+        case kVK_F12: return "F12"
+        case kVK_Space: return "Space"
+        case kVK_Return: return "Return"
+        case kVK_Tab: return "Tab"
+        case kVK_Delete: return "Delete"
+        case kVK_Escape: return "Esc"
+        case kVK_LeftArrow: return "←"
+        case kVK_RightArrow: return "→"
+        case kVK_UpArrow: return "↑"
+        case kVK_DownArrow: return "↓"
+        default:
+            return charactersIgnoringModifiers
+        }
     }
 }
 
@@ -143,4 +193,5 @@ extension KeyRecorderView {
     KeyRecorderView()
         .environment(AppState())
         .padding()
+        .frame(width: 300)
 }
