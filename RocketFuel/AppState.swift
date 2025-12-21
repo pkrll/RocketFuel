@@ -185,12 +185,10 @@ extension AppState {
 // MARK: - Durations
 
 extension AppState {
-    static let availableDurations: [Duration?] = [
-        .seconds(5 * 60),
+    static let presetDurations: [Duration] = [
         .seconds(15 * 60),
         .seconds(30 * 60),
         .seconds(60 * 60),
-        .seconds(2 * 60 * 60),
-        nil
+        .seconds(2 * 60 * 60)
     ]
 }

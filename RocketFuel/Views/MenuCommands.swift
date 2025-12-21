@@ -6,6 +6,8 @@ import SwiftUI
 
 struct MenuCommands: View {
     @Environment(AppState.self) private var appState
+    @State private var showingCustomDuration = false
+    @State private var customMinutes = 60
 
     var body: some View {
         toggleButton
@@ -40,21 +42,57 @@ struct MenuCommands: View {
 
     private var deactivateAfterMenu: some View {
         Menu("Deactivate After") {
-            ForEach(AppState.availableDurations, id: \.self) { duration in
-                Button {
-                    if let duration {
-                        appState.activate(for: duration)
-                    } else {
-                        appState.activate()
+            ForEach(AppState.presetDurations, id: \.self) { duration in
+                durationButton(for: duration)
+            }
+
+            Divider()
+
+            Button {
+                showingCustomDuration = true
+            } label: {
+                HStack {
+                    Text("Custom...")
+                    if let active = appState.activationDuration,
+                       !AppState.presetDurations.contains(active),
+                       appState.isActive {
+                        Spacer()
+                        Image(systemName: "checkmark")
                     }
-                } label: {
-                    HStack {
-                        Text(duration?.formatted ?? "Never")
-                        if appState.activationDuration == duration && appState.isActive {
-                            Spacer()
-                            Image(systemName: "checkmark")
-                        }
+                }
+            }
+
+            Divider()
+
+            Button {
+                appState.activate()
+            } label: {
+                HStack {
+                    Text("Never")
+                    if appState.activationDuration == nil && appState.isActive {
+                        Spacer()
+                        Image(systemName: "checkmark")
                     }
+                }
+            }
+        }
+        .sheet(isPresented: $showingCustomDuration) {
+            CustomDurationView(minutes: $customMinutes) { minutes in
+                let duration = Duration.seconds(minutes * 60)
+                appState.activate(for: duration)
+            }
+        }
+    }
+
+    private func durationButton(for duration: Duration) -> some View {
+        Button {
+            appState.activate(for: duration)
+        } label: {
+            HStack {
+                Text(duration.formatted)
+                if appState.activationDuration == duration && appState.isActive {
+                    Spacer()
+                    Image(systemName: "checkmark")
                 }
             }
         }
@@ -71,6 +109,46 @@ struct MenuCommands: View {
             NSApplication.shared.terminate(nil)
         }
         .keyboardShortcut("q", modifiers: .command)
+    }
+}
+
+// MARK: - Custom Duration View
+
+struct CustomDurationView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Binding var minutes: Int
+    let onConfirm: (Int) -> Void
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Text("Custom Duration")
+                .font(.headline)
+
+            HStack {
+                TextField("Minutes", value: $minutes, format: .number)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 80)
+
+                Text("minutes")
+                    .foregroundStyle(.secondary)
+            }
+
+            HStack(spacing: 12) {
+                Button("Cancel") {
+                    dismiss()
+                }
+                .keyboardShortcut(.cancelAction)
+
+                Button("Activate") {
+                    onConfirm(minutes)
+                    dismiss()
+                }
+                .keyboardShortcut(.defaultAction)
+                .disabled(minutes <= 0)
+            }
+        }
+        .padding(24)
+        .frame(width: 240)
     }
 }
 
