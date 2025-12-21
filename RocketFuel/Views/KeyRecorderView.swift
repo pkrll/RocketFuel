@@ -80,15 +80,17 @@ struct KeyRecorderView: View {
 
         guard let character = event.readableCharacter else { return }
 
-        // Require at least one modifier key
+        let keyCode = Int(event.keyCode)
+        let isFunctionKey = event.isFunctionKey
+
+        // Require at least one modifier key, unless it's a function key
         let hasModifier = event.modifierFlags.contains(.command) ||
                           event.modifierFlags.contains(.option) ||
                           event.modifierFlags.contains(.control) ||
                           event.modifierFlags.contains(.shift)
 
-        guard hasModifier else { return }
+        guard hasModifier || isFunctionKey else { return }
 
-        let keyCode = Int(event.keyCode)
         var modifier = 0
         var readable = ""
 
@@ -158,6 +160,14 @@ private final class KeyListenerView: NSView {
 // MARK: - NSEvent Extension
 
 private extension NSEvent {
+    var isFunctionKey: Bool {
+        let code = Int(keyCode)
+        return [
+            kVK_F1, kVK_F2, kVK_F3, kVK_F4, kVK_F5, kVK_F6,
+            kVK_F7, kVK_F8, kVK_F9, kVK_F10, kVK_F11, kVK_F12
+        ].contains(code)
+    }
+
     var readableCharacter: String? {
         let code = Int(keyCode)
 
